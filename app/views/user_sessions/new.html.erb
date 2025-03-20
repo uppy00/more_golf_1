@@ -1,0 +1,22 @@
+<!-- ユーザーログインページ　-->
+<div>
+  <div>
+    <h1 class="text-2xl">ログイン</h1>
+    <%= form_with url: login_path do |f| %>
+      <div class="mb-4">
+        <%= f.label :email,"メールアドレス"%>
+        <%= f.email_field :email%>
+      </div>
+      <div class="mb-4">
+        <%= f.label :password,"パスワード"%>
+        <%= f.password_field :password%>
+      </div>
+      <div class="mb-4">
+        <%= f.submit "ログイン", class: 'hover:bg-green-500 transition-all duration-300'%>
+      </div>
+    <% end %>
+    <div class="mb-4">
+      <%= link_to 'パスワードを忘れた方'%>
+    </div>
+  </div>
+</div>
