@@ -5,8 +5,8 @@
     <%= image_tag "", alt: "" %>
       <div class="flex space-x-4">
         <p class="text-white">ログイン中: <%= current_user.first_name %></p>
-        <div><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %></div>
-        <div><%= link_to 'ゴルフ入門', '#', class: 'text-white hover:text-white' %></div>
+        <div><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-white hover:text-black" %></div>
+        <div><%= link_to 'ゴルフ入門', '#', class: 'text-white hover:text-black' %></div>
     </div>
   </div>
 </header>
