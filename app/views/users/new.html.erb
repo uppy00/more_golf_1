@@ -1,0 +1,34 @@
+<!-- ユーザー登録画面 -->
+<div>
+  <div>
+    <h1 class="text-2xl">ユーザー登録</h1>
+    <%= form_with model:@user do |f| %>
+      <div class="mb-4">
+        <%= f.label :first_name, "名字" %> 
+        <%= f.text_field :first_name, class: 'border  rounded-md' %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :last_name, "名前" %> 
+        <%= f.text_field :last_name, class: 'border  rounded-md' %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス" %> 
+        <%= f.text_field :email, class: 'border  rounded-md' %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :password, "パスワード" %> 
+        <%= f.password_field :password, class: 'border  rounded-md' %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :password_confirmation, "パスワード確認" %> 
+        <%= f.password_field :password_confirmation, class: 'border  rounded-md' %>
+      </div>
+      <div class="mb-4">
+        <%= f.submit "登録", class: 'hover:bg-green-500 transition-all duration-300'%>
+      </div>
+      <div class="mb-4">
+        <%= link_to 'ログインページへ', login_path %>
+      </div>
+    <% end %>
+  </div>
+</div>
