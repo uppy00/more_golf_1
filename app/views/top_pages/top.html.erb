@@ -36,9 +36,7 @@
           <!-- bodyの表示 -->
           <p class="text-sm text-gray-700 flex-grow"><%= post.body.truncate(100) %></p>
           <!-- 画像の表示 -->
-          <div class="mt-4">
-            <%= image_tag "default_image.png", class: 'w-[300px] h-[80px] object-cover rounded-md' %>
-          </div>
+          
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">
             <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
