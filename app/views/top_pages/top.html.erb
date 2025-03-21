@@ -1,3 +1,4 @@
+<!-- ログインしている時のトップページ-->
 <% content_for :title, "More.golf" %>
 <!-- フラッシュメッセージの表示-->
 <!-- 成功時　-->
@@ -19,7 +20,37 @@
   </div>
 <% end %>
 
-<!-- トップページ　-->
-<div class="bg-sky-400 text-white p-4">
-	Tailwind CSSが適用されています
+<!-- トップページ　掲示板のindex部分-->
+<div class="text-xl pt-2 pl-7">タグによる絞り込み</div>
+<div class="p-8">
+  <div class="grid grid-cols-3 gap-4">
+    <% @posts.each do |post| %>
+      <div class="bg-gray-300 p-4" style="width: 365px; height: 245px;">
+        <div class="flex flex-col h-full">
+          <!-- postタイトル -->
+          <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
+            <%= link_to post.title, '#' %>
+            <!-- ユーザーの名前 -->
+            <span class="text-sm text-gray-800 ml-2"><%= post.user.first_name %><%= post.user.last_name %></span>
+          </h2>
+          <!-- bodyの表示 -->
+          <p class="text-sm text-gray-700 flex-grow"><%= post.body.truncate(100) %></p>
+          <!-- 画像の表示 -->
+          <div class="mt-4">
+            <%= image_tag "default_image.png", class: 'w-[300px] h-[80px] object-cover rounded-md' %>
+          </div>
+          <!-- 投稿日時を下に表示 -->
+          <div class="flex justify-between items-center mt-auto">
+            <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+            <div class="flex space-x-3 ">
+              <!-- 編集ボタン -->
+              <%= link_to '編集', '#', class: 'text-blue-500 hover:text-blue-700' %>
+              <!-- 削除ボタン -->
+              <%= link_to '削除', '#', class: 'text-red-500 hover:text-red-700' %>
+            </div>
+          </div>
+        </div>  
+      </div>
+    <% end %> 
+  </div>
 </div>
