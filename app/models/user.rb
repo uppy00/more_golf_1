@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :posts, dependent: :destroy
-
+  # own?メゾットで自分が投稿したものだけを識別
   def own?(object)
     id == object&.user_id
   end
