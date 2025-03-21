@@ -1,3 +1,10 @@
+<!-- 新規投稿失敗のフラッシュメッセージの設定 -->
+<% if flash.now[:danger] %>
+  <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+    <p><%= flash.now[:danger] %></p>
+  </div>
+<% end %>
+<!-- 新規投稿ページ　-->
 <div>
   <div class="flex">
     <h1 class="text-2xl p-10 ">新規投稿</h1>
