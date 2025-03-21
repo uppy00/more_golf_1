@@ -6,10 +6,9 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-
+  # 投稿の作成
   def create
     @post = current_user.posts.build(post_params)
-    logger.debug(params.inspect)
     if @post.save
       flash[:success] = "投稿に成功しました"
       redirect_to posts_path
@@ -18,8 +17,24 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+  # 投稿の詳細
   def show
+    @post = Post.find(params[:id])
+  end
+  # 投稿の編集を登録するもの
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      flash[:success] = "投稿の編集に成功しました"
+      redirect_to posts_path(@post)
+    else
+      flash.now[:danger] = "投稿の編集に失敗しました。エラーメッセージを確認してください"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  # 投稿の編集ページを表示
+  def edit
+    @post = current_user.posts.find(params[:id])
   end
 
   def destroy
