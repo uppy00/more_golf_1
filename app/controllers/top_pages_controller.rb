@@ -6,7 +6,7 @@ class TopPagesController < ApplicationController
     if logged_in?
       @posts = Post.all
     else
-      render 'before_login_top'
+      render "before_login_top"
     end
   end
 end
