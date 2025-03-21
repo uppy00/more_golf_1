@@ -31,7 +31,7 @@
           <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
             <%= link_to post.title, '#' %>
             <!-- ユーザーの名前 -->
-            
+            <span class="text-sm text-gray-800 ml-2"><%= post.user.first_name %><%= post.user.last_name %></span>
           </h2>
           <!-- bodyの表示 -->
           <p class="text-sm text-gray-700 flex-grow"><%= post.body.truncate(100) %></p>
