@@ -4,6 +4,25 @@ class PostsController < ApplicationController
   end
   # postnewを表示させるためのもの
   def new
-    @posts = Post.new
+    @post = Post.new
+  end
+
+  def create
+    @post = current_user.posts.build(post_params)
+    logger.debug(params.inspect)
+    if @post.save
+      flash[:success] = "投稿に成功しました"
+      redirect_to posts_path
+    else
+      flash.now[:danger] = "投稿に失敗しました。エラーメッセージを確認してください"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
