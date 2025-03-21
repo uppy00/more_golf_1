@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.all
   end
   # postnewを表示させるためのもの
   def new
