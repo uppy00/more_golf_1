@@ -29,7 +29,7 @@
         <div class="flex flex-col h-full">
           <!-- postタイトル -->
           <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
-            <%= link_to post.title, '#' %>
+            <%= link_to post.title, post_path(post)  %>
             <!-- ユーザーの名前 -->
             <span class="text-sm text-gray-800 ml-2"><%= post.user.first_name %><%= post.user.last_name %></span>
           </h2>
@@ -42,12 +42,15 @@
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">
             <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
-            <div class="flex space-x-3 ">
-              <!-- 編集ボタン -->
-              <%= link_to '編集', '#', class: 'text-blue-500 hover:text-blue-700' %>
-              <!-- 削除ボタン -->
-              <%= link_to '削除', post_path(post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' %>
-            </div>
+            <!-- ユーザーが自分ではない場合、編集と削除ボタンを表示させない仕組みに -->
+            <% if current_user.own?(post) %>
+              <div class="flex space-x-3 ">
+                <!-- 編集ボタン -->
+                <%= link_to '編集', edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' %>
+                <!-- 削除ボタン -->
+                <%= link_to '削除', post_path(post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' %>
+              </div>
+            <% end %>
           </div>
         </div>  
       </div>
