@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts, only: %i[index new create destroy show]
+  resources :posts, only: %i[index new create destroy show edit update]
   root "top_pages#top"
 
   # ユーザ登録のルーティング
