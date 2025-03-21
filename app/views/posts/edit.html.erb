@@ -1,0 +1,26 @@
+<!-- 投稿編集ページ　-->
+<div>
+  <div class="flex">
+    <h1 class="text-2xl p-10 ">投稿編集</h1>
+    <div class="pt-10 pl-4 rounded-lg ml-20">
+      <%= form_with model: @post do |f| %>
+      <!-- タイトル -->
+      <div class="mb-4">
+        <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
+        <%= f.text_field :title, class: 'border  w-[440px] h-[40px]' %>
+      </div>
+      
+      <!-- 本文 -->
+      <div class="mb-4">
+        <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
+        <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
+      </div>
+      
+      <!-- 編集ボタン -->
+      <div class="mb-4 flex justify-center">
+        <%= f.submit "編集", class: 'hover:bg-green-500 transition-all duration-300 w-[110px] h-[80p] py-2 bg-green-600 text-white rounded-md ' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
