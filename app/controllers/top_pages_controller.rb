@@ -4,7 +4,7 @@ class TopPagesController < ApplicationController
   # loginしていたらyeildにtop.htmlをしていなければbefore_login_topを
   def top
     if logged_in?
-      @posts = Post.all
+      render 'top'
     else
       render 'before_login_top'
     end
