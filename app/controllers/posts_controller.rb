@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     logger.debug(params.inspect)
     if @post.save
-      flash[:succesgis] = "投稿に成功しました"
+      flash[:success] = "投稿に成功しました"
       redirect_to posts_path
     else
       flash.now[:danger] = "投稿に失敗しました。エラーメッセージを確認してください"
@@ -19,11 +19,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def destroy
     post = current_user.posts.find(params[:id])
     post.destroy!
+    flash[:danger] = "投稿を削除しました"
     redirect_to posts_path
-    flash[:success] = "投稿を削除しました"
   end
 
   private
