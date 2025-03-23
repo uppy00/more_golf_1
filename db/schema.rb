@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_20_132306) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_091103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_20_132306) do
     t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
+    t.text "self_introduction"
+    t.string "favorite_course"
+    t.string "favorite_diving_range"
+    t.string "driving_range_type"
+    t.integer "driving_range_price"
+    t.integer "best_score"
+    t.string "best_score_course"
+    t.string "favorite_video_creator"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
