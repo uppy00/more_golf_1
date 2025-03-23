@@ -1,0 +1,53 @@
+<!-- ユーザーのマイページ　-->
+<div class="max-w-7xl mx-auto p-6">
+  <div class="grid grid-cols-3 gap-6">
+    
+    <!-- 左側のカラム -->
+    <div class="space-y-4">
+      <div class="font-bold text-xl">ニックネーム</div>
+      <div><%= @user.nickname %></div>
+
+      <div class="font-bold text-xl">メールアドレス</div>
+      <div><%= @user.email %></div>
+
+      <div class="font-bold text-xl">アバター</div>
+      <div>
+        
+      </div>
+    </div>
+    
+    <!-- 真ん中のカラム -->
+    <div class="space-y-4">
+      <div class="font-bold text-xl">自己紹介</div>
+      <div><%= @user.self_introduction %></div>
+
+      <div class="font-bold text-xl">よく行くゴルフ場</div>
+      <div><%= @user.favorite_course %></div>
+    </div>
+
+    <!-- 右側のカラム -->
+    <div class="space-y-4">
+      <div class="font-bold text-xl">ベストスコア</div>
+      <div><%= @user.best_score %></div>
+
+      <div class="font-bold text-xl">ベストスコアを出したコース</div>
+      <div><%= @user.best_score_course %></div>
+
+      <div class="font-bold text-xl">よく行く練習場</div>
+      <div><%= @user.favorite_diving_range %></div>
+
+      <div class="font-bold text-xl">練習場のタイプ</div>
+      <div><%= @user.driving_range_type %></div>
+
+      <div class="font-bold text-xl">金額</div>
+      <div><%= @user.driving_range_price %>円</div>
+
+      <div class="font-bold text-xl">参考にしているユーチューバー</div>
+      <div><%= @user.favorite_video_creator %></div>
+    </div>
+  </div>
+
+  <!-- 編集ページへのリンク -->
+  <div class="mt-6">
+    <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+  </div>
