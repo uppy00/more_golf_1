@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_091103) do
     t.string "nickname"
     t.text "self_introduction"
     t.string "favorite_course"
-    t.string "favorite_diving_range"
+    t.string "favorite_driving_range"
     t.string "driving_range_type"
     t.integer "driving_range_price"
     t.integer "best_score"

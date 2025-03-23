@@ -1,3 +1,9 @@
+<!-- 成功時のフラッシュメッセージの設定　-->
+<% if flash[:success] %>
+  <div class="bg-green-200 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+    <p><%= flash[:success] %></p>
+  </div>
+<% end %>
 <!-- ユーザーのマイページ　-->
 <div class="max-w-7xl mx-auto p-6">
   <div class="grid grid-cols-3 gap-6">
@@ -34,7 +40,7 @@
       <div><%= @user.best_score_course %></div>
 
       <div class="font-bold text-xl">よく行く練習場</div>
-      <div><%= @user.favorite_diving_range %></div>
+      <div><%= @user.favorite_driving_range %></div>
 
       <div class="font-bold text-xl">練習場のタイプ</div>
       <div><%= @user.driving_range_type %></div>
