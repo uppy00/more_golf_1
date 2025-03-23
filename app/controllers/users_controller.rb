@@ -26,12 +26,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      flash[:success] = "プロフィールの更新に成功しました"
+      redirect_to user_path(@user)
+    else
+      flash.now[:danger] = "プロフィールの更新に失敗しました。エラーを確認してください"
+      render :edit, status: :unprocessable_entity
+    end
   end
-  
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :self_introduction, :favorite_course, :best_score, :best_score_course, :favorite_driving_range, :driving_range_type, :driving_range_price, :favorite_video_creator)
   end
   # 表示するユーザーの情報を取得
   def set_user
