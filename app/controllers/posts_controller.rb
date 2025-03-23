@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       flash[:success] = "投稿の編集に成功しました"
-      redirect_to posts_path(@post)
+      redirect_to post_path(@post)
     else
       flash.now[:danger] = "投稿の編集に失敗しました。エラーメッセージを確認してください"
       render :edit, status: :unprocessable_entity

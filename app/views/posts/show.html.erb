@@ -1,0 +1,58 @@
+<!-- 投稿詳細ページ　-->
+<div class="flex">
+  <!-- 左側の投稿情報 -->
+  <div class="w-1/3  pt-5 pl-15 mr-10">
+    <div class="font-bold text-2xl">
+      <%= @post.title%>
+    </div>
+    <div class="mb-4 mt-4 text-left">
+      <!-- 投稿者の名前 -->
+      <span class="text-xl">posted.by<%= @post.user.first_name %><%= @post.user.last_name %></span>
+      <button class="bg-green-500 text-white rounded-md p-0.5 px-1 ml-2">タグ</button>
+    </div>
+
+
+    <div class="mb-4 text-center">
+      <!-- 投稿写真 -->
+      <img src="投稿写真URL" alt="投稿画像" class="w-[380px] h-[300px] object-cover rounded-lg bg-gray-300">
+    </div>
+
+    <div class="mb-4 text-center">
+      <!-- 投稿本文 -->
+      <p class="w-[380px] h-[230px] text-gray-700 overflow-auto bg-gray-300 rounded-md">
+        <%= @post.body%>
+      </p>
+    </div>
+  </div>
+
+  <!-- 右側のコメントセクション -->
+  <div class="w-[600px] p-4 pl-20 flex flex-col">
+    <h1 class="pt-10 text-2xl">コメント</h1>
+    <div class="mt-5 bg-gray-300 p-2 border rounded-md">
+      <label for="comment" class="block text-sm font-medium text-gray-700"></label>
+      <textarea id="comment" rows="4" class="w-full p-2 border-none rounded-md"></textarea>
+    </div>
+
+    <button class=" bg-green-500 text-white p-2 mt-10 rounded-md w-[100px] mx-auto">投稿</button>
+
+    <div class="mt-6">
+      <!-- コメント表示 -->
+      <div class="border-t pt-4">
+        <div class="mb-2">
+          <span class="font-semibold">ユーザー名:</span> こちらがコメントです。
+        </div>
+        <div class="pt-6 border-t">
+          <span class="font-semibold">別のユーザー:</span> 別のコメントがここに表示されます。
+        </div>
+      </div>
+    </div>
+    <% if current_user.own?(@post)%>
+      <div class="flex space-x-3 mt-auto justify-end">
+        <!-- 編集ボタン -->
+        <%= link_to '編集', edit_post_path(@post), class: 'text-blue-500 hover:text-blue-700' %>
+        <!-- 削除ボタン -->
+        <%= link_to '削除', post_path(@post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' %>
+      </div>
+    <% end %>
+  </div>
+</div>
