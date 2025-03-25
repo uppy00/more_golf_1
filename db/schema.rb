@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_091103) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_25_072723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_091103) do
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
@@ -39,6 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_091103) do
     t.integer "best_score"
     t.string "best_score_course"
     t.string "favorite_video_creator"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -13,7 +13,7 @@
       <div class="flex items-center space-x-4">
         <!-- アバター画像を円形で表示 -->
         <div class="w-24 h-24 rounded-full overflow-hidden flex justify-center items-center">
-          <%= image_tag  "sozai-252.jpg", class: "w-full h-full object-cover" %>
+          <%= image_tag @user.avatar.url.presence || asset_path('avatar_sample'), class: "w-full h-full object-cover" %>
         </div>
 
         <!-- ニックネームとメールアドレスを縦に並べる -->

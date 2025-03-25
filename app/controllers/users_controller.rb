@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :self_introduction, :favorite_course, :best_score, :best_score_course, :favorite_driving_range, :driving_range_type, :driving_range_price, :favorite_video_creator)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :self_introduction, :favorite_course, :best_score, :best_score_course, :favorite_driving_range, :driving_range_type, :driving_range_price, :favorite_video_creator, :avatar)
   end
   # 表示するユーザーの情報を取得
   def set_user
