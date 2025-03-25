@@ -4,56 +4,103 @@
     <p><%= flash[:success] %></p>
   </div>
 <% end %>
-<!-- ユーザーのマイページ　-->
+<!-- ユーザーマイページshow -->
 <div class="max-w-7xl mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-4">マイページ</h2>
   <div class="grid grid-cols-3 gap-6">
-    
-    <!-- 左側のカラム -->
     <div class="space-y-4">
-      <div class="font-bold text-xl">ニックネーム</div>
-      <div><%= @user.nickname %></div>
+      <!-- アバターとニックネーム、メールアドレスを横並びに配置 -->
+      <div class="flex items-center space-x-4">
+        <!-- アバター画像を円形で表示 -->
+        <div class="w-24 h-24 rounded-full overflow-hidden flex justify-center items-center">
+          <%= image_tag  "sozai-252.jpg", class: "w-full h-full object-cover" %>
+        </div>
 
-      <div class="font-bold text-xl">メールアドレス</div>
-      <div><%= @user.email %></div>
+        <!-- ニックネームとメールアドレスを縦に並べる -->
+        <div class="flex flex-col space-y-2">
+          <!-- ニックネーム -->
+          <div>
+            <div class="font-bold text-xl">ニックネーム</div>
+            <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+              <%= @user.nickname %>
+            </div>
+          </div>
 
-      <div class="font-bold text-xl">アバター</div>
+          <!-- メールアドレス -->
+          <div>
+            <div class="font-bold text-xl">メールアドレス</div>
+            <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+              <%= @user.email %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 自己紹介 -->
       <div>
-        
+        <div class="font-bold text-xl">自己紹介</div>
+        <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+          <%= @user.self_introduction %>
+        </div>
+      </div>
+
+      <!-- 参考にしているユーチューバー -->
+      <div>
+        <div class="font-bold text-xl">参考にしているユーチューバー</div>
+        <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+          <%= @user.favorite_video_creator %>
+        </div>
       </div>
     </div>
-    
+
     <!-- 真ん中のカラム -->
     <div class="space-y-4">
-      <div class="font-bold text-xl">自己紹介</div>
-      <div><%= @user.self_introduction %></div>
-
       <div class="font-bold text-xl">よく行くゴルフ場</div>
-      <div><%= @user.favorite_course %></div>
+            <!-- よく行くゴルフ場の県　-->
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">山梨県</div>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+        <%= @user.favorite_course %>
+      </div>
+
+      <div class="font-bold text-xl">よく行く練習場</div>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+        <%= @user.favorite_driving_range %>
+      </div>
+
+      <!-- 練習場のタイプと金額を横並びに -->
+      <div class="flex space-x-4">
+        <div class="w-full">  
+          <div class="font-bold text-xl">練習場のタイプ</div>
+          <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+            <%= @user.driving_range_type %>
+          </div>
+        </div>
+
+        <div class="w-full">
+          <div class="font-bold text-xl">金額</div>
+          <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+            <%= @user.driving_range_price %>
+        </div>
+        </div>
+      </div>
     </div>
 
     <!-- 右側のカラム -->
     <div class="space-y-4">
       <div class="font-bold text-xl">ベストスコア</div>
-      <div><%= @user.best_score %></div>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+        <%= @user.best_score %>
+      </div>
 
       <div class="font-bold text-xl">ベストスコアを出したコース</div>
-      <div><%= @user.best_score_course %></div>
-
-      <div class="font-bold text-xl">よく行く練習場</div>
-      <div><%= @user.favorite_driving_range %></div>
-
-      <div class="font-bold text-xl">練習場のタイプ</div>
-      <div><%= @user.driving_range_type %></div>
-
-      <div class="font-bold text-xl">金額</div>
-      <div><%= @user.driving_range_price %>円</div>
-
-      <div class="font-bold text-xl">参考にしているユーチューバー</div>
-      <div><%= @user.favorite_video_creator %></div>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+        <%= @user.best_score_course %>
+      </div>
     </div>
   </div>
 
-  <!-- 編集ページへのリンク -->
-  <div class="mt-6">
-    <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+  <!-- 更新ボタン -->
+  <div class="mt-20 text-center">
+    <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" %>
   </div>
+</div>
