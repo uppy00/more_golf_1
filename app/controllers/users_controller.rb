@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-  
+
   def require_correct_user
     unless current_user == @user
       flash[:danger] ="他のユーザーのプロフィールを編集することはできません"
