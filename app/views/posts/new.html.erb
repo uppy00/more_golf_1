@@ -21,7 +21,12 @@
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
         <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
       </div>
-      
+
+      <!-- 画像のアップロード -->
+      <div class="mb-4">
+        <%= f.label :image, "画像", class: "text-2xl block mb-6"%>
+        <%= f.file_field :image, class: 'border w-[440px] h-[40px]'%>
+      </div>
       <!-- 投稿ボタン -->
       <div class="mb-4 flex justify-center">
         <%= f.submit "投稿", class: 'hover:bg-green-500 transition-all duration-300 w-[110px] h-[80p] py-2 bg-green-600 text-white rounded-md ' %>

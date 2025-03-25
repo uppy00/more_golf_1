@@ -4,7 +4,7 @@
     <!-- ゴルフ画像のイメージを追加　-->
     <%= image_tag "", alt: "" %>
       <div class="flex space-x-4">
-        <p class="text-white">ログイン中: <%= current_user.first_name %></p>
+        <p class="text-white">ログイン中: <%= current_user.first_name %><%= current_user.last_name %></p>
         <div><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-white hover:text-black" %></div>
         <div><%= link_to 'ゴルフ入門', '#', class: 'text-white hover:text-black' %></div>
     </div>
