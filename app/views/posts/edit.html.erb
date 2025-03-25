@@ -15,6 +15,20 @@
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
         <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
       </div>
+
+      <!-- 画像のアップロード -->
+      <div class="mb-4">
+        <%= f.label :image, "画像", class: "text-2xl block mb-6"%>
+
+        <!-- 既存の画像があれば表示 -->
+        <% if @post.image? %>
+          <div class="mb-2">
+            <%= image_tag @post.image.url, class: 'w-[200px] h-[200px] object-contain' %>
+          </div>
+        <% end %>
+
+        <%= f.file_field :image, class: 'border w-[440px] h-[40px]'%>
+      </div>
       
       <!-- 編集ボタン -->
       <div class="mb-4 flex justify-center">

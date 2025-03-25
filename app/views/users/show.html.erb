@@ -13,7 +13,7 @@
       <div class="flex items-center space-x-4">
         <!-- アバター画像を円形で表示 -->
         <div class="w-24 h-24 rounded-full overflow-hidden flex justify-center items-center">
-          <%= image_tag  "sozai-252.jpg", class: "w-full h-full object-cover" %>
+          <%= image_tag @user.avatar.url.presence || asset_path('avatar_sample'), class: "w-full h-full object-cover" %>
         </div>
 
         <!-- ニックネームとメールアドレスを縦に並べる -->
@@ -98,9 +98,10 @@
       </div>
     </div>
   </div>
-
-  <!-- 更新ボタン -->
-  <div class="mt-20 text-center">
-    <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" %>
-  </div>
+  <% if current_user == @user %>
+    <!-- 更新ボタン -->
+    <div class="mt-20 text-center">
+      <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" %>
+    </div>
+  <% end %>
 </div>

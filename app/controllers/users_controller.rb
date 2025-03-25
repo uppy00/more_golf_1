@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # require_loginをnew及びcreateにのみスキップ
   skip_before_action :require_login, only: %i[new create]
   before_action :set_user, only: %i[show edit update]
+  before_action :require_correct_user, only: %i[edit update]
 
 
   def new
@@ -38,10 +39,17 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :self_introduction, :favorite_course, :best_score, :best_score_course, :favorite_driving_range, :driving_range_type, :driving_range_price, :favorite_video_creator)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :self_introduction, :favorite_course, :best_score, :best_score_course, :favorite_driving_range, :driving_range_type, :driving_range_price, :favorite_video_creator, :avatar)
   end
   # 表示するユーザーの情報を取得
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
+  end
+
+  def require_correct_user
+    unless current_user == @user
+      flash[:danger] ="他のユーザーのプロフィールを編集することはできません"
+      redirect_to user_path(current_user)
+    end
   end
 end
