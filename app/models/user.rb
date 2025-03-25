@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :favorite_video_creator, length: { maximum: 100 }, allow_nil: true
 
   has_many :posts, dependent: :destroy
+
+  mount_uploader :avatar, AvatarUploader
   # own?メゾットで自分が投稿したものだけを識別
   def own?(object)
     id == object&.user_id
