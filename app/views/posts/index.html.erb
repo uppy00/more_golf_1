@@ -24,7 +24,7 @@
 <div class="p-8">
   <div class="grid grid-cols-3 gap-4">
     <% @posts.each do |post| %>
-      <div class="bg-gray-300 p-4" style="width: 365px; height: 245px;">
+      <div class="bg-gray-300 p-4 " style="width: 365px; height: 290px;">
         <div class="flex flex-col h-full">
           <!-- postタイトル -->
           <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
@@ -35,8 +35,8 @@
           <!-- bodyの表示 -->
           <p class="text-sm text-gray-700 flex-grow"><%= post.body.truncate(100) %></p>
           <!-- 画像の表示 -->
-          <div class="mt-4">
-            <%= image_tag "default_image.png", class: 'w-[300px] h-[80px] object-cover rounded-md' %>
+          <div class="mt-4 mb-6">
+            <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[150px] object-contain rounded-md' %>
           </div>
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">
