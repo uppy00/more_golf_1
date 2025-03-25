@@ -1,3 +1,8 @@
+<% if flash[:success] %>
+  <div class="bg-green-200 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+    <p><%= flash[:success] %></p>
+  </div>
+<% end %>
 <!-- 投稿詳細ページ　-->
 <div class="flex">
   <!-- 左側の投稿情報 -->
