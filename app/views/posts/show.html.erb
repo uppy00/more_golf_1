@@ -12,14 +12,14 @@
     </div>
     <div class="mb-4 mt-4 text-left">
       <!-- 投稿者の名前 -->
-      <span class="text-xl">posted.by<%= @post.user.first_name %><%= @post.user.last_name %></span>
+      <span class="text-xl">posted.by <%= @post.user.first_name %><%= @post.user.last_name %></span>
       <button class="bg-green-500 text-white rounded-md p-0.5 px-1 ml-2">タグ</button>
     </div>
 
 
     <div class="mb-4 text-center">
       <!-- 投稿写真 -->
-      <img src="投稿写真URL" alt="投稿画像" class="w-[380px] h-[300px] object-cover rounded-lg bg-gray-300">
+      <%= image_tag @post.image.url.presence || asset_path('default_image.png'), class: "w-[380px] h-[300px] object-contain rounded-lg bg-gray-300"%>
     </div>
 
     <div class="mb-4 text-center">
@@ -38,7 +38,7 @@
       <textarea id="comment" rows="4" class="w-full p-2 border-none rounded-md"></textarea>
     </div>
 
-    <button class=" bg-green-500 text-white p-2 mt-10 rounded-md w-[100px] mx-auto">投稿</button>
+    <button class=" bg-green-500 text-white p-2 mt-10 rounded-md w-[120px] mx-auto">コメント投稿</button>
 
     <div class="mt-6">
       <!-- コメント表示 -->
