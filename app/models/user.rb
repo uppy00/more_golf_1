@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, uniqueness: true
   # userのmypageのカラム↓
-  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true, unless: -> { new_record? }
   validates :self_introduction, length: { maximum: 200 }
   validates :favorite_course, length: { maximum: 20 }, allow_nil: true
   validates :favorite_driving_range, length: { maximum: 30}, allow_nil: true
