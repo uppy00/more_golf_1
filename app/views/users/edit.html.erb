@@ -1,0 +1,84 @@
+  <!--　フラッシュメッセージの表示　-->
+<% if flash.now[:danger] %>
+  <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+    <p><%= flash.now[:danger] %></p>
+  </div>
+<% end %>
+  <!-- ユーザーマイページedit-->
+<div class="max-w-7xl mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-4">プロフィール編集</h2>
+
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="grid grid-cols-3 gap-6">
+      
+      <div class="space-y-4">
+ <!-- アバターとニックネーム、メールアドレスを横並びに配置 -->
+  <div class="flex items-center space-x-4">
+    <!-- アバター画像を円形で表示 -->
+    <div class="w-24 h-24 rounded-full overflow-hidden flex justify-center items-center">
+      <%= image_tag "sozai-252.jpg", class: "w-full h-full object-cover" %>
+    </div>
+
+    <!-- ニックネームとメールアドレスを縦に並べる -->
+    <div class="flex flex-col space-y-2">
+      <!-- ニックネーム -->
+      <div>
+        <div class="font-bold text-xl">ニックネーム</div>
+        <%= f.text_field :nickname, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+      </div>
+
+      <!-- メールアドレス -->
+      <div>
+        <div class="font-bold text-xl">メールアドレス</div>
+        <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+          <%= current_user.email %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自己紹介 -->
+  <div>
+    <div class="font-bold text-xl">自己紹介</div>
+    <%= f.text_area :self_introduction, class: "w-full px-4 py-2 border border-gray-300 rounded-lg", rows: 4 %>
+  </div>
+
+  <!-- 参考にしているユーチューバー -->
+  <div>
+    <div class="font-bold text-xl">参考にしているユーチューバー</div>
+    <%= f.text_field :favorite_video_creator, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+  </div>
+</div>
+
+      <!-- 真ん中のカラム -->
+      <div class="space-y-4">
+        <div class="font-bold text-xl">よく行くゴルフ場</div>
+        <%= f.text_field :favorite_course, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+
+        <div class="font-bold text-xl">よく行く練習場</div>
+        <%= f.text_field :favorite_driving_range, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+
+        <div class="font-bold text-xl">練習場のタイプ</div>
+        <%= f.select :driving_range_type, options_for_select(["打ち放題", "球数", "インドア"], @user.driving_range_type), class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+
+        <div class="font-bold text-xl">金額</div>
+        <%= f.number_field :driving_range_price, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+      </div>
+
+      <!-- 右側のカラム -->
+      <div class="space-y-4">
+        <div class="font-bold text-xl">ベストスコア</div>
+        <%= f.number_field :best_score, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+
+        <div class="font-bold text-xl">ベストスコアを出したコース</div>
+        <%= f.text_field :best_score_course, class: "w-full px-4 py-2 border border-gray-300 rounded-lg" %>
+
+      </div>
+    </div>
+
+    <!-- 更新ボタン -->
+    <div class="mt-6 text-center">
+      <%= f.submit "プロフィールを更新", class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+    </div>
+  <% end %>
+</div>
