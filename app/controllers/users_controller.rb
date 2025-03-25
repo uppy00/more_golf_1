@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # require_loginをnew及びcreateにのみスキップ
   skip_before_action :require_login, only: %i[new create]
-  before_action :set_user,only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update]
 
 
   def new
@@ -44,5 +44,4 @@ class UsersController < ApplicationController
   def set_user
     @user = current_user
   end
-
 end
