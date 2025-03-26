@@ -42,7 +42,7 @@ gem "carrierwave", "~> 2.0"
 
 gem "fog-aws"
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem "dotenv-rails", groups: [ :development, :test ]
 
 
 group :development, :test do
