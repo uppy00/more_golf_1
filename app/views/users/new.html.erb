@@ -4,36 +4,36 @@
     <p><%= flash.now[:danger] %></p>
   </div>
 <% end %>
-<div>
-  <div>
-    <h1 class="text-2xl">ユーザー登録</h1>
-    <%= form_with model:@user do |f| %>
+<div class="flex items-center justify-center mt-11">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md overflow-hidden">
+    <h1 class="text-2xl text-center mb-6">ユーザー登録</h1>
+    <%= form_with model: @user do |f| %>
       <div class="mb-4">
-        <%= f.label :first_name, "名字" %> 
-        <%= f.text_field :first_name, class: 'border  rounded-md' %>
+        <%= f.label :first_name, "名字", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.text_field :first_name, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
-        <%= f.label :last_name, "名前" %> 
-        <%= f.text_field :last_name, class: 'border  rounded-md' %>
+        <%= f.label :last_name, "名前", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.text_field :last_name, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
-        <%= f.label :email, "メールアドレス" %> 
-        <%= f.text_field :email, class: 'border  rounded-md' %>
+        <%= f.label :email, "メールアドレス", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.text_field :email, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
-        <%= f.label :password, "パスワード" %> 
-        <%= f.password_field :password, class: 'border  rounded-md' %>
+        <%= f.label :password, "パスワード", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.password_field :password, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
-        <%= f.label :password_confirmation, "パスワード確認" %> 
-        <%= f.password_field :password_confirmation, class: 'border  rounded-md' %>
+        <%= f.label :password_confirmation, "パスワード確認", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.password_field :password_confirmation, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
-        <%= f.submit "登録", class: 'hover:bg-green-500 transition-all duration-300'%>
-      </div>
-      <div class="mb-4">
-        <%= link_to 'ログインページへ', login_path %>
+        <%= f.submit "登録", class: 'w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md transition-all duration-300' %>
       </div>
     <% end %>
+    <div class="mt-4 text-center">
+      <%= link_to 'ログインページへ', login_path, class: 'text-sm text-blue-500 hover:underline' %>
+    </div>
   </div>
 </div>
