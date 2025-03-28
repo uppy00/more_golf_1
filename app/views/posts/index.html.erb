@@ -35,7 +35,7 @@
                 <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
               </div>
               <!-- ユーザー名 -->
-              <%= link_to "#{post.user.first_name} #{post.user.last_name}", user_path(post.user) , class: "text-sm text-gray-800 ml-2" %>
+              <%= link_to "#{post.user.first_name} #{post.user.last_name}", user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
               <!-- 投稿タイトル -->
               <div class="ml-2">
                 <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
@@ -43,7 +43,7 @@
             </div>
           </h2>
           <!-- bodyの表示 -->
-          <p class="text-sm text-gray-700 flex-grow"><%= post.body.truncate(100) %></p>
+          <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
           <!-- 画像の表示 -->
           <div class="mt-4 mb-6">
             <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[150px] object-contain rounded-md' %>
