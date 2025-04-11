@@ -4,6 +4,7 @@
     <h1 class="text-2xl p-10 ">新規投稿</h1>
     <div class="pt-10 pl-4 rounded-lg ml-20">
       <%= form_with model: @post do |f| %>
+      <%= render "shared/errors_messages", object: f.object %>
       <!-- タイトル -->
       <div class="mb-4">
         <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
