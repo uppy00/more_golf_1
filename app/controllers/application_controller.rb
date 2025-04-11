@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   private
-
+  # ログインしていない婆はlogin_pathにリダイレクト
   def not_authenticated
     redirect_to login_path
   end
