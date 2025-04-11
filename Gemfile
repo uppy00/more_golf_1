@@ -38,6 +38,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem "sorcery"
 
+gem "draper", "4.0.2"
+
 gem "carrierwave", "~> 2.0"
 
 gem "fog-aws"
