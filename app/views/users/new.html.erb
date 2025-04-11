@@ -2,6 +2,7 @@
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md overflow-hidden">
     <h1 class="text-2xl text-center mb-6">ユーザー登録</h1>
     <%= form_with model: @user do |f| %>
+    <%= render 'shared/errors_messages', object: f.object%>
       <div class="mb-4">
         <%= f.label :first_name, "名字", class: 'block text-sm font-medium text-gray-700' %>
         <%= f.text_field :first_name, class: 'border rounded-md w-full p-2 text-sm' %>
