@@ -19,6 +19,7 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem "tailwindcss-rails"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -40,7 +41,7 @@ gem "sorcery"
 
 gem "draper", "4.0.2"
 
-gem "carrierwave", "~> 3.1"
+gem "carrierwave", "~> 2.0"
 
 gem "fog-aws"
 
