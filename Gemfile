@@ -40,7 +40,7 @@ gem "sorcery"
 
 gem "draper", "4.0.2"
 
-gem "carrierwave", "~> 2.0"
+gem "carrierwave", "~> 3.1"
 
 gem "fog-aws"
 
