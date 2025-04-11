@@ -1,24 +1,5 @@
 <!-- ログインしていない時のトップページ-->
 <% content_for :title, "More.golf" %>
-<!-- フラッシュメッセージの表示-->
-<!-- 成功時　-->
-<% if flash[:success] %>
-  <div class="bg-green-200 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-    <p><%= flash[:success] %></p>
-  </div>
-<% end %>
-<!-- 失敗時　-->
-<% if flash.now[:danger] %>
-  <div class="bg-orange-200 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
-    <p><%= flash.now[:danger] %></p>
-  </div>
-<% end %>
-<!-- 気づかせる時　-->
-<% if flash[:notice] %>
-  <div class="bg-yellow-200 border-l-4 border-yellow-500-500 text-yellow-700 p-4" role="alert">
-    <p><%= flash[:notice] %></p>
-  </div>
-<% end %>
 <div class="relative">
   <%= image_tag "img01.jpg", class: "w-full h-[350px] object-cover" %>
   <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
