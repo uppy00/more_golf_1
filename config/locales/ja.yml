@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿 #ポストモデルの追加
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        first_name: 名前
+        last_name: 苗字
+        nickname: ニックネーム
+        self_introduction: 自己紹介
+        favorite_course: よく行くゴルフ場
+        favorite_driving_range: よく行く練習場
+        driving_range_type: 練習場のタイプ
+        driving_range_price: 金額
+        best_score: ベストスコア
+        best_score_course: ベストスコアを出したコース
+        favorite_video_creator: 参考にしているユーチューバー
+      post:
+        title: タイトル
+        body: 本文
+  errors:
+    messages:
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      taken: はすでに存在します
