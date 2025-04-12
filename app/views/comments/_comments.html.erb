@@ -1,0 +1,6 @@
+<% comments.each do |comment| %>
+  <div class="mb-2">
+    <span class="font-semibold"><%= comment.user.nickname %>:</span>
+    <%= comment.body %>
+  </div>
+<% end %>

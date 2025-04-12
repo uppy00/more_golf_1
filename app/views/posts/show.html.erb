@@ -27,25 +27,9 @@
 
   <!-- 右側のコメントセクション -->
   <div class="w-[600px] p-4 pl-20 flex flex-col">
-    <h1 class="pt-10 text-2xl">コメント</h1>
-    <div class="mt-5 bg-gray-200 p-2 border rounded-md">
-      <label for="comment" class="block text-sm font-medium text-gray-700"></label>
-      <textarea id="comment" rows="4" class="w-full p-2 border-none rounded-md"></textarea>
-    </div>
-
-    <button class=" bg-green-500 text-white p-2 mt-10 rounded-md w-[120px] mx-auto">コメント投稿</button>
-
-    <div class="mt-6">
-      <!-- コメント表示 -->
-      <div class="border-t pt-4">
-        <div class="mb-2">
-          <span class="font-semibold">ユーザー名:</span> こちらがコメントです。
-        </div>
-        <div class="pt-6 border-t">
-          <span class="font-semibold">別のユーザー:</span> 別のコメントがここに表示されます。
-        </div>
-      </div>
-    </div>
+    <!-- コメントのレンダリング -->
+    <%= render 'comments/form'%>
+    <%= render 'comments/comments', comments: @post.comments %>
     <% if current_user.own?(@post)%>
       <div class="flex space-x-3 mt-auto justify-end">
         <!-- 編集ボタン -->
