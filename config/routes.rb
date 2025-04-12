@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts, only: %i[index new create destroy show edit update]
   root "top_pages#top"
 
   # ユーザ登録のルーティング
@@ -8,6 +7,10 @@ Rails.application.routes.draw do
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"
   delete "logout", to: "user_sessions#destroy"
+
+  resources :posts, only: %i[index new create destroy show edit update] do
+    resources :comments, only: %i[create edit destroy], shallow: true
+  end
 
 
 
