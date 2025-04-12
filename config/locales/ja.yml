@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: 投稿 #ポストモデルの追加
     attributes:
       user:
         email: メールアドレス
@@ -9,6 +10,9 @@ ja:
         password_confirmation: パスワード（確認用）
         first_name: 名前
         last_name: 苗字
+      post:
+        title: タイトル
+        body: 本文
   errors:
     messages:
       blank: を入力してください
