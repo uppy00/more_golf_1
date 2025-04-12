@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_post
-  
+
   def create
     # ポストに紐づいた新しいコメントを作成
-    @comment = @post.comments.build(comment_params)  
+    @comment = @post.comments.build(comment_params)
     # コメントしたユーザーを設定（ログインしているユーザー）
-    @comment.user = current_user  
+    @comment.user = current_user
 
     if @comment.save
       flash[:success] = "コメントを投稿しました"
@@ -19,10 +19,10 @@ class CommentsController < ApplicationController
   private
   # コメントを投稿するポストを取得
   def set_post
-    @post = Post.find(params[:post_id]) 
+    @post = Post.find(params[:post_id])
   end
   # コメント本文のみ受け取る
   def comment_params
-    params.require(:comment).permit(:body)  
+    params.require(:comment).permit(:body)
   end
 end
