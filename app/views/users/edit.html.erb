@@ -3,6 +3,7 @@
   <h2 class="text-2xl font-bold mb-4">プロフィール編集</h2>
 
   <%= form_with model: @user, local: true do |f| %>
+  <%= render 'shared/errors_messages', object: f.object %>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- 左側のカラム（アバターとニックネーム、メールアドレス） -->
     <div class="space-y-4">
