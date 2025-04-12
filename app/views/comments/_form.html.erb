@@ -1,10 +1,13 @@
 <h1 class="pt-10 text-2xl">コメント</h1>
 
-  <%= form_with(model: [@post, @comment], local: true) do |f| %>
-    <div class="mt-5 bg-gray-200 p-2 border rounded-md">
-      <%= f.label :body,"コメント", class: "block text-sm font-medium text-gray-700" %>
-      <%= f.text_area :body, rows: 4, class: "w-full p-2 border-none rounded-md" %>
-    </div>
+<%= form_with(model: [@post, @comment], local: true) do |f| %>
+  <!-- コメント入力エリア -->
+  <div class="mt-5 bg-gray-200 p-2 border rounded-md">
+    <%= f.text_area :body, rows: 1, class: "w-full p-2 border-none " %>
+  </div>
 
-    <%= f.submit "コメント投稿", class: "bg-green-500 text-white p-2 mt-10 rouded-md w-[120px] mx-auto"%>
-  <% end %>
+  <!-- コメント投稿ボタン -->
+  <div class="mt-3 text-right">
+    <%= f.submit "コメント", class: "bg-green-500 text-white p-2 rounded-lg w-[100px] hover:bg-green-600 " %>
+  </div>
+<% end %>
