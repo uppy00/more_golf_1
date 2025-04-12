@@ -1,0 +1,18 @@
+<div class="pt-5">
+  <div class="max-h-110 overflow-y-auto">
+    <% comments.each do |comment| %>
+      <div class="mb-4 flex items-start border-b pb-3 ">
+        <!-- ユーザーのアバター画像 -->
+        <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
+          <%= image_tag comment.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+        </div>
+        <!-- ユーザー名とコメント部分を縦に並べる -->
+        <div >
+          <span class=><%= comment.user.nickname %></span>
+          <!-- コメント本文をユーザー名の下に表示 -->
+          <p class="mt-1 text-sm"><%= comment.body %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
