@@ -10,6 +10,15 @@ ja:
         password_confirmation: パスワード（確認用）
         first_name: 名前
         last_name: 苗字
+        nickname: ニックネーム
+        self_introduction: 自己紹介
+        favorite_course: よく行くゴルフ場
+        favorite_driving_range: よく行く練習場
+        driving_range_type: 練習場のタイプ
+        driving_range_price: 金額
+        best_score: ベストスコア
+        best_score_course: ベストスコアを出したコース
+        favorite_video_creator: 参考にしているユーチューバー
       post:
         title: タイトル
         body: 本文
