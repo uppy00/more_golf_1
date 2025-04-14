@@ -126,7 +126,7 @@ GEM
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
       railties (>= 6.1)
-    draper (4.0.2)
+    draper (4.0.4)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
       activemodel-serializers-xml (>= 1.0)
@@ -271,7 +271,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.12)
+    rack (3.1.13)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -438,7 +438,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
-  draper (= 4.0.2)
+  draper (= 4.0.4)
   fog-aws
   jbuilder
   jsbundling-rails
