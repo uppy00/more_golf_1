@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_post
+  before_action :set_post, only: %i[create]
 
   def create
     # ポストに紐づいた新しいコメントを作成
-    @comment = @post.comments.build(comment_params)
+    @comment = current_user.comments.build(comment_params)
     # コメントしたユーザーを設定（ログインしているユーザー）
     @comment.user = current_user
 
@@ -16,6 +16,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy!
+  end
+
   private
   # コメントを投稿するポストを取得
   def set_post
@@ -23,6 +28,6 @@ class CommentsController < ApplicationController
   end
   # コメント本文のみ受け取る
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body).merge(post_id: params[:post_id])
   end
 end

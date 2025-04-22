@@ -1,16 +1,24 @@
 <div class="pt-5">
   <div class="max-h-120 overflow-y-auto shadow">
     <% comments.each do |comment| %>
-      <div class=" flex items-start border-b pb-2 pt-2">
+      <!-- turbo_streamで必要なid設定 -->
+      <div id="comment-<%= comment.id %>"class="flex items-start pb-2 pt-2">
         <!-- ユーザーのアバター画像 -->
         <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
           <%= image_tag comment.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
         </div>
-        <!-- ユーザー名とコメント部分を縦に並べる -->
-        <div >
-          <span class=><%= comment.user.nickname %></span>
-          <!-- コメント本文をユーザー名の下に表示 -->
-          <p class="mt-1 text-sm"><%= comment.body %></p>
+        <!-- ユーザー名+コメント+削除ボタン -->
+        <div class="flex items-center justify-between w-full">
+          <!-- ユーザー名とコメント部分を縦に並べる -->
+          <div class="flex flex-col">
+            <span><%= comment.user.nickname %></span>
+            <!-- コメント本文をユーザー名の下に表示 -->
+            <p class="mt-1 text-sm"><%= comment.body %></p>
+          </div>
+          <!-- 削除ボタン -->
+          <% if current_user.own?(comment) %>
+            <%= link_to '削除', comment_path(comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' %>
+          <% end %>
         </div>
       </div>
     <% end %>
