@@ -1,7 +1,7 @@
 <div class="pt-5">
-  <div class="max-h-110 overflow-y-auto">
+  <div class="max-h-120 overflow-y-auto shadow">
     <% comments.each do |comment| %>
-      <div class="mb-4 flex items-start border-b pb-3 ">
+      <div class=" flex items-start border-b pb-2 pt-2">
         <!-- ユーザーのアバター画像 -->
         <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
           <%= image_tag comment.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
