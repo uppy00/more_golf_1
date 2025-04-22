@@ -3,9 +3,9 @@
 <!-- トップページ　掲示板のindex部分-->
 <div class="pt-2 pl-7 mb-2">タグによる絞り込み</div>
 <div class="px-6">
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-cols-3 gap-6">
     <% @posts.each do |post| %>
-      <div class="bg-gray-300 p-4 " style="width: 380px; height: 300px;">
+      <div class="bg-gray-200 p-4 rounded-lg shadow" style="width: 480x; height: 340px;">
         <div class="flex flex-col h-full">
           <!-- postタイトル -->
           <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
@@ -27,7 +27,7 @@
           <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
           <!-- 画像の表示 -->
           <div class="mt-4 mb-6">
-            <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[150px] object-contain rounded-md' %>
+            <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
           </div>
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">
