@@ -17,7 +17,9 @@ class User < ApplicationRecord
   validates :best_score, numericality: { only_integer: true }, allow_nil: true
   validates :best_score_course, length: { maximum: 30 }, allow_nil: true
   validates :favorite_video_creator, length: { maximum: 20 }, allow_nil: true
-
+  # ActiveHashとの関連付け
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
