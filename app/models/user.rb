@@ -22,6 +22,22 @@ class User < ApplicationRecord
   belongs_to :prefecture
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+
+  # 投稿に（いいね）をする
+  def like(post)
+    likes.create(post_id: post.id) # 中間テーブルにレコードを作成
+  end
+
+  # 投稿の（いいね）を解除する
+  def unlike(post)
+    likes.find_by(post_id: post.id)&.destroy # 中間テーブルから（いいね）を削除
+  end
+
+  def liked?(post)
+    likeds.include?(post) # すでに（いいね）した投稿が含まれているか確認
+  end
 
   mount_uploader :avatar, AvatarUploader
   # own?メゾットで自分が投稿したものだけを識別
