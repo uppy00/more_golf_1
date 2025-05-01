@@ -24,19 +24,20 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-
-  # 投稿に（いいね）をする
+  
+  # いいねする
   def like(post)
-    likes.create(post_id: post.id) # 中間テーブルにレコードを作成
+    likes.find_or_create_by(post_id: post.id)
   end
 
-  # 投稿の（いいね）を解除する
+  # いいね解除
   def unlike(post)
-    likes.find_by(post_id: post.id)&.destroy # 中間テーブルから（いいね）を削除
+    likes.find_by(post_id: post.id)&.destroy
   end
 
+  # すでにいいねしているか？
   def liked?(post)
-    likeds.include?(post) # すでに（いいね）した投稿が含まれているか確認
+    liked_posts.include?(post)
   end
 
   mount_uploader :avatar, AvatarUploader

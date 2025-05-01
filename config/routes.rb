@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
   # いいねの登録と解除
-  resources :likes, only: %i[create destroy]
+  resources :likes, only: %i[create destroy], param: :post_id
 end
