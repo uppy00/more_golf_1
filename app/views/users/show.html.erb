@@ -40,7 +40,7 @@
       <div class="font-bold text-xl">よく行くゴルフ場</div>
             <!-- よく行くゴルフ場の県　-->
       <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-        <%= @user.prefecture.name %>
+        <%= @user.prefecture&.name || "未設定" %>
       </div>
       <div class="w-full px-4 py-2 border border-gray-300 rounded-lg">
         <%= @user.favorite_course %>
