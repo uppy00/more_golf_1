@@ -10,5 +10,11 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index new create destroy show edit update] do
     resources :comments, only: %i[create edit destroy], shallow: true
+    collection do
+      # いいねされている一覧
+      get :likes
+    end
   end
+  # いいねの登録と解除
+  resources :likes, only: %i[create destroy]
 end
