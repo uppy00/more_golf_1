@@ -1,0 +1,2 @@
+<!-- いいねされていたらレンダリング　-->
+<%= link_to 'いいね解除', like_path(post_id: post.id), data: { turbo_method: :delete }, class: "text-red-500" %>

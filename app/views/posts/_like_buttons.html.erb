@@ -1,0 +1,6 @@
+<!-- いいねされてたらunlikeをレンダリング　していなければlikeをレンダリング-->
+<% if current_user.liked?(post) %>
+  <%= render 'unlike', { post: post } %>
+<% else %>
+  <%= render 'like', { post: post } %>
+<% end %>

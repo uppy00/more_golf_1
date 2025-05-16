@@ -43,11 +43,9 @@
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
               </div>
-            <% end %>
-            <% if current_user.liked?(post) %>
-              <%= link_to 'いいね解除', like_path(post_id: post.id), data: { turbo_method: :delete }, class: "text-red-500" %>
             <% else %>
-              <%= link_to 'いいね', likes_path(post_id: post.id), data: { turbo_method: :post }, class: "text-blue-500" %>
+            <!-- 自分以外の投稿の場合いいねボタンを表示　like_buttonsをレンダリング -->
+              <%= render 'like_buttons', {post: post } %>
             <% end %>
           </div>
         </div>  
