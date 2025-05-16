@@ -1,0 +1,4 @@
+<!-- いいねされていたらレンダリング　-->
+<%= link_to  like_path(post_id: post.id), data: { turbo_method: :delete }, class: "text-red-500" do %>
+  <i class="fa-solid fa-heart"></i>
+<% end %>

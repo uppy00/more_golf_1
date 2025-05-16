@@ -1,0 +1,51 @@
+<!-- app/views/posts/likes.html.erb -->
+<% content_for :title, "いいねした投稿一覧" %>
+
+<h2 class="text-xl font-bold mb-4 pl-6 pt-4">あなたがいいねした投稿</h2>
+
+<div class="px-6">
+  <% if @liked_posts.any? %>
+    <div class="grid grid-cols-3 gap-6">
+      <% @liked_posts.each do |post| %>
+        <div class="bg-gray-200 p-4 rounded-lg shadow" style="width: 480px; height: 340px;">
+          <div class="flex flex-col h-full">
+            <!-- 投稿の上部：ユーザー情報とタイトル -->
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+                <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+              </div>
+              <%= link_to post.user.decorate.full_name, user_path(post.user), class: "text-sm hover:text-blue-500 text-black ml-2" %>
+              <div class="ml-2">
+                <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
+              </div>
+            </div>
+            <!-- 投稿本文 -->
+            <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
+            <!-- 投稿画像 -->
+            <div class="mt-4 mb-6">
+              <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
+            </div>
+            <!-- 投稿日時と操作ボタン -->
+            <div class="flex justify-between items-center mt-auto">
+              <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+              <% if current_user.own?(post) %>
+                <div class="flex space-x-3 ">
+                  <%= link_to edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' do %>
+                    <i class="fa-solid fa-pencil"></i>
+                  <% end %>
+                  <%= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700'  do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= render 'like_buttons', { post: post } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-600 text-center text-lg mt-10">いいねした投稿はありません。</p>
+  <% end %>
+</div>
