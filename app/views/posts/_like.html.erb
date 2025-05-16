@@ -1,2 +1,4 @@
 <!-- いいねされていなかったらレンダリング　-->
-<%= link_to 'いいね', likes_path(post_id: post.id), data: { turbo_method: :post }, class: "text-blue-500" %>
+<%= link_to  likes_path(post_id: post.id), data: { turbo_method: :post }, class: "text-blue-500" do %>
+  <i class="fa-regular fa-heart"></i>
+<% end %>
