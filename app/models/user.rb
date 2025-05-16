@@ -27,12 +27,12 @@ class User < ApplicationRecord
   
   # いいねする
   def like(post)
-    likes.find_or_create_by(post_id: post.id)
+    liked_posts << post
   end
 
   # いいね解除
   def unlike(post)
-    likes.find_by(post_id: post.id)&.destroy
+    liked_posts.destroy(post)
   end
 
   # すでにいいねしているか？
