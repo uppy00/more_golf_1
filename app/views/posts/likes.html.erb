@@ -1,8 +1,11 @@
 <!-- app/views/posts/likes.html.erb -->
 <% content_for :title, "いいねした投稿一覧" %>
-
-<h2 class="text-xl font-bold mb-4 pl-6 pt-4">あなたがいいねした投稿</h2>
-
+<div class="flex items-center justify-center px-6 pt-4 mb-4">
+  <h2 class="text-xl font-bold">あなたがいいねした投稿</h2>
+  <div class="w-1/2">
+    <%= render 'search', q: @q, url: posts_path %>
+  </div>
+</div>
 <div class="px-6">
   <% if @liked_posts.any? %>
     <div class="grid grid-cols-3 gap-6">

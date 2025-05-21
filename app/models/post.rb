@@ -7,7 +7,7 @@ class Post < ApplicationRecord
     ["body", "title"] #　ここに検索可能な属性を指定
   end
   def self.ransackable_associations(auth_object = nil)
-    ["comments", "tags"] # ここに関連付けを追加
+    ["comments", "user"] # ここに関連付けを追加
   end
   # carrierwaveアップローダーを使うためのもの
   mount_uploader :image, PostImageUploader
