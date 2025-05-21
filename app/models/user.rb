@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
+  def self.ransackable_attributes(auth_object = nil)
+    [ "nickname" ] #  ここに検索可能な属性を指定
+  end
   # いいねする
   def like(post)
     liked_posts << post
