@@ -1,7 +1,7 @@
 <!-- ログインしている時のトップページ-->
 <% content_for :title, "More.golf" %>
 <!-- トップページ　掲示板のindex部分-->
-<div class="pt-2 pl-7 mb-2">タグによる絞り込み</div>
+<%= render 'search', q: @q,url: posts_path%>
 <div class="px-6">
   <div class="grid grid-cols-3 gap-6">
     <% @posts.each do |post| %>

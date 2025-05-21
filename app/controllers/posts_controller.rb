@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.page(params[:page]).per(6)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).all.page(params[:page]).per(6)
   end
   # postnewを表示させるためのもの
   def new
