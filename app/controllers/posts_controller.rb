@@ -47,9 +47,12 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  # いいねした投稿を表示
+  # いいねした投稿を表示　ransackも使えるように
   def likes
-    @liked_posts = current_user.liked_posts.includes(:user).order(created_at: :desc)
+    # current_userのliked_postsをベースにransack検索オブジェクトを作成
+    @q = current_user.liked_posts.ransack(params[:q])
+    # 検索結果を取得し、userもincludesしてorderもかける
+    @liked_posts = @q.result.includes(:user).order(created_at: :desc)
   end
 
   private
