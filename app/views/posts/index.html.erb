@@ -44,8 +44,12 @@
                 <% end %>
               </div>
             <% else %>
+            <div class="flex items-center space-x-1">
             <!-- 自分以外の投稿の場合いいねボタンを表示　like_buttonsをレンダリング -->
               <%= render 'like_buttons', {post: post } %>
+            <!-- いいねカウントの表示　-->
+              <%= render partial: 'posts/like_count', locals: { post: post } %>
+            </div>
             <% end %>
           </div>
         </div>  
