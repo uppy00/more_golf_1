@@ -4,10 +4,10 @@ class Post < ApplicationRecord
 
   # ransackで必要なもの
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "title"] #　ここに検索可能な属性を指定
+    [ "body", "title" ] # ここに検索可能な属性を指定
   end
   def self.ransackable_associations(auth_object = nil)
-    ["comments", "user"] # ここに関連付けを追加
+    [ "comments", "user" ] #  ここに関連付けを追加
   end
   # carrierwaveアップローダーを使うためのもの
   mount_uploader :image, PostImageUploader
