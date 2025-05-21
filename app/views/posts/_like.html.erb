@@ -1,4 +1,4 @@
-<!-- いいねされていなかったらレンダリング　-->
-<%= link_to  likes_path(post_id: post.id), data: { turbo_method: :post }, class: "text-blue-500" do %>
+<!-- いいねされていないとレンダリング　いいねを解除するボタン❤️をレンダリング-->
+<%= link_to  likes_path(post_id: post.id), id: "like-button-for-post-#{post.id}", data: { turbo_method: :post }, class: "text-blue-500" do %>
   <i class="fa-regular fa-heart"></i>
 <% end %>
