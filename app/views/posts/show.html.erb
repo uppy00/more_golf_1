@@ -11,6 +11,12 @@
       <span class="text-xl mr-4"> <%= @post.user.nickname %></span>
       <!-- 投稿タイトル -->
       <h1 class="font-bold text-2xl"><%= @post.title %></h1>
+      <!-- タグ -->
+      <% if @post.tag %>
+        <div class="text-xs text-white <%= tag_color_class(@post.tag.name) %> px-2 py-1 rounded">
+          <%= @post.tag.name %>
+        </div>
+      <% end %>
     </div>
 
     <!-- 投稿写真 -->

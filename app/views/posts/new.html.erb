@@ -5,10 +5,19 @@
     <div class="pt-10 pl-4 rounded-lg ml-20">
       <%= form_with model: @post do |f| %>
       <%= render "shared/errors_messages", object: f.object %>
-      <!-- タイトル -->
-      <div class="mb-4">
-        <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
-        <%= f.text_field :title, class: 'border  w-[440px] h-[40px]' %>
+      
+      <div class="flex items-start gap-8">
+        <!-- タイトル -->
+        <div class="flex flex-col">
+          <%= f.label :title, "タイトル", class: "text-2xl mb-2" %> 
+          <%= f.text_field :title, class: 'border w-[440px] h-[40px]' %>
+        </div>
+
+        <!-- タグ -->
+        <div class="flex flex-col">
+          <%= f.label :tag_id, "タグ", class: "text-2xl mb-2" %>
+          <%= f.collection_select :tag_id, Tag.all, :id, :name, { prompt: "タグ" }, { class: "border h-[40px] w-[200px]" } %>
+        </div>
       </div>
       
       <!-- 本文 -->
