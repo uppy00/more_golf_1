@@ -8,23 +8,29 @@
       <div class="bg-gray-200 p-4 rounded-lg shadow" style="width: 480x; height: 340px;">
         <div class="flex flex-col h-full">
           <!-- postタイトル -->
-          <h2 class="font-semibold text-black text-xl mb-2 hover:text-white">
+          <h2 class="text-black text-xl  hover:text-white">
             <!-- ユーザーの名前とアバター画像、タイトルを横並びに -->
-            <div class="flex items-center mb-2">
-              <!-- ユーザーのアバター画像 -->
-              <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
-                <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <!-- ユーザーのアバター画像 -->
+                <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+                  <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+                </div>
+                <!-- ユーザー名 -->
+                <%= link_to post.user.decorate.full_name, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
               </div>
-              <!-- ユーザー名 -->
-              <%= link_to post.user.decorate.full_name, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
-              <!-- 投稿タイトル -->
-              <div class="ml-2">
-                <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
-              </div>
+              <!-- タグ タグの色post_helperに記載-->
+              <% if post.tag %>
+                <div class="text-xs text-white <%= tag_color_class(post.tag.name) %> ml-4 p-2 rounded-xl">
+                  <%= post.tag.name %>
+                </div>
+              <% end %>
             </div>
           </h2>
-          <!-- bodyの表示 -->
-          <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
+          <!-- 投稿タイトル -->
+          <div class="text-center">
+            <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
+          </div>          
           <!-- 画像の表示 -->
           <div class="mt-4 mb-6">
             <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
