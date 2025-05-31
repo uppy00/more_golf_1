@@ -119,4 +119,4 @@
 https://www.figma.com/design/fIk0gyfc98KcXdriixBLXU/More-golf?node-id=6-261&t=lo4GMm9wzE8Dndh1-0
 
 # ER図系
-![](https://i.gyazo.com/2f7086e317e0b5b3cbbbcfbae61c7984.png)
+[![Image from Gyazo](https://i.gyazo.com/61826d8305c9558b315511d1c02b5fe9.png)](https://gyazo.com/61826d8305c9558b315511d1c02b5fe9)
