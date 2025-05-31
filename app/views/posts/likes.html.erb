@@ -1,9 +1,9 @@
 <!-- app/views/posts/likes.html.erb -->
 <% content_for :title, "いいねした投稿一覧" %>
-<div class="flex items-center justify-center px-6 pt-4 mb-4">
+<div class="flex flex-col items-center px-6 pt-4 mb-4 space-y-2">
   <h2 class="text-xl font-bold">あなたがいいねした投稿</h2>
-  <div class="w-1/2">
-    <%= render 'search', q: @q, url: posts_path %>
+  <div class="flex justify-center px-6 pt-4 mb-4">
+    <%= render 'search', q: @q, url: likes_posts_path %>
   </div>
 </div>
 <div class="px-6">
@@ -15,7 +15,8 @@
             <!-- 投稿の上部：ユーザー情報とタイトル -->
             <div class="flex items-center mb-2">
               <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
-                <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+                <%= image_tag post.user.
+                avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
               </div>
               <%= link_to post.user.decorate.full_name, user_path(post.user), class: "text-sm hover:text-blue-500 text-black ml-2" %>
               <div class="ml-2">
