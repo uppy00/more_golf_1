@@ -15,4 +15,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   belongs_to :tag
+  belongs_to :postable, polymorphic: true, optional: true
+
+  accepts_nested_attributes_for :postable
 end

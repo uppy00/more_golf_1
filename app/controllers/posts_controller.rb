@@ -1,11 +1,21 @@
 class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:tag).page(params[:page]).per(6)
+    @posts = @q.result(distinct: true).includes(:tag, :postable).page(params[:page]).per(6)
   end
   # postnewを表示させるためのもの
   def new
     @post = Post.new
+    @post.tag_id = params[:tag_id] if params[:tag_id].present?
+    @post.tag = Tag.find_by(id: @post.tag_id)
+    case @post.tag&.name
+    when "スコア記録"
+      @post.postable = ScoreRecord.new
+    when "練習記録"
+      @post.postable = PracticeRecord.new
+    else
+      #質問やその他の場合はポリモーフィック処理なし
+    end
   end
   # 投稿の作成
   def create
@@ -38,6 +48,15 @@ class PostsController < ApplicationController
   # 投稿の編集ページを表示
   def edit
     @post = current_user.posts.find(params[:id])
+    #　編集時はpostableもしくはbuild(新規postable用)
+    if @post.postable.nil? && @post.tag.present?
+      case @post.tag.name
+      when "スコア記録"
+        @post.postable = ScoreRecord.new
+      when "練習記録"
+        @post.postable = PracticeRecord.new
+      end
+    end
   end
 
   def destroy
@@ -52,12 +71,18 @@ class PostsController < ApplicationController
     # current_userのliked_postsをベースにransack検索オブジェクトを作成
     @q = current_user.liked_posts.ransack(params[:q])
     # 検索結果を取得し、userもincludesしてorderもかける
-    @liked_posts = @q.result.includes(:user).order(created_at: :desc)
+    @liked_posts = @q.result.includes(:user, :postable).order(created_at: :desc)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :tag_id)
+    params.require(:post).permit(
+      :title, :body, :image, :tag_id,
+      postable_attributes: [
+        :id, :couse_name, :score,
+        :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference, :type
+      ]
+    )
   end
 end

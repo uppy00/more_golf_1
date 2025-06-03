@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_22_065739) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_31_081442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,8 +42,28 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_22_065739) do
     t.string "image"
     t.bigint "user_id"
     t.bigint "tag_id"
+    t.string "postable_type", null: false
+    t.bigint "postable_id", null: false
+    t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
     t.index ["tag_id"], name: "index_posts_on_tag_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "practice_records", force: :cascade do |t|
+    t.string "driving_range_name"
+    t.integer "practice_hour"
+    t.integer "ball_count"
+    t.text "effort_focus"
+    t.string "video_reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "score_records", force: :cascade do |t|
+    t.string "course_name"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -57,6 +77,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_22_065739) do
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
