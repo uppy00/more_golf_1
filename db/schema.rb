@@ -42,8 +42,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_31_081442) do
     t.string "image"
     t.bigint "user_id"
     t.bigint "tag_id"
-    t.string "postable_type", null: false
-    t.bigint "postable_id", null: false
+    t.string "postable_type"
+    t.bigint "postable_id"
     t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
     t.index ["tag_id"], name: "index_posts_on_tag_id"
     t.index ["user_id"], name: "index_posts_on_user_id"

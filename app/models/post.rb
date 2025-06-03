@@ -1,6 +1,10 @@
 class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
-  validates :body, presence: true, length: { maximum: 65_535 }
+  validates :body, presence: true, length: { maximum: 65_535 }, unless: :practice_record?
+
+  def practice_record?
+    tag&.name == "練習記録"
+  end
 
   # ransackで必要なもの
   def self.ransackable_attributes(auth_object = nil)
