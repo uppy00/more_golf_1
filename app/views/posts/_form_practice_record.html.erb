@@ -1,0 +1,30 @@
+  <div class="mb-4">
+    <%= practice_form.label :driving_range_name, "練習場名", class: "block mb-2 text-xl" %>
+    <%= practice_form.text_field :driving_range_name, class: "border w-[440px] h-[40px]" %>
+  </div>
+
+  <div class="mb-4">
+    <%= practice_form.label :practice_hour, "時間（分）", class: "block mb-2 text-xl" %>
+    <%= practice_form.number_field :practice_hour, class: "border w-[440px] h-[40px]" %>
+  </div>
+
+  <div class="mb-4">
+    <%= practice_form.label :ball_count, "球数", class: "block mb-2 text-xl" %>
+    <%= practice_form.number_field :ball_count, class: "border w-[440px] h-[40px]" %>
+  </div>
+
+  <div class="mb-4">
+    <%= practice_form.label :effort_focus, "意識して取り組んだこと", class: "block mb-2 text-xl" %>
+    <%= practice_form.text_area :effort_focus, class: "border w-[440px] h-[80px]" %>
+  </div>
+
+  <div class="mb-4">
+    <%= practice_form.label :video_reference, "参考にした動画（URL）", class: "block mb-2 text-xl" %>
+    <%= practice_form.text_field :video_reference, class: "border w-[440px] h-[40px]" %>
+  </div>
+
+<!-- 共通: 画像のみ -->
+<div class="mb-4">
+  <%= post_form.label :image, "画像", class: "text-2xl block mb-6" %>
+  <%= post_form.file_field :image, class: 'border w-[440px] h-[40px]' %>
+</div>

@@ -14,7 +14,9 @@
         <!-- タグ -->
         <div class="flex flex-col">
           <%= f.label :tag_id, "タグ", class: "text-2xl mb-6" %>
-          <%= f.collection_select :tag_id, Tag.all, :id, :name, { prompt: "タグ" }, { class: "border h-[40px] w-[200px]" } %>
+          <div class="text-xl text-white <%= tag_color_class(@post.tag.name) %> w-[150px] h-[40px] rounded-xl flex items-center justify-center">
+            <%= @post.tag.name %>
+          </div>
         </div>
       </div>
       
