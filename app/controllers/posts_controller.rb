@@ -14,25 +14,25 @@ class PostsController < ApplicationController
     when "練習記録"
       @post.postable = PracticeRecord.new
     else
-      #質問やその他の場合はポリモーフィック処理なし
+      # 質問やその他の場合はポリモーフィック処理なし
     end
   end
   # 投稿の作成
   def create
     tag = Tag.find_by(id: params[:post][:tag_id])
-    postable = case tag&.name
-              when "スコア記録"
-                ScoreRecord.new(postable_params)
-              when "練習記録"
-                PracticeRecord.new(postable_params)
-              else
-                nil
-              end
-  
+
+    if tag&.name == "スコア記録"
+      postable = ScoreRecord.new(postable_params)
+    elsif tag&.name == "練習記録"
+      postable = PracticeRecord.new(postable_params)
+    else
+      postable = nil
+    end
+
     @post = current_user.posts.build(post_params)
     @post.tag = tag
     @post.postable = postable if postable.present?
-  
+
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
     else
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   # 投稿の詳細
   def show
     @post = Post.find(params[:id])
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   # 投稿の編集ページを表示
   def edit
     @post = current_user.posts.find(params[:id])
-    #　編集時はpostableもしくはbuild(新規postable用)
+    # 編集時はpostableもしくはbuild(新規postable用)
     if @post.postable.nil? && @post.tag.present?
       case @post.tag.name
       when "スコア記録"
@@ -90,7 +90,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :tag_id )
+    params.require(:post).permit(:title, :body, :image, :tag_id)
   end
 
   def postable_params
