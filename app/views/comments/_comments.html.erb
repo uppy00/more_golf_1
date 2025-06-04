@@ -1,8 +1,8 @@
 <div class="pt-5">
-  <div class="max-h-120 overflow-y-auto shadow">
+  <div class="max-h-120 overflow-y-auto shadow space-y-4">
     <% comments.each do |comment| %>
       <!-- turbo_streamで必要なid設定 -->
-      <div id="comment-<%= comment.id %>"class="flex items-start pb-2 pt-2">
+      <div id="comment-<%= comment.id %>"class="flex items-start p-4 bg-white rounded shadow-sm ">
         <!-- ユーザーのアバター画像 -->
         <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
           <%= image_tag comment.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
@@ -10,10 +10,10 @@
         <!-- ユーザー名+コメント+削除ボタン -->
         <div class="flex items-center justify-between w-full">
           <!-- ユーザー名とコメント部分を縦に並べる -->
-          <div class="flex flex-col">
+          <div class="flex flex-col flex-1">
             <span><%= comment.user.nickname %></span>
             <!-- コメント本文をユーザー名の下に表示 -->
-            <p class="mt-1 text-sm"><%= comment.body %></p>
+            <p class="mt-1 text-sm break-words whitespace-pre-wrap max-w-full"><%= comment.body %></p>
           </div>
           <!-- 削除ボタン -->
           <% if current_user.own?(comment) %>
