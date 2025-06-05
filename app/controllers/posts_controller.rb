@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @post.tag = Tag.find_by(id: params[:post][:tag_id])
-  
+
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
     else
@@ -88,5 +88,4 @@ class PostsController < ApplicationController
       ]
     )
   end
-
 end
