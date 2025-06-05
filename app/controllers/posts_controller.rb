@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:tag, :postable).page(params[:page]).per(6)
+    @posts = @q.result(distinct: true).includes(:tag, :postable).order(created_at: :desc).page(params[:page]).per(6)
   end
   # postnewを表示させるためのもの
   def new
@@ -89,14 +89,15 @@ class PostsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :body, :image, :tag_id)
-  end
 
-  def postable_params
-    params.require(:post).fetch(:postable_attributes, {}).permit(
-      :course_name, :score,
-      :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
+  def post_params
+    params.require(:post).permit(
+      :title, :body, :image, :tag_id,
+      postable_attributes: [
+        :id, :course_name, :score,
+        :driving_range_name, :practice_hour, :ball_count,
+        :effort_focus, :video_reference
+      ]
     )
   end
 end
