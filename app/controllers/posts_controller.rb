@@ -19,9 +19,20 @@ class PostsController < ApplicationController
   end
   # 投稿の作成
   def create
-    @post = current_user.posts.build(post_params)
-    @post.tag = Tag.find_by(id: params[:post][:tag_id])
+    tag = Tag.find_by(id: params[:post][:tag_id])
 
+    postable = nil
+    if tag&.name == "スコア記録"
+      postable = ScoreRecord.new(postable_params)
+    elsif tag&.name == "練習記録"
+      postable = PracticeRecord.new(postable_params)
+    end
+
+    @post = current_user.posts.build(post_params.except(:postable_attributes))
+    @post.tag = tag
+    if postable.present?
+      @post.postable = postable
+    end
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
     else
@@ -29,7 +40,6 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
   # 投稿の詳細
   def show
     @post = Post.find(params[:id])
@@ -60,14 +70,12 @@ class PostsController < ApplicationController
       end
     end
   end
-
   def destroy
     post = current_user.posts.find(params[:id])
     post.destroy!
     flash[:danger] = "投稿を削除しました"
     redirect_to posts_path
   end
-
   # いいねした投稿を表示　ransackも使えるように
   def likes
     # current_userのliked_postsをベースにransack検索オブジェクトを作成
@@ -75,9 +83,7 @@ class PostsController < ApplicationController
     # 検索結果を取得し、userもincludesしてorderもかける
     @liked_posts = @q.result.includes(:user, :postable).order(created_at: :desc)
   end
-
   private
-
   def post_params
     params.require(:post).permit(
       :title, :body, :image, :tag_id,
@@ -86,6 +92,12 @@ class PostsController < ApplicationController
         :driving_range_name, :practice_hour, :ball_count,
         :effort_focus, :video_reference
       ]
+    )
+  end
+  def postable_params
+    params.require(:post).fetch(:postable_attributes, {}).permit(
+      :course_name, :score,
+      :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
     )
   end
 end
