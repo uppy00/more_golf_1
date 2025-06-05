@@ -21,17 +21,20 @@ class PostsController < ApplicationController
   def create
     tag = Tag.find_by(id: params[:post][:tag_id])
 
+    postable = nil
     if tag&.name == "スコア記録"
-      postable = ScoreRecord.new(postable_params)
+      postable = ScoreRecord.create!(postable_params)
     elsif tag&.name == "練習記録"
-      postable = PracticeRecord.new(postable_params)
-    else
-      postable = nil
+      postable = PracticeRecord.create!(postable_params)
+    end
+    
+    @post = current_user.posts.build(post_params.except(:postable_attributes))
+    @post.tag = tag
+    
+    if postable.present?
+      @post.postable = postable
     end
 
-    @post = current_user.posts.build(post_params)
-    @post.tag = tag
-    @post.postable = postable if postable.present?
 
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
