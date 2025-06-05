@@ -100,4 +100,5 @@ class PostsController < ApplicationController
       :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
     )
   end
+  
 end
