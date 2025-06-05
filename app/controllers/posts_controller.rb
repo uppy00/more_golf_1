@@ -27,14 +27,13 @@ class PostsController < ApplicationController
     elsif tag&.name == "練習記録"
       postable = PracticeRecord.create!(postable_params)
     end
-    
+
     @post = current_user.posts.build(post_params.except(:postable_attributes))
     @post.tag = tag
-    
+
     if postable.present?
       @post.postable = postable
     end
-
 
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
