@@ -39,7 +39,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem "sorcery"
 
-gem "draper", "4.0.2"
+gem "draper", "4.0.4"
 
 gem "carrierwave", "~> 2.0"
 
