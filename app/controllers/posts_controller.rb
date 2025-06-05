@@ -19,22 +19,9 @@ class PostsController < ApplicationController
   end
   # 投稿の作成
   def create
-    tag = Tag.find_by(id: params[:post][:tag_id])
-
-    postable = nil
-    if tag&.name == "スコア記録"
-      postable = ScoreRecord.new(postable_params)
-    elsif tag&.name == "練習記録"
-      postable = PracticeRecord.new(postable_params)
-    end
-
-    @post = current_user.posts.build(post_params.except(:postable_attributes))
-    @post.tag = tag
-
-    if postable.present?
-      @post.postable = postable
-    end
-
+    @post = current_user.posts.build(post_params)
+    @post.tag = Tag.find_by(id: params[:post][:tag_id])
+  
     if @post.save
       redirect_to posts_path, notice: "投稿に成功しました"
     else
@@ -102,10 +89,4 @@ class PostsController < ApplicationController
     )
   end
 
-  def postable_params
-    params.require(:post).fetch(:postable_attributes, {}).permit(
-      :course_name, :score,
-      :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
-    )
-  end
 end
