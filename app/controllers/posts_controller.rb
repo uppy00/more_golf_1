@@ -89,7 +89,6 @@ class PostsController < ApplicationController
 
   private
 
-
   def post_params
     params.require(:post).permit(
       :title, :body, :image, :tag_id,
@@ -98,6 +97,13 @@ class PostsController < ApplicationController
         :driving_range_name, :practice_hour, :ball_count,
         :effort_focus, :video_reference
       ]
+    )
+  end
+
+  def postable_params
+    params.require(:post).fetch(:postable_attributes, {}).permit(
+      :course_name, :score,
+      :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
     )
   end
 end
