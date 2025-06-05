@@ -1,0 +1,62 @@
+<!-- 投稿編集ページ　-->
+<div>
+  <div class="flex">
+    <h1 class="text-2xl p-10 ">投稿編集</h1>
+    <div class="pt-10 pl-4 rounded-lg ml-20">
+      <%= form_with model: @post do |f| %>
+      <div class="flex items-start gap-8 ">
+        <!-- タイトル -->
+        <div class="flex flex-col">
+          <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
+          <%= f.text_field :title, class: 'border  w-[440px] h-[40px]' %>
+        </div>
+
+        <!-- タグ -->
+        <div class="flex flex-col">
+          <%= f.label :tag_id, "タグ", class: "text-2xl mb-6" %>
+          <div class="text-xl text-white <%= tag_color_class(@post.tag.name) %> w-[180px] h-[40px] rounded-xl flex items-center justify-center">
+            <%= @post.tag.name %>
+          </div>
+        </div>
+      </div>
+
+      <!-- スコア記録　ポリモーフィック -->
+      <%= f.fields_for :postable do |pf| %>
+        <div class="mb-4">
+          <%= pf.label :course_name, "コース名", class: "text-2xl block mb-6" %> 
+          <%= pf.text_area :course_name, class: 'border  w-[440px] h-[40px]' %>
+        </div>
+        <div class="mb-4">
+          <%= pf.label :score, "スコア", class: "text-2xl block mb-6" %>
+          <%= pf.number_field :score, class: 'border  w-[440px] h-[40px]'%>
+        </div>
+      <% end %>
+      
+      <!--　本文 -->
+      <div class="mb-4">
+        <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
+        <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
+      </div>
+
+      <!-- 画像のアップロード -->
+      <div class="mb-4">
+        <%= f.label :image, "画像", class: "text-2xl block mb-6"%>
+
+        <!-- 既存の画像があれば表示 -->
+        <% if @post.image? %>
+          <div class="mb-2">
+            <%= image_tag @post.image.url, class: 'w-[200px] h-[200px] object-contain' %>
+          </div>
+        <% end %>
+
+        <%= f.file_field :image, class: 'border w-[440px] h-[40px]'%>
+      </div>
+      
+      <!-- 編集ボタン -->
+      <div class="mb-4 flex justify-center">
+        <%= f.submit "編集", class: 'hover:bg-green-500 transition-all duration-300 w-[110px] h-[80p] py-2 bg-green-600 text-white rounded-md ' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
