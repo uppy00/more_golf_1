@@ -23,9 +23,9 @@ class PostsController < ApplicationController
 
     postable = nil
     if tag&.name == "スコア記録"
-      postable = ScoreRecord.create!(postable_params)
+      postable = ScoreRecord.new(postable_params)
     elsif tag&.name == "練習記録"
-      postable = PracticeRecord.create!(postable_params)
+      postable = PracticeRecord.new(postable_params)
     end
 
     @post = current_user.posts.build(post_params.except(:postable_attributes))
