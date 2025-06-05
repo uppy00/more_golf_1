@@ -1,0 +1,57 @@
+<!-- 投稿詳細ページ -->
+<div class="pt-5 px-10">
+
+  <!-- 投稿者情報（アイコン・名前・タイトル・タグ） -->
+  <div class="flex items-center mb-6">
+    <!-- アバター -->
+    <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
+      <%= image_tag @post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+    </div>
+    <!-- ニックネーム -->
+    <span class="text-xl mr-4"><%= @post.user.nickname %></span>
+
+    <!-- タイトル -->
+    <h1 class="font-bold text-2xl text-center flex-1"><%= @post.title %></h1>
+
+    <!-- タグ -->
+    <% if @post.tag %>
+      <div class="text-lg text-white <%= tag_color_class(@post.tag.name) %> px-2 py-1 rounded ml-auto">
+        <%= @post.tag.name %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- 投稿画像＋本文（横並び） -->
+  <div class="flex gap-6 mb-8">
+    <!-- 投稿画像 -->
+    <div class="w-1/2 text-center">
+      <%= image_tag @post.image.url.presence || asset_path('default_image.png'), 
+          class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
+    </div>
+
+    <!-- 本文 -->
+    <div class="w-1/2 text-xl text-left">
+      <p class="w-full h-[370px] text-black overflow-y-auto bg-gray-50 shadow rounded-md p-4">
+        <%= @post.body %>
+      </p>
+    </div>
+  </div>
+
+  <!-- コメントセクション（下部） -->
+  <div class="w-full flex flex-col space-y-4">
+    <!-- コメントフォーム -->
+    <%= render 'comments/form' %>
+
+    <!-- コメントリスト -->
+    <%= render 'comments/comments', comments: @post.comments %>
+
+    <% if current_user.own?(@post) %>
+      <!-- 編集・削除ボタン -->
+      <div class="flex space-x-3 justify-end">
+        <%= link_to '編集', edit_post_path(@post), class: 'text-blue-500 hover:text-blue-700' %>
+        <%= link_to '削除', post_path(@post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, 
+            class: 'text-red-500 hover:text-red-700' %>
+      </div>
+    <% end %>
+  </div>
+</div>
