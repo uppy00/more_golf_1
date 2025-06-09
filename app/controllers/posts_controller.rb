@@ -36,12 +36,8 @@ class PostsController < ApplicationController
     end
 
     if @post.save
-<<<<<<< HEAD
       flash[:success] = "投稿に成功しました"
       redirect_to posts_path
-=======
-      redirect_to posts_path, notice: "投稿に成功しました"
->>>>>>> origin/main
     else
       flash.now[:danger] = "投稿に失敗しました"
       render :new, status: :unprocessable_entity

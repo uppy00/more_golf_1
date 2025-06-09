@@ -19,7 +19,7 @@ class VideoUploaderUploader < CarrierWave::Uploader::Base
   end
 
   def extension_allowlist
-    %w(mp4 mov avi webm)
+    %w[mp4 mov avi webm]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -44,7 +44,7 @@ class VideoUploaderUploader < CarrierWave::Uploader::Base
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  
+
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
