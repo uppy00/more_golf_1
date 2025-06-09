@@ -25,9 +25,13 @@
   <div class="flex gap-6 mb-8">
     <!-- 投稿画像 -->
     <div class="w-1/2 text-center">
-      <%= image_tag @post.image.url.presence || asset_path('default_image.png'), 
-          class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
-    </div>
+      <% if @post.video.present? %>
+        <%= video_tag @post.video.url, controls: true, preload: "metadata", class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
+      <% else %>
+        <%= image_tag @post.image.url.presence || asset_path('default_image.png'), 
+            class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
+      <% end %>
+      </div>
 
     <!-- 本文 -->
     <div class="w-1/2 text-xl text-left">

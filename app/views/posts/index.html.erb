@@ -31,9 +31,15 @@
           <div class="text-center">
             <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
           </div>          
-          <!-- 画像の表示 -->
+          <!-- 画像または動画の表示 -->
           <div class="mt-4 mb-6">
-            <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% if post.image? %>
+              <%= image_tag post.image.url, class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% elsif post.video? %>
+              <%= video_tag post.video.url, controls: true, class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% else %>
+              <%= image_tag asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% end %>
           </div>
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">

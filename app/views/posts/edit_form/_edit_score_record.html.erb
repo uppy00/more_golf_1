@@ -41,15 +41,7 @@
       <!-- 画像のアップロード -->
       <div class="mb-4">
         <%= f.label :image, "画像", class: "text-2xl block mb-6"%>
-
-        <!-- 既存の画像があれば表示 -->
-        <% if @post.image? %>
-          <div class="mb-2">
-            <%= image_tag @post.image.url, class: 'w-[200px] h-[200px] object-contain' %>
-          </div>
-        <% end %>
-
-        <%= f.file_field :image, class: 'border w-[440px] h-[40px]'%>
+        <%= f.file_field :image, class: 'custom-file-input'%>
       </div>
       
       <!-- 編集ボタン -->
