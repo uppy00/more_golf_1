@@ -113,6 +113,7 @@ class PostsController < ApplicationController
     )
   end
 
+
   def postable_params
     params.require(:post).fetch(:postable_attributes, {}).permit(
       :course_name, :score,
