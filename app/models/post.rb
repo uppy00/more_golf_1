@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :body, presence: true, length: { maximum: 65_535 }, unless: :practice_record?
-
+  validate :only_one_media
   def practice_record?
     tag&.name == "練習記録"
   end
@@ -15,11 +15,21 @@ class Post < ApplicationRecord
   end
   # carrierwaveアップローダーを使うためのもの
   mount_uploader :image, PostImageUploader
+  mount_uploader :video, VideoUploaderUploader
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   belongs_to :tag
+  # polymophicに伴うもの
   belongs_to :postable, polymorphic: true, optional: true
-
   accepts_nested_attributes_for :postable
+
+  private
+  # 動画または画像のみを表示させるもの
+  def only_one_media
+    if image.present? && video.present?
+      errors.add(:base, "画像または動画どちらかのみをアップロードしてください")
+    end
+    # 画像も動画も空でもOKなので、空のチェックは不要にする
+  end
 end

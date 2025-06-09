@@ -36,7 +36,8 @@ class PostsController < ApplicationController
     end
 
     if @post.save
-      redirect_to posts_path, notice: "投稿に成功しました"
+      flash[:success] = "投稿に成功しました"
+      redirect_to posts_path
     else
       flash.now[:danger] = "投稿に失敗しました"
       render :new, status: :unprocessable_entity
@@ -52,10 +53,20 @@ class PostsController < ApplicationController
   # 投稿の編集を登録するもの
   def update
     @post = current_user.posts.find(params[:id])
+    # 動画か画像片方だけにするアクション
+    if post_params[:image].present?
+      @post.remove_video!
+      @post.video = nil
+    elsif post_params[:video].present?
+      @post.remove_image!
+      @post.image = nil
+    end
+
     if @post.update(post_params)
       flash[:success] = "投稿の編集に成功しました"
       redirect_to post_path(@post)
     else
+      Rails.logger.debug "Validation errors: #{@post.errors.full_messages.join(', ')}"
       flash.now[:danger] = "投稿の編集に失敗しました。エラーメッセージを確認してください"
       render :edit, status: :unprocessable_entity
     end
@@ -93,7 +104,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, :body, :image, :tag_id,
+      :title, :body, :image, :tag_id, :video,
       postable_attributes: [
         :id, :course_name, :score,
         :driving_range_name, :practice_hour, :ball_count,
