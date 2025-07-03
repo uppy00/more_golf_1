@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root "top_pages#top"
+  resources :password_resets, only: %i[new create edit update]
 
   # ユーザ登録のルーティング
   resources :users, only: %i[new create show edit update]
