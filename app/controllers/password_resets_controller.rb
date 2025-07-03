@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
     Rails.logger.debug "[Sorcery] last sent = #{@user&.reset_password_email_sent_at}"
     @user&.deliver_reset_password_instructions!
     redirect_to login_path
-    flash[:success]= 'パスワードリセットのメールを送信しました'
+    flash[:success]= "パスワードリセットのメールを送信しました"
   end
 
   def edit
@@ -27,14 +27,14 @@ class PasswordResetsController < ApplicationController
       return
     end
 
-    @user.skip_nickname_validation = true  
+    @user.skip_nickname_validation = true
 
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
       redirect_to login_path
-      flash[:success]= 'パスワードがリセットされました'
+      flash[:success]= "パスワードがリセットされました"
     else
-      render action: 'edit'
+      render action: "edit"
     end
   end
 end
