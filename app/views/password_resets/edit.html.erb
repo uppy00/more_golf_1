@@ -1,0 +1,34 @@
+<div class="flex items-center justify-center mt-30">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md overflow-hidden">
+    <h1 class="text-2xl text-center mb-6">パスワード再設定</h1>
+
+    <%= form_with model: @user,url: password_reset_path(@token),method: :patch,data: { turbo: false } do |f| %>
+
+      <%= render 'shared/errors_messages', object: f.object %>
+
+      <!-- メールアドレス（表示のみ） -->
+      <div class="mb-4">
+        <%= f.label :email, class: 'block text-sm font-medium text-gray-700' %>
+        <p class="border rounded-md w-full p-2 text-sm bg-gray-100"><%= @user.email %></p>
+      </div>
+
+      <!-- パスワード -->
+      <div class="mb-4">
+        <%= f.label :password, class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.password_field :password, class: 'border rounded-md w-full p-2 text-sm' %>
+      </div>
+
+      <!-- パスワード確認 -->
+      <div class="mb-6">
+        <%= f.label :password_confirmation, class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.password_field :password_confirmation, class: 'border rounded-md w-full p-2 text-sm' %>
+      </div>
+
+      <!-- 送信ボタン -->
+      <div>
+        <%= f.submit 'リセット',class: 'w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md transition-all duration-300' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

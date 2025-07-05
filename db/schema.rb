@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_05_092215) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_24_082148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,9 +44,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_05_092215) do
     t.bigint "tag_id"
     t.string "postable_type"
     t.bigint "postable_id"
-
     t.string "video"
-
     t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
     t.index ["tag_id"], name: "index_posts_on_tag_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -93,7 +91,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_05_092215) do
     t.string "favorite_video_creator"
     t.string "avatar"
     t.integer "prefecture_id"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
   add_foreign_key "comments", "posts"

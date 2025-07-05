@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  # パスワードリセット時にnicknameバリデーションをスキップ
+  attr_accessor :skip_nickname_validation
 
   validates :first_name, presence: true, length: { maximum: 255 }
   validates :last_name, presence: true, length: { maximum: 255 }
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] && password_confirmation.present? }
   # userのmypageのカラム↓
-  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true, unless: -> { new_record? }
+  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true, unless: -> { skip_nickname_validation }
   validates :self_introduction, length: { maximum: 150 }
   validates :favorite_course, length: { maximum: 20 }, allow_nil: true
   validates :favorite_driving_range, length: { maximum: 30 }, allow_nil: true
@@ -17,6 +19,7 @@ class User < ApplicationRecord
   validates :best_score, numericality: { only_integer: true }, allow_nil: true
   validates :best_score_course, length: { maximum: 30 }, allow_nil: true
   validates :favorite_video_creator, length: { maximum: 20 }, allow_nil: true
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
   # ActiveHashとの関連付け
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
