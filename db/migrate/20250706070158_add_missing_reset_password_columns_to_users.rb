@@ -14,7 +14,7 @@ class AddMissingResetPasswordColumnsToUsers < ActiveRecord::Migration[7.2]
     end
 
     unless column_exists?(:users, :access_count_to_reset_password_page)
-      add_column :users, :access_count_to_reset_password_page,:integer, default: 0, null: false
+      add_column :users, :access_count_to_reset_password_page, :integer, default: 0, null: false
     end
   end
 end
