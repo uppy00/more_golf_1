@@ -27,3 +27,5 @@ ja:
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
       taken: はすでに存在します
+  defaults:
+    password_reset: パスワード再発行のご依頼を受け付けました
