@@ -1,6 +1,6 @@
 class GolfGearsController < ApplicationController
   before_action :set_user
-  before_action :set_golf_gear, only: %i[show  edit  update destroy]
+  before_action :set_golf_gear, only: %i[show edit update destroy]
   # 他ユーザーのゴルフギアを変更できないように
   before_action :require_correct_user, only: %i[edit update destroy]
 
