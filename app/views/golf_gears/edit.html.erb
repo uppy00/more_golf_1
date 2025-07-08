@@ -11,7 +11,7 @@
         <div class="space-y-2">
           <div class="font-bold text-xl text-center">ゴルフクラブ全体の画像</div>
           <%= f.file_field :club_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.club_image? %>
+          <% if @golf_gear&.club_image? %>
             <%= image_tag @golf_gear.club_image.url, class: "mt-2 rounded-md border object-contain w-full max-h-48" %>
           <% end %>
         </div>
@@ -21,7 +21,7 @@
           <div class="font-bold text-lg">ドライバー</div>
           <%= f.text_field :driver_brand, placeholder: "ドライバーメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :driver_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.driver_image? %>
+          <% if @golf_gear&.driver_image? %>
             <%= image_tag @golf_gear.driver_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
@@ -31,7 +31,7 @@
           <div class="font-bold text-lg">パター</div>
           <%= f.text_field :putter_brand, placeholder: "パターメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :putter_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.putter_image? %>
+          <% if @golf_gear&.putter_image? %>
             <%= image_tag @golf_gear.putter_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
@@ -44,7 +44,7 @@
           <div class="font-bold text-lg">アイアン</div>
           <%= f.text_field :iron_brand, placeholder: "アイアンメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :iron_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.iron_image? %>
+          <% if @golf_gear&.iron_image? %>
             <%= image_tag @golf_gear.iron_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
@@ -54,7 +54,7 @@
           <div class="font-bold text-lg">ボール</div>
           <%= f.text_field :ball_brand, placeholder: "ボールメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :ball_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.ball_image? %>
+          <% if @golf_gear&.ball_image? %>
             <%= image_tag @golf_gear.ball_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
@@ -67,7 +67,7 @@
           <div class="font-bold text-lg">ウェッジ</div>
           <%= f.text_field :wedge_brand, placeholder: "ウェッジメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :wedge_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.wedge_image? %>
+          <% if @golf_gear&.wedge_image? %>
             <%= image_tag @golf_gear.wedge_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
@@ -77,7 +77,7 @@
           <div class="font-bold text-lg">キャディバッグ</div>
           <%= f.text_field :caddy_bag_brand, placeholder: "キャディバッグメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
           <%= f.file_field :caddy_bag_image, class: "w-full custom-file-input-gear" %>
-          <% if @golf_gear.caddy_bag_image? %>
+          <% if @golf_gear&.caddy_bag_image? %>
             <%= image_tag @golf_gear.caddy_bag_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
           <% end %>
         </div>
