@@ -1,7 +1,7 @@
 class GolfGear < ApplicationRecord
   belongs_to :user
 
-  mount_uploader :club_image, GolfGearImageUploader 
+  mount_uploader :club_image, GolfGearImageUploader
   mount_uploader :driver_image, GolfGearImageUploader
   mount_uploader :iron_image, GolfGearImageUploader
   mount_uploader :wedge_image, GolfGearImageUploader
