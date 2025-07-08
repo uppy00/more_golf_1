@@ -1,0 +1,76 @@
+<!-- ゴルフギア show ページ -->
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <!-- ヘッダー行（見出し＋画像＋ボタン） -->
+  <div class="flex items-center justify-between mb-10 gap-6">
+    <!-- 左側：見出し -->
+    <h1 class="flex items-center gap-2 text-2xl font-bold whitespace-nowrap">
+      <i class="text-3xl text-gray-600 fas fa-golf-ball"></i>
+      私のゴルフギア
+    </h1>
+
+    <!-- 中央：クラブ全体の画像 -->
+    <div class="flex-1 flex justify-center">
+    <div class="w-60 h-48 bg-gray-200 flex items-center justify-center rounded-md">
+      <% if @golf_gear&.club_image? %>
+        <%= image_tag @golf_gear.club_image.url, class: "object-contain max-h-full" %>
+      <% else %>
+        <span class="text-gray-600 text-sm">クラブ全体の写真</span>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 右側：編集ボタン（自分のみ表示） -->
+  <% if current_user&.own?(@golf_gear)%>
+    <div>
+      <%= link_to "編集", edit_user_golf_gear_path(@user),
+                  class: "px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 whitespace-nowrap" %>
+    </div>
+  <% else %>
+    <div class="w-[88px]"><!-- ボタンと同じ幅を空けることでバランス維持 --></div>
+  <% end %>
+  </div>
+
+  <!-- 2段目：ドライバー / ウェッジ / ボール ------------------------------>
+  <div class="grid grid-cols-3 gap-8 mb-12 text-center">
+
+    <%= render partial: "gear_block",
+               locals: { label: "ドライバー",
+                         brand: @golf_gear&.driver_brand,
+                         image_present: @golf_gear&.driver_image?,
+                         image:  @golf_gear&.driver_image } %>
+
+    <%= render partial: "gear_block",
+               locals: { label: "ウェッジ",
+                         brand: @golf_gear&.wedge_brand,
+                         image_present: @golf_gear&.wedge_image?,
+                         image:  @golf_gear&.wedge_image } %>
+
+    <%= render partial: "gear_block",
+               locals: { label: "ボール",
+                         brand: @golf_gear&.ball_brand,
+                         image_present: @golf_gear&.ball_image?,
+                         image:  @golf_gear&.ball_image } %>
+  </div>
+
+  <!-- 3段目：アイアン / パター / キャディバッグ -------------------------->
+  <div class="grid grid-cols-3 gap-8 text-center">
+
+    <%= render partial: "gear_block",
+               locals: { label: "アイアン",
+                         brand: @golf_gear&.iron_brand,
+                         image_present: @golf_gear&.iron_image?,
+                         image:  @golf_gear&.iron_image } %>
+
+    <%= render partial: "gear_block",
+               locals: { label: "パター",
+                         brand: @golf_gear&.putter_brand,
+                         image_present: @golf_gear&.putter_image?,
+                         image:  @golf_gear&.putter_image } %>
+
+    <%= render partial: "gear_block",
+               locals: { label: "キャディバッグ",
+                         brand: @golf_gear&.caddy_bag_brand,
+                         image_present: @golf_gear&.caddy_bag_image?,
+                         image:  @golf_gear&.caddy_bag_image } %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="space-y-2 text-center">
+  <p class="font-bold text-lg"><%= label %></p>
+
+  <!-- ブランド名 -->
+  <div class="bg-gray-200 text-sm rounded py-1">
+    <%= brand.presence || "使用しているもの" %>
+  </div>
+
+  <!-- 画像 or プレースホルダ -->
+  <div class="w-[320px] h-[240px] bg-gray-200 rounded-md overflow-hidden flex items-center justify-center mx-auto">
+    <% if image_present %>
+      <%= image_tag image.url, class: "w-full h-full object-contain" %>
+    <% else %>
+      <span class="text-gray-500 text-xs">画像なし</span>
+    <% end %>
+  </div>
+</div>

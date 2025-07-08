@@ -6,3 +6,6 @@
 file:bg-green-400 file:border-green-500 file:rounded-md
   file:cursor-pointer file:px-4 file:py-2 file:hover:bg-green-400;
 }
+
+.custom-file-input-gear {
+  @apply w-full h-[40px] border border-gray-300 file:bg-green-400 file:border-green-500 file:rounded-md file:cursor-pointer file:px-4 file:py-2 file:hover:bg-green-500}

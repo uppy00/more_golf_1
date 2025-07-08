@@ -1,0 +1,93 @@
+<!-- ゴルフギア登録ページ -->
+<div class="max-w-7xl mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-6">ゴルフギア登録・編集</h2>
+
+  <%= form_with url: user_golf_gear_path(@user), model: @golf_gear, local: true, multipart: true do |f| %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- 左カラム：クラブ全体、ドライバー、パター -->
+      <div class="space-y-6">
+        <!-- クラブ全体 -->
+        <div class="space-y-2">
+          <div class="font-bold text-xl text-center">ゴルフクラブ全体の画像</div>
+          <%= f.file_field :club_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.club_image? %>
+            <%= image_tag @golf_gear.club_image.url, class: "mt-2 rounded-md border object-contain w-full max-h-48" %>
+          <% end %>
+        </div>
+
+        <!-- ドライバー -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">ドライバー</div>
+          <%= f.text_field :driver_brand, placeholder: "ドライバーメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :driver_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.driver_image? %>
+            <%= image_tag @golf_gear.driver_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+
+        <!-- パター -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">パター</div>
+          <%= f.text_field :putter_brand, placeholder: "パターメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :putter_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.putter_image? %>
+            <%= image_tag @golf_gear.putter_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 中央カラム：アイアン、ボール -->
+      <div class="space-y-6">
+        <!-- アイアン -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">アイアン</div>
+          <%= f.text_field :iron_brand, placeholder: "アイアンメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :iron_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.iron_image? %>
+            <%= image_tag @golf_gear.iron_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+
+        <!-- ボール -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">ボール</div>
+          <%= f.text_field :ball_brand, placeholder: "ボールメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :ball_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.ball_image? %>
+            <%= image_tag @golf_gear.ball_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 右カラム：ウェッジ、キャディバッグ -->
+      <div class="space-y-6">
+        <!-- ウェッジ -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">ウェッジ</div>
+          <%= f.text_field :wedge_brand, placeholder: "ウェッジメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :wedge_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.wedge_image? %>
+            <%= image_tag @golf_gear.wedge_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+
+        <!-- キャディバッグ -->
+        <div class="space-y-2 text-center">
+          <div class="font-bold text-lg">キャディバッグ</div>
+          <%= f.text_field :caddy_bag_brand, placeholder: "キャディバッグメーカー", class: "w-full border border-gray-300 rounded px-2 py-1" %>
+          <%= f.file_field :caddy_bag_image, class: "w-full custom-file-input-gear" %>
+          <% if @golf_gear.caddy_bag_image? %>
+            <%= image_tag @golf_gear.caddy_bag_image.url, class: "mx-auto mt-2 h-32 object-contain rounded-md border" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 送信ボタン -->
+    <div class="mt-6 text-center">
+      <%= f.submit "編集する", class: "px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" %>
+    </div>
+  <% end %>
+</div>

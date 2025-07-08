@@ -12,6 +12,10 @@
         <%= f.text_field :last_name, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>
       <div class="mb-4">
+        <%= f.label :nickname, "アプリ上で表示する名前(ニックネーム)", class: 'block text-sm font-medium text-gray-700' %>
+        <%= f.text_field :nickname, class: 'border rounded-md w-full p-2 text-sm' %>
+      </div>
+      <div class="mb-4">
         <%= f.label :email, "メールアドレス", class: 'block text-sm font-medium text-gray-700' %>
         <%= f.text_field :email, class: 'border rounded-md w-full p-2 text-sm' %>
       </div>

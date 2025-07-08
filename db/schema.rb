@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_06_070158) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_06_084809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,26 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_06_070158) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "golf_gears", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "club_image"
+    t.string "driver_brand"
+    t.string "driver_image"
+    t.string "iron_brand"
+    t.string "iron_image"
+    t.string "wedge_brand"
+    t.string "wedge_image"
+    t.string "putter_brand"
+    t.string "putter_image"
+    t.string "ball_brand"
+    t.string "ball_image"
+    t.string "caddy_bag_brand"
+    t.string "caddy_bag_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_golf_gears_on_user_id", unique: true
   end
 
   create_table "likes", force: :cascade do |t|
@@ -103,6 +123,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_06_070158) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "golf_gears", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "tags"
