@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
 
   # ユーザ登録のルーティング
-  resources :users, only: %i[new create show edit update]
+  resources :users, only: %i[new create show edit update] do
+    resource :golf_gear
+  end
   # ユーザーログインのルーティング new(get)はログインフォームを表示するため(post)は送られてきたデーターを処理するため
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"

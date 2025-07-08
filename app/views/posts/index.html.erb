@@ -17,7 +17,7 @@
                   <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
                 </div>
                 <!-- ユーザー名 -->
-                <%= link_to post.user.decorate.full_name, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
+                <%= link_to post.user.nickname, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
               </div>
               <!-- タグ タグの色post_helperに記載-->
               <% if post.tag %>

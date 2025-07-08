@@ -1,2 +1,2 @@
-default_url_options:
+default_url_options: # 開発環境
   host: 'localhost:3000'
