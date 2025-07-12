@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [ :reset_password ]
+Rails.application.config.sorcery.submodules = [:reset_password, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -76,6 +76,18 @@ Rails.application.config.sorcery.configure do |config|
   # config.register_last_activity_time =
 
   # -- external --
+    config.external_providers = [:google]
+
+    config.google do |google|
+      google.key = Rails.application.credentials.dig(:google, :client_id)
+      google.secret = Rails.application.credentials.dig(:google, :client_secret)
+      google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+      google.user_info_mapping = { email: "email", username: "name" }
+    end
+
+    config.user_config do |user|
+      user.authentications_class = UserAuthentication
+    end
   # What providers are supported by this app
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
