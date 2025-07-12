@@ -2,7 +2,7 @@
 <div class="max-w-7xl mx-auto p-6">
   <h2 class="text-2xl font-bold mb-6">ゴルフギア登録</h2>
 
-  <%= form_with  model: [@user, @golf_gear], local: true, multipart: true do |f| %>
+  <%= form_with url: user_golf_gear_path(@user), model: @golf_gear, local: true, multipart: true do |f| %>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- 左カラム：クラブ全体、ドライバー、パター -->
