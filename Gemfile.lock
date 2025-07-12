@@ -179,6 +179,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
+    high_voltage (4.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -478,6 +479,7 @@ DEPENDENCIES
   dotenv-rails
   draper (= 4.0.2)
   fog-aws
+  high_voltage
   jbuilder
   jsbundling-rails
   kaminari
