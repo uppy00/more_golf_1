@@ -57,6 +57,8 @@ gem "config"
 
 gem "high_voltage"
 
+gem "omniauth"
+
 gem "omniauth-google-oauth2"
 
 group :development, :test do

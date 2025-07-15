@@ -76,18 +76,14 @@ Rails.application.config.sorcery.configure do |config|
   # config.register_last_activity_time =
 
   # -- external --
-    config.external_providers = [:google]
+  config.external_providers = %i[google]
 
-    config.google do |google|
-      google.key = Rails.application.credentials.dig(:google, :client_id)
-      google.secret = Rails.application.credentials.dig(:google, :client_secret)
-      google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
-      google.user_info_mapping = { email: "email", username: "name" }
-    end
+  
+  config.google.key = Rails.application.credentials.dig(:google, :client_id)
+  config.google.secret = Rails.application.credentials.dig(:google, :client_secret)
+  config.google.callback_url = Settings.sorcery[:google_callback_url] 
+  config.google.user_info_mapping = { email: "email", first_name: "given_name", last_name: "family_name", nickname: "name" }
 
-    config.user_config do |user|
-      user.authentications_class = UserAuthentication
-    end
   # What providers are supported by this app
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
@@ -255,6 +251,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.battlenet.scope = "openid"
   # --- user config ---
   config.user_config do |user|
+    user.authentications_class = Authentication
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
