@@ -1,0 +1,6 @@
+default_url_options:
+  protcol: 'https'
+  host: 'example.com'
+
+sorcery:
+  google_callback_url: "http://localhost:3000/oauth/callback?provider=google"
