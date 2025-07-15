@@ -82,7 +82,7 @@ Rails.application.config.sorcery.configure do |config|
   config.google.key = Rails.application.credentials.dig(:google, :client_id)
   config.google.secret = Rails.application.credentials.dig(:google, :client_secret)
   config.google.callback_url = Settings.sorcery[:google_callback_url]
-  config.google.user_info_mapping = { email: "email", first_name: "given_name", last_name: "family_name", nickname: "name" }
+  config.google.user_info_mapping = { email: "email", first_name: "family_name", last_name: "given_name", nickname: "name" }
 
   # What providers are supported by this app
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
