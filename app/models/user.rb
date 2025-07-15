@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] && password_confirmation.present? }
   # userのmypageのカラム↓
-  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true, unless: -> { skip_nickname_validation }
+  validates :nickname,  length: { maximum: 20 }, uniqueness: true, unless: -> { skip_nickname_validation }
   validates :self_introduction, length: { maximum: 150 }
   validates :favorite_course, length: { maximum: 20 }, allow_nil: true
   validates :favorite_driving_range, length: { maximum: 30 }, allow_nil: true
@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   has_one :golf_gear, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   def self.ransackable_attributes(auth_object = nil)
     [ "nickname" ] #  ここに検索可能な属性を指定

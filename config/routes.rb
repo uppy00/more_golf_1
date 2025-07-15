@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post "oauth/callback", to: "oauths#callback"
+  get "oauth/callback", to: "oauths#callback"
+  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root "top_pages#top"
   resources :password_resets, only: %i[new create edit update]
