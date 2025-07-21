@@ -43,34 +43,38 @@
           </div>
           <!-- 投稿日時を下に表示 -->
           <div class="flex justify-between items-center mt-auto">
-            <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+            <!-- 投稿日 -->
+            <p class="text-xs text-gray-500">
+              投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %>
+            </p>
 
-            <!-- Xシェア用のボタンを表示 -->
-            <% tweet_text = "More golfに「#{post.tag&.name || "未設定"}」を投稿しました】\n\n#{truncate(post.body, length: 80)}\n\n#{post_url(post)}" %>
+            <!-- 右側：編集・削除・Xボタン or いいねボタン -->
+            <div class="flex items-center space-x-3">
+              <% tweet_text = "More golfに「#{post.tag&.name || "未設定"}」を投稿しました】\n\n#{truncate(post.body, length: 80)}\n\n" %>
 
-            <%= link_to "https://twitter.com/share?text=#{ERB::Util.url_encode(tweet_text)}&url=", target: '_blank' do %>
-              <i class="fab fa-twitter" style='color: #3399FF;'></i> シェア
-            <% end %>
-            <!-- ユーザーが自分ではない場合、編集と削除ボタンを表示させない仕組みに -->
-            <% if current_user.own?(post) %>
-              <div class="flex space-x-3 ">
-
+              <% if current_user.own?(post) %>
                 <!-- 編集ボタン -->
                 <%= link_to edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' do %>
                   <i class="fa-solid fa-pencil"></i>
                 <% end %>
-                <%= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700'  do %>
+
+                <!-- 削除ボタン -->
+                <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' do %>
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
-              </div>
-            <% else %>
-            <div class="flex items-center space-x-1">
-            <!-- 自分以外の投稿の場合いいねボタンを表示　like_buttonsをレンダリング -->
-              <%= render 'like_buttons', {post: post } %>
-            <!-- いいねカウントの表示　-->
-              <%= render partial: 'posts/like_count', locals: { post: post } %>
+              <% else %>
+                <!-- いいねボタンとカウント -->
+                <div class="flex items-center space-x-1">
+                  <%= render 'like_buttons', { post: post } %>
+                  <%= render partial: 'posts/like_count', locals: { post: post } %>
+                </div>
+              <% end %>
+
+              <!-- Xシェアボタン（共通で表示） -->
+              <%= link_to "https://twitter.com/share?text=#{ERB::Util.url_encode(tweet_text)}", target: '_blank', class: 'text-black hover:text-gray-700' do %>
+                <i class="fa-brands fa-x-twitter"></i>
+              <% end %>
             </div>
-            <% end %>
           </div>
         </div>  
       </div>
