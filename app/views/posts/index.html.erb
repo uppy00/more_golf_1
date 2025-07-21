@@ -46,7 +46,7 @@
             <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
 
             <!-- Xシェア用のボタンを表示 -->
-            <% tweet_text = "More golfに「#{post.tag.name}」を投稿しました】\n\n#{truncate(post.body, length: 80)}\n\n#{post_url(post)}" %>
+            <% tweet_text = "More golfに「#{post.tag&.name || "未設定"}」を投稿しました】\n\n#{truncate(post.body, length: 80)}\n\n#{post_url(post)}" %>
 
             <%= link_to "https://twitter.com/share?text=#{ERB::Util.url_encode(tweet_text)}&url=", target: '_blank' do %>
               <i class="fab fa-twitter" style='color: #3399FF;'></i> シェア
