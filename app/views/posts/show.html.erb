@@ -1,7 +1,8 @@
 <!-- OGPタグ用のcontent_for -->
 <% content_for :og_title, "【More golfに「#{@post.tag&.name || '未設定'}」を投稿しました】" %>
 <% content_for :og_description, truncate(@post.body, length: 100) %>
-<% content_for :og_image, @post.image.present? ? "#{request.base_url}#{@post.image.url}" : "#{root_url}images/default_ogp.png" %>
+<% content_for :og_image, @post.image.present? ? @post.image.url : "#{root_url}images/default_ogp.png" %>
+
 
 
 
