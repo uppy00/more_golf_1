@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :require_login, only: [ :show ]
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).includes(:tag, :postable).order(created_at: :desc).page(params[:page]).per(6)
