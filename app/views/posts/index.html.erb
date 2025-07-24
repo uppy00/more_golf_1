@@ -71,7 +71,6 @@
 
               <!-- Xシェアボタン（共通で表示） -->
               <% tweet_text = "【More golfに「#{post.tag&.name || "未設定"}」を投稿しました】\n\n #{truncate(post.body, length: 80)}\n\n 投稿にコメントをしてみましょう \n\n" %>
-
               <%= link_to "https://twitter.com/share?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(post_url(post))}", target: '_blank' do %>
                 <i class="fa-brands fa-x-twitter"></i>
               <% end %>
