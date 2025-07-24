@@ -500,6 +500,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari
   letter_opener_web
+  mini_magick
   omniauth
   omniauth-google-oauth2
   pg (~> 1.1)
