@@ -1,7 +1,7 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -19,6 +19,18 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  # 保存形式をjpgに固定
+  process convert: "jpg"
+
+  # アップロードされた画像を全て　800x400に変換
+  process resize_to_fill: [ 800, 400 ]
+  # 軽量化処理
+
+
+  def filename
+    super&.gsub(/\.(heic|png|jpeg|gif|webp)$/i, ".jpg") if original_filename.present?
+  end
+
 
   # デフォルトのファイルassets/images配下のもの
   def default_url
