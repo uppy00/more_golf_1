@@ -74,7 +74,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
   # OGPでのURL設定
-  config.action_controller.default_url_options = { host: "more-golf-1.onrender.com", protocol: "https" }
+  config.action_controller.default_url_options = { host: "moregolf-life.com", protocol: "https" }
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
@@ -86,7 +86,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              "smtp.gmail.com",
     port:                 587,
-    domain:               "more-golf-1.onrender.com",
+    domain:               "moregolf-life.com",
     user_name:            ENV["GMAIL_USERNAME"],
     password:             ENV["GMAIL_PASSWORD"],
     authentication:       "plain",
