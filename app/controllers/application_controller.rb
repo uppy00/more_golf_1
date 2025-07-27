@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   end
   # high_voltageで作ったものをログインなしに見れるようにする。
   def high_voltage_static_page?
-    controller_name == 'pages' && %w[golf_start privacy_policy terms].include?(params[:id])
+    controller_name == "pages" && %w[golf_start privacy_policy terms].include?(params[:id])
   end
 end
