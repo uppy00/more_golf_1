@@ -1,0 +1,83 @@
+<% content_for :title, "ゴルフ入門 | More Golf" %>
+
+<div class="relative">
+  <%= image_tag "golf_intro_main.jpeg", class: "w-full h-[350px] object-cover" %>
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+    <div class="text-5xl">ゴルフを始めましょう！！</div>
+    <div class="text-5xl mt-10">初心者でも大丈夫！！わかりやすく解説します</div>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10 space-y-16">
+
+  <!-- 魅力セクション -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">ゴルフの魅力</h2>
+    <ul class="space-y-2 text-lg list-disc list-inside">
+      <li>年齢を問わず生涯楽しめる</li>
+      <li>自然の中でリフレッシュできる</li>
+      <li>人とのつながりが広がる</li>
+      <li>スコアで成長を実感できる</li>
+    </ul>
+  </section>
+
+  <!-- ステップ紹介 -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">ゴルフを始めるステップ</h2>
+    <ol class="space-y-4 text-lg list-decimal list-inside">
+      <li>まずはゴルフを体験してみる（打ちっぱなし、シミュレーターなど）</li>
+      <li>必要最低限の道具をそろえる（初心者セットでOK）</li>
+      <li>ゴルフレッスンや動画でフォームを学ぶ</li>
+      <li>ルールやマナーを理解する</li>
+      <li>コースデビューして楽しむ！</li>
+    </ol>
+  </section>
+
+  <!-- 道具紹介 -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">初心者に必要な道具</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+      <div>
+        <%= image_tag "golf_club_set.jpeg", class: "w-full h-48 object-contain bg-gray-100" %>
+        <p class="mt-2">クラブセット：中古やレンタルでOK</p>
+      </div>
+      <div>
+        <%= image_tag "golf_glove.jpeg", class: "w-full h-48 object-contain bg-gray-100" %>
+        <p class="mt-2">グローブ：手の滑り防止に必須</p>
+      </div>
+      <div>
+        <%= image_tag "golf_shoes.jpeg", class: "w-full h-48 object-contain bg-gray-100" %>
+        <p class="mt-2">ゴルフシューズ：コースに行くなら用意を</p>
+      </div>
+      <div>
+        <%= image_tag "golf_ball.jpeg", class: "w-full h-48 object-contain bg-gray-100" %>
+        <p class="mt-2">ボール：最初はロストしてもいい安いものでOK</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Q&A -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">よくある質問</h2>
+    <div class="space-y-4 text-lg">
+      <div>
+        <strong>Q: いくらかかる？</strong><br>
+        A: 中古クラブや打ちっぱなしを使えば、月1万円以下でも楽しめます。
+      </div>
+      <div>
+        <strong>Q: 一人でも始められる？</strong><br>
+        A: もちろんです！レッスンや個人練習から始める人が多いです。
+      </div>
+      <div>
+        <strong>Q: スポーツ経験ゼロでも大丈夫？</strong><br>
+        A: ゴルフはマイペースで上達できます。経験ゼロでも全然OKです。
+      </div>
+    </div>
+  </section>
+
+  <!-- 投稿への導線 -->
+  <section class="text-center">
+    <h2 class="text-2xl mb-4">さっそくあなたの練習記録を投稿してみましょう</h2>
+    <%= link_to "練習を投稿する", new_post_path, class: "inline-block bg-green-600 text-white text-lg font-bold px-6 py-3 rounded hover:bg-green-700 transition" %>
+  </section>
+</div>

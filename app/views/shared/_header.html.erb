@@ -4,12 +4,27 @@
     <!-- ゴルフ画像のイメージを追加　-->
     <%= image_tag "", alt: "" %>
       <div class="flex space-x-4">
-        <p class="text-white">ログイン中: <%= current_user.decorate.full_name %></p>
-        <div><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-white hover:text-black" %></div>
-        <div><%= link_to 'ゴルフ入門', '#', class: 'text-white hover:text-black' %></div>
-        <div><%= link_to 'プライバシーポリシー', page_path('privacy_policy'), class: 'text-white hover:text-black'%></div>
-        <div><%= link_to '利用規約', page_path('terms'), class: 'text-white hover:text-black'%></div>
-        <div><%= link_to t("header.contact"), "https://forms.gle/yhsshkVHfGSV8ruXA",  class: 'text-white hover:text-black'%>
+        <p class="flex items-center text-white">ログイン中: <%= current_user.decorate.full_name %></p>
+        <div class="flex space-x-6 text-white text-sm">
+          <!-- ログアウト -->
+          <%= link_to logout_path, data: { turbo_method: :delete }, class: "flex flex-col items-center hover:text-black" do %>
+            <i class="fas fa-sign-out-alt text-2xl"></i>
+            <span class="mt-1">ログアウト</span>
+          <% end %>
+
+          <!-- ゴルフ入門 -->
+          <%= link_to page_path('golf_start'), class: "flex flex-col items-center hover:text-black" do %>
+            <i class="fas fa-seedling text-2xl"></i>
+            <span class="mt-1">ゴルフ入門</span>
+          <% end %>
+
+          <!-- マイページ -->
+          <%= link_to user_path(current_user), class: "flex flex-col items-center hover:text-black" do %>
+            <i class="fas fa-user text-2xl"></i>
+            <span class="mt-1">マイページ</span>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </header>
