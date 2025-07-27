@@ -30,10 +30,32 @@
   <h1 class="text-2xl">初心者やゴルフについて知りたい方は</h1>
   <p class="text-2xl">こちらから</p>
   <div class="flex items-center justify-center mt-5">
-  <%= link_to '#', class: "group relative inline-flex h-14 w-64 items-center justify-center overflow-hidden rounded-md bg-gray-500 px-6 font-medium text-neutral-50 text-xl" do %>
+  <%= link_to page_path('golf_start'),class: "group relative inline-flex h-14 w-64 items-center justify-center overflow-hidden rounded-md bg-gray-500 px-6 font-medium text-neutral-50 text-xl" do %>
     <span class="absolute h-0 w-0 rounded-full bg-green-500 transition-all duration-300 group-hover:h-56 group-hover:w-68"></span>
     <div class="relative">
       ゴルフ入門
     </div>
   <% end %>
+</div>
+</div>
+<div class="text-center mt-10">
+  <h1 class="text-2xl">自分の練習記録をみんなに共有しよう</h1>
+  <div class="flex justify-center space-x-8 mt-10">
+    <%= image_tag "golf_practice.png", class: "w-120 h-100 object-cover"%>
+    <%= image_tag "golf_practice_detail.png", class: "w-180 h-100 object-cover"%>
+  </div>
+</div>
+<div class="text-center mt-10 text-2xl">
+  <h1>わからないことは、質問タグを使って</h1>
+  <p>質問してみようコメントでみんなが答えてくれるよ</p>
+  <div class="flex justify-center space-x-8 mt-10">
+    <%= image_tag "golf_question.png", class: "w-auto h-100 object-cover"%>
+  </div>
+</div>
+<div class="text-center mt-10 text-2xl">
+  <h1>自分のクラブを登録しよう</h1>
+  <div class="flex justify-center space-x-8 mt-10">
+    <%= image_tag "my_golf_gear.png", class: "w-auto h-100 object-cover"%>
+  </div>
+  <p class="mt-10">他の人が使っているクラブも見れるよ</p>
 </div>

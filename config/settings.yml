@@ -1,5 +1,6 @@
+# localhost開発環境用の設定
 default_url_options:
-  protcol: 'https'
+  protocol: 'https'
   host: 'example.com'
 
 sorcery:

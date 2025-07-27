@@ -1,23 +1,31 @@
 <footer class="bg-green-500 p-4 mt-8">
-  <div class="container flex justify-between items-center mx-auto">
-    <div class="flex space-x-4 mx-auto">
-      <%= link_to 'ホーム', root_path, class: 'text-white hover:text-black' %>
-      <%= link_to '投稿一覧', posts_path, class: 'text-white hover:text-black' %>
-      <%= link_to '新規投稿', new_post_path , class: 'text-white hover:text-black' %>
-      <%= link_to 'マイページ', user_path(current_user), class: 'text-white hover:text-black' %>
-      <%= link_to 'いいねした投稿', likes_posts_path, class: 'text-white hover:text-black'%>
+  <div class="container mx-auto flex justify-between items-start flex-wrap text-white text-sm">
+
+    <!-- 左カラム -->
+    <div class="flex space-x-4">
+      <%= link_to 'プライバシーポリシー', page_path('privacy_policy'), class: 'hover:text-black' %>
+      <%= link_to '利用規約', page_path('terms'), class: 'hover:text-black' %>
+      <%= link_to t("header.contact"), "https://forms.gle/yhsshkVHfGSV8ruXA", class: 'hover:text-black' %>
+    </div>
+
+    <!-- 中央カラム -->
+    <div class="flex space-x-4 justify-center">
+      <%= link_to 'ホーム', root_path, class: 'hover:text-black' %>
+      <%= link_to '投稿一覧', posts_path, class: 'hover:text-black' %>
+      <%= link_to '新規投稿', new_post_path, class: 'hover:text-black' %>
+      <%= link_to 'いいねした投稿', likes_posts_path, class: 'hover:text-black' %>
+    </div>
+
+    <!-- 右カラム -->
+    <div class="flex space-x-4 justify-end">
+      <%= link_to '練習記録', '#', class: 'hover:text-black' %>
+
       <% if current_user.golf_gear.present? %>
-        <!-- すでに登録済みなら編集画面へ -->
-        <%= link_to "私のゴルフギアを編集", edit_user_golf_gear_path(current_user),
-                    class: "text-white hover:text-black" %>
+        <%= link_to "私のゴルフギアを編集", edit_user_golf_gear_path(current_user), class: 'hover:text-black' %>
       <% else %>
-        <!-- 未登録なら登録画面へ -->
-        <%= link_to "私のゴルフギア登録", new_user_golf_gear_path(current_user),
-                    class: "text-white hover:text-black" %>
+        <%= link_to "私のゴルフギア登録", new_user_golf_gear_path(current_user), class: 'hover:text-black' %>
       <% end %>
     </div>
-    <div class="text-right">
-      <%= link_to '練習記録', '#', class: 'text-white hover:text-black' %>
-    </div>
+
   </div>
 </footer>
