@@ -4,7 +4,7 @@
     <!-- ゴルフ画像のイメージを追加　-->
     <%= image_tag "", alt: "" %>
       <div class="flex space-x-4">
-        <p class="flex items-center text-white">ログイン中: <%= current_user.decorate.full_name %></p>
+        <p class="hidden md:flex items-center text-white">ログイン中: <%= current_user.decorate.full_name %></p>
         <div class="flex space-x-6 text-white" >
           <!-- ホーム -->
           <%= link_to root_path, class: 'flex flex-col items-center hover:text-black' do %>
