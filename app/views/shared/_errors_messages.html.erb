@@ -1,3 +1,4 @@
+<!-- モデルのバリデーション失敗時同じページでフォームと一緒に表示 -->
 <% if object.errors.any? %>
   <div class="bg-red-200 text-red-700 p-3 text-sm rounded-md" >
     <% object.errors.each do |error| %>

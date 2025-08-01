@@ -3,7 +3,7 @@
 <!-- トップページ　掲示板のindex部分-->
 <%= render 'search', q: @q,url: posts_path%>
 <div class="px-6">
-  <div class="grid grid-cols-3 gap-6">
+  <div class="grid grid-cols-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @posts.each do |post| %>
       <div class="bg-gray-200 p-4 rounded-lg shadow" style="width: 480x; height: 340px;">
         <div class="flex flex-col h-full">
@@ -51,7 +51,7 @@
             <!-- 右側：編集・削除・Xボタン or いいねボタン -->
             <div class="flex items-center space-x-3">
 
-              <% if current_user.own?(post) %>
+              <% if current_user&.own?(post) %>
                 <!-- 編集ボタン -->
                 <%= link_to edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' do %>
                   <i class="fa-solid fa-pencil"></i>

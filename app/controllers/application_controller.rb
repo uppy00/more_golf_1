@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   private
   # ログインしていない婆はlogin_pathにリダイレクト
   def not_authenticated
+    flash[:notice] = "ログインが必要です"
     redirect_to login_path
   end
   # high_voltageで作ったものをログインなしに見れるようにする。

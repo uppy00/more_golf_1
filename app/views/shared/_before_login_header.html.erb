@@ -4,10 +4,27 @@
     <!-- ゴルフ画像のイメージを追加　-->
     <%= image_tag "", alt: "" %>
       <div class="flex space-x-4">
-        <p class="text-white">ログインしていません</p>
-        <div><%= link_to '新規登録', new_user_path, class: 'text-white hover:text-black' %></div>
-        <div><%= link_to 'ログイン', login_path, class: 'text-white hover:text-black' %></div>
-        <div><%= link_to 'ゴルフ入門', page_path('golf_start'), class: 'text-white hover:text-black' %></div>
+        <p class="flex items-center text-white">ログインしていません</p>
+        <!-- 新規登録 -->
+        <%= link_to new_user_path, class: 'text-white flex flex-col items-center hover:text-black' do %>
+          <i class="fa-solid fa-user-plus text-lg sm:text-xl md:text-2xl"></i>
+          <span class="mt-1 text-xs sm:text-sm md:text-base">新規登録</span>
+        <% end %>
+        <!-- ログイン -->
+        <%= link_to login_path, class: 'text-white flex flex-col items-center hover:text-black' do %>
+          <i class="fa-solid fa-right-to-bracket text-lg sm:text-xl md:text-2xl"></i>
+          <span class="mt-1 text-xs sm:text-sm md:text-base">ログイン</span>
+        <% end %>
+        <!-- 投稿一覧 -->
+        <%= link_to posts_path, class: 'text-white flex flex-col items-center hover:text-black' do %>
+          <i class="fa-solid fa-list text-lg sm:text-xl md:text-2xl"></i>
+          <span class="mt-1 text-xs sm:text-sm md:text-base">投稿一覧</span>
+        <% end %>
+        <!-- ゴルフ入門 -->
+        <%= link_to page_path('golf_start'), class: 'text-white flex flex-col items-center hover:text-black' do %>
+          <i class="fa-solid fa-flag text-lg sm:text-xl md:text-2xl"></i>
+          <span class="mt-1 text-xs sm:text-sm md:text-base">ゴルフ入門</span>
+        <% end %>
       </div>
     </div>
   </div>

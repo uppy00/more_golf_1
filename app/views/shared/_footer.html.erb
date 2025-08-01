@@ -1,5 +1,5 @@
-<footer class="bg-green-500 p-4 mt-8">
-  <div class="container mx-auto flex justify-between items-start flex-wrap text-white text-sm">
+<footer class="bg-green-500 text-white p-4 mt-8">
+  <div class="container flex flex-col sm:flex-row justify-between items-center mx-auto text-center space-y-4 sm:space-y-0">
 
     <!-- 左カラム -->
     <div class="flex space-x-4">
@@ -10,16 +10,12 @@
 
     <!-- 中央カラム -->
     <div class="flex space-x-4 justify-center">
-      <%= link_to 'ホーム', root_path, class: 'hover:text-black' %>
-      <%= link_to '投稿一覧', posts_path, class: 'hover:text-black' %>
-      <%= link_to '新規投稿', new_post_path, class: 'hover:text-black' %>
-      <%= link_to 'いいねした投稿', likes_posts_path, class: 'hover:text-black' %>
+      <%= link_to 'ゴルフ入門', page_path('golf_start'), class: "flex flex-col items-center hover:text-black" %>
     </div>
 
     <!-- 右カラム -->
     <div class="flex space-x-4 justify-end">
       <%= link_to '練習記録', '#', class: 'hover:text-black' %>
-
       <% if current_user.golf_gear.present? %>
         <%= link_to "私のゴルフギアを編集", edit_user_golf_gear_path(current_user), class: 'hover:text-black' %>
       <% else %>

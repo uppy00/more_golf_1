@@ -2,7 +2,7 @@
 <div class="pt-5 px-10">
 
   <!-- 投稿者情報（アイコン・名前・タイトル・タグ） -->
-  <div class="flex items-center mb-6">
+  <div class="flex items-center mb-3 sm:mb-6">
     <!-- アバター -->
     <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
       <%= image_tag @post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
@@ -10,8 +10,8 @@
     <!-- ニックネーム -->
     <span class="text-xl mr-4"><%= @post.user.nickname %></span>
 
-    <!-- タイトル -->
-    <h1 class="font-bold text-2xl text-center flex-1"><%= @post.title %></h1>
+    <!-- PC用タイトル（sm以上のみ表示） -->
+    <h1 class="hidden md:block font-bold text-2xl text-center flex-1"><%= @post.title %></h1>
 
     <!-- タグ -->
     <% if @post.tag %>
@@ -21,16 +21,20 @@
     <% end %>
   </div>
 
-  <!-- 投稿画像＋本文（横並び） -->
-  <div class="flex gap-6 mb-8">
+  <!-- 投稿画像＋本文 -->
+  <div class="flex flex-col md:flex-row gap-6 mb-8">
+    <!-- モバイル用タイトル（sm未満だけ表示） -->
+    <h1 class="block md:hidden text-xl text-center font-bold">
+      <%= @post.title %>
+    </h1>
     <!-- 投稿画像 -->
-    <div class="w-1/2 text-center">
+    <div class="w-full md:w-1/2 text-center">
       <%= image_tag @post.image.url.presence || asset_path('default_image.png'), 
           class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
     </div>
 
     <!-- 本文 -->
-    <div class="w-1/2 text-xl text-left flex flex-col">
+    <div class="w-auto md:w-1/2 text-lg sm:text-xl text-left flex flex-col">
       <!-- スコアとコース名 -->
       <div class="mb-4 flex space-x-6 ">
         <p class="bg-gray-100 shadow-xs">練習場名: <%= @post.postable&.driving_range_name || "未設定" %></p>
@@ -39,7 +43,7 @@
       </div>
 
       <p>意識して取り組んだこと</p>
-      <p class="w-full h-[200px] text-black overflow-y-auto bg-gray-50 shadow rounded-md p-4">
+      <p class="w-full h-[150px] md:h-[200px] text-black overflow-y-auto bg-gray-50 shadow rounded-md p-4">
         <%= @post.postable&.effort_focus || "未設定" %>
       </p>
       <p class="mt-2">参考にした動画</p>
