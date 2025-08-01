@@ -14,12 +14,6 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
 
   # アップロードされた画像を全て　800x400に変換
   process resize_to_fill: [ 800, 400 ]
-  # 軽量化処理
-
-
-  def filename
-    super&.gsub(/\.(heic|png|jpeg|gif|webp)$/i, ".jpg") if original_filename.present?
-  end
 
 
   # Override the directory where uploaded files will be stored.
