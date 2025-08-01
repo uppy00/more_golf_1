@@ -26,12 +26,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [ 800, 400 ]
   # 軽量化処理
 
-
-  def filename
-    super&.gsub(/\.(heic|png|jpeg|gif|webp)$/i, ".jpg") if original_filename.present?
-  end
-
-
   # デフォルトのファイルassets/images配下のもの
   def default_url
     "default_image.png"
