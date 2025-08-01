@@ -1,14 +1,15 @@
 <!-- 投稿編集ページ　-->
 <div>
   <div class="flex">
-    <h1 class="text-2xl p-10 ">投稿編集</h1>
-    <div class="pt-10 pl-4 rounded-lg ml-20">
+    <h1 class="hidden lg:block text-2xl p-10 ">投稿編集</h1>
+    <div class="pt-10 px-4 rounded-lg mx-10">
       <%= form_with model: @post do |f| %>
-      <div class="flex items-start gap-8 ">
+      <div class="flex flex-col lg:flex-row items-start gap-8 ">
+        <div class="text-2xl lg:hidden flex flex-col">新規投稿</div>
         <!-- タイトル -->
         <div class="flex flex-col">
           <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
-          <%= f.text_field :title, class: 'border  w-[440px] h-[40px]' %>
+          <%= f.text_field :title, class: 'border w-[280px] lg:w-[440px] h-[40px]' %>
         </div>
 
         <!-- タグ -->
@@ -24,18 +25,18 @@
       <%= f.fields_for :postable do |pf| %>
         <div class="mb-4">
           <%= pf.label :course_name, "コース名", class: "text-2xl block mb-6" %> 
-          <%= pf.text_area :course_name, class: 'border  w-[440px] h-[40px]' %>
+          <%= pf.text_area :course_name, class: 'border w-full lg:w-[440px] h-[40px]' %>
         </div>
         <div class="mb-4">
           <%= pf.label :score, "スコア", class: "text-2xl block mb-6" %>
-          <%= pf.number_field :score, class: 'border  w-[440px] h-[40px]'%>
+          <%= pf.number_field :score, class: 'border w-full lg:w-[440px] h-[40px]'%>
         </div>
       <% end %>
       
       <!--　本文 -->
       <div class="mb-4">
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
-        <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
+        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px]' %>
       </div>
 
       <!-- 画像のアップロード -->

@@ -1,16 +1,11 @@
 <!-- 投稿編集ページ　-->
 <div>
   <div class="flex">
-    <h1 class="text-2xl p-10 ">投稿編集</h1>
-    <div class="pt-10 pl-4 rounded-lg ml-20">
+    <h1 class="hidden lg:block text-2xl p-10 ">投稿編集</h1>
+    <div class="pt-10 px-4 rounded-lg mx-10">
       <%= form_with model: @post do |f| %>
-      <div class="flex items-start gap-8 ">
-        <!-- タイトル -->
-        <div class="flex flex-col">
-          <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
-          <%= f.text_field :title, class: 'border  w-[440px] h-[40px]' %>
-        </div>
-
+      <div class="flex flex-col lg:flex-row items-start gap-8 ">
+        <div class="text-2xl lg:hidden flex flex-col">新規投稿</div>
         <!-- タグ -->
         <div class="flex flex-col">
           <%= f.label :tag_id, "タグ", class: "text-2xl mb-6" %>
@@ -18,13 +13,19 @@
             <%= @post.tag.name %>
           </div>
         </div>
+        <!-- タイトル -->
+        <div class="flex flex-col">
+          <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
+          <%= f.text_field :title, class: 'border w-[300px] lg:w-[440px] h-[40px]' %>
+        </div>
+
       </div>
       
       <!-- 本文 -->
       
       <div class="mb-4">
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
-        <%= f.text_area :body, class: 'border  w-[780px] h-[140px]' %>
+        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px]' %>
       </div>
 
     <p class="text-xl">画像または動画どちらか一つのみ投稿できます</p>
