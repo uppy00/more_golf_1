@@ -101,7 +101,8 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-
+  # renderのデフォルトドメインも許可
+  config.hosts << "more-golf-1.onrender.com"
   # 独自ドメインを許可
   config.hosts << "moregolf-life.com"
   config.hosts << "www.moregolf-life.com"
