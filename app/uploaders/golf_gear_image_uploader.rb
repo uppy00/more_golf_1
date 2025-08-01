@@ -1,7 +1,7 @@
 class GolfGearImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   if Rails.env.production?
     storage :fog
@@ -9,12 +9,29 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
+  # 保存形式をjpgに固定
+  process convert: "jpg"
+
+  # アップロードされた画像を全て　800x400に変換
+  process resize_to_fill: [ 800, 400 ]
+  # 軽量化処理
+
+
+  def filename
+    super&.gsub(/\.(heic|png|jpeg|gif|webp)$/i, ".jpg") if original_filename.present?
+  end
+
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  # 保存を許すファイルの形式
+  def extension_allowlist
+    %w[jpg jpeg gif png]
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
