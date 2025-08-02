@@ -24,7 +24,15 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
 
   # 保存を許すファイルの形式
   def extension_allowlist
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png heic HEIC]
+  end
+
+  # アップロード後のファイル名を強制的に .jpg にする
+  def filename
+    if original_filename.present?
+      # タイムスタンプ付きで重複防止（必要なければ削除）
+      "#{File.basename(original_filename, '.*')}.jpg"
+    end
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

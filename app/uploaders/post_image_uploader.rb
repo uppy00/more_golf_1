@@ -23,7 +23,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   process convert: "jpg"
 
   # アップロードされた画像を全て　800x400に変換
-  process resize_to_fill: [ 800, 400 ]
+  process resize_to_fit: [ 800, 800 ]
   # 軽量化処理
 
   # デフォルトのファイルassets/images配下のもの
@@ -33,7 +33,15 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # 保存を許すファイルの形式
   def extension_allowlist
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png heic HEIC]
+  end
+
+  # アップロード後のファイル名を強制的に .jpg にする
+  def filename
+    if original_filename.present?
+      # タイムスタンプ付きで重複防止（必要なければ削除）
+      "#{File.basename(original_filename, '.*')}.jpg"
+    end
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
