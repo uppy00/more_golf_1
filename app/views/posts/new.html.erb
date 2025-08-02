@@ -30,14 +30,14 @@
         <% case @post.tag&.name %>
         <% when "スコア記録" %>
           <%= f.fields_for :postable do |postable_fields| %>
-            <%= render "form_score_record", post_form: f, score_form: postable_fields %>
+            <%= render "posts/new_form/form_score_record", post_form: f, score_form: postable_fields %>
           <% end %>
         <% when "練習記録" %>
           <%= f.fields_for :postable do |postable_fields| %>
-            <%= render "form_practice_record", post_form: f, practice_form: postable_fields %>
+            <%= render "posts/new_form/form_practice_record", post_form: f, practice_form: postable_fields %>
           <% end %>
         <% when "質問", "その他" %>
-          <%= render "form_common", f: f %>
+          <%= render "posts/new_form/form_common", f: f %>
         <% end %>
       </div>
       <!-- 投稿ボタン -->
