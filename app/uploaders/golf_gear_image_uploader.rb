@@ -34,6 +34,15 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
       "#{File.basename(original_filename, '.*')}.jpg"
     end
   end
+
+  # MiniMagickで画質を下げるメソッド
+  def quality(percentage)
+    manipulate! do |img|
+      img.strip # メタデータ削除
+      img.quality(percentage.to_s)
+      img
+    end
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
