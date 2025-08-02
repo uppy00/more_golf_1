@@ -17,5 +17,5 @@
 
 <div class="mb-4">
   <%= post_form.label :image, "画像", class: "text-2xl block mb-6" %>
-  <%= post_form.file_field :image, class: "custom-file-input" %>
+  <%= post_form.file_field :image, accept: 'image/jpeg,image/png,image/gif,image/heic', class: "custom-file-input" %>
 </div>
