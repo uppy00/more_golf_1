@@ -13,7 +13,7 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
   process convert: "jpg"
 
   # アップロードされた画像を全て　800x400に変換
-  process resize_to_fill: [ 800, 400 ]
+  process resize_to_fit: [ 800, 400 ]
 
 
   # Override the directory where uploaded files will be stored.
