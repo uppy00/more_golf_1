@@ -22,6 +22,7 @@ ja:
       post:
         title: タイトル
         body: 本文
+        tag: タグ
   errors:
     messages:
       blank: を入力してください
