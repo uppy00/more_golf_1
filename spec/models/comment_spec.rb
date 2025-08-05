@@ -7,7 +7,7 @@ RSpec.describe Comment, type: :model do
       expect(comment).to be_valid
     end
 
-    it 'contentが空だと無効' do
+    it 'bodyが空だと無効' do
       comment = build(:comment, body: "")
       expect(comment).not_to be_valid
       expect(comment.errors[:body]).to include("を入力してください").or include("can't be blank")

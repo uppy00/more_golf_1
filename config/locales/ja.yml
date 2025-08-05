@@ -3,7 +3,14 @@ ja:
     models:
       user: ユーザー
       post: 投稿 #ポストモデルの追加
+      practice_record: "練習記録"
     attributes:
+      post/postable:
+        course_name: コース名
+        score: スコア
+        driving_range_name: 練習場名
+        practice_hour: 練習時間
+        ball_count: 球数
       user:
         email: メールアドレス
         password: パスワード
