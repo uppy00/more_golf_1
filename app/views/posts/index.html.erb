@@ -5,7 +5,7 @@
 <div class="px-6">
   <div class="grid grid-cols-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @posts.each do |post| %>
-      <div class="bg-gray-200 p-4 rounded-lg shadow" style="width: 480x; height: 340px;">
+      <div class="bg-white p-4 rounded-3xl shadow-xl" style="width: 480x; height: 340px;">
         <div class="flex flex-col h-full">
           <!-- postタイトル -->
           <h2 class="text-black text-xl  hover:text-white">
@@ -38,7 +38,7 @@
             <% elsif post.video? %>
               <%= video_tag post.video.url, controls: true, class: 'w-full h-[190px] object-contain rounded-md' %>
             <% else %>
-              <%= image_tag asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
+              <%= image_tag asset_path('default.jpg'), class: 'w-full h-[190px] object-contain rounded-md' %>
             <% end %>
           </div>
           <!-- 投稿日時を下に表示 -->

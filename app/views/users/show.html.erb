@@ -18,11 +18,22 @@
               <%= @user.nickname %>
             </div>
           </div>
+          <!-- 名前 -->
+          <div>
+            <div class="font-bold text-xl">名前</div>
+            <div class="w-full px-4 py-2 border border-gray-300 rounded-lg min-h-[40px]">
+              <%= @user.decorate.full_name %>
+            </div>
+          </div>
           <!-- メールアドレス -->
           <div>
             <div class="font-bold text-xl">メールアドレス</div>
             <div class="w-full px-4 py-2 border border-gray-300 rounded-lg min-h-[40px]">
-              <%= @user.email %>
+              <% if current_user&.id == @user.id %>
+                <%= @user.email %>
+              <% else %>
+                <span class="text-gray-400">非公開</span>
+              <% end %>
             </div>
           </div>
         </div>
