@@ -1,27 +1,27 @@
   <div class="mb-4">
     <%= practice_form.label :driving_range_name, "練習場名", class: "block mb-2 text-xl" %>
-    <%= practice_form.text_field :driving_range_name, class: "border w-full lg:w-[440px] h-[40px]" %>
+    <%= practice_form.text_field :driving_range_name, class: "border w-full lg:w-[440px] h-[40px] rounded-md" %>
   </div>
 
   <div class="mb-4">
     <%= practice_form.label :practice_hour, "時間（分）", class: "block mb-2 text-xl" %>
-    <%= practice_form.number_field :practice_hour, class: "border w-full lg:w-[440px] h-[40px]" %>
+    <%= practice_form.number_field :practice_hour, class: "border w-full lg:w-[440px] h-[40px] rounded-md" %>
   </div>
 
   <div class="mb-4">
     <%= practice_form.label :ball_count, "球数", class: "block mb-2 text-xl" %>
-    <%= practice_form.number_field :ball_count, class: "border w-full lg:w-[440px] h-[40px]" %>
+    <%= practice_form.number_field :ball_count, class: "border w-full lg:w-[440px] h-[40px] rounded-md" %>
   </div>
 
   <div class="mb-4">
     <%= practice_form.label :effort_focus, "意識して取り組んだこと", class: "block mb-2 text-xl" %>
-    <%= practice_form.text_area :effort_focus, class: "border w-full lg:w-[440px] h-[80px]" %>
+    <%= practice_form.text_area :effort_focus, class: "border w-full lg:w-[440px] h-[80px] rounded-md" %>
   </div>
 
   <div class="mb-4">
     <%= practice_form.label :video_reference, "参考にした動画（URL）", class: "block mb-2 text-xl" %>
     <%= practice_form.text_field :video_reference, accept: 'image/jpeg,image/png,image/gif,image/heic',
-                                                    class: "border w-full lg:w-[440px] h-[40px]" %>
+                                                    class: "border w-full lg:w-[440px] h-[40px] rounded-md" %>
   </div>
 
 <!-- 共通: 画像のみ -->

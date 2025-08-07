@@ -67,7 +67,6 @@ class PostsController < ApplicationController
       flash[:success] = "投稿の編集に成功しました"
       redirect_to post_path(@post)
     else
-      Rails.logger.debug "Validation errors: #{@post.errors.full_messages.join(', ')}"
       flash.now[:danger] = "投稿の編集に失敗しました。エラーメッセージを確認してください"
       render :edit, status: :unprocessable_entity
     end

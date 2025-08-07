@@ -49,6 +49,7 @@ class User < ApplicationRecord
     liked_posts.include?(post)
   end
 
+  # carrier waveの設定
   mount_uploader :avatar, AvatarUploader
   # own?メゾットで自分が投稿したものだけを識別
   def own?(object)

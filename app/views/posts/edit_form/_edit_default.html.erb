@@ -16,7 +16,7 @@
         <!-- タイトル -->
         <div class="flex flex-col">
           <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
-          <%= f.text_field :title, class: 'border w-[300px] lg:w-[440px] h-[40px]' %>
+          <%= f.text_field :title, class: 'border w-[300px] lg:w-[440px] h-[40px] rounded-md' %>
         </div>
 
       </div>
@@ -25,7 +25,7 @@
       
       <div class="mb-4">
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
-        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px]' %>
+        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px] rounded-md rounded-md' %>
       </div>
 
     <p class="text-xl">画像または動画どちらか一つのみ投稿できます</p>
@@ -34,13 +34,13 @@
         <!-- 画像 -->
         <div class="mr-4">
           <%= f.label :image, "画像", class: "text-2xl block mb-2" %>
-          <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif,image/heic', class: "custom-file-input" %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif,image/heic', class: "custom-file-input rounded-md" %>
         </div>
 
         <!-- 動画 -->
         <div>
           <%= f.label :video, "動画", class: "text-2xl block mb-2" %>
-          <%= f.file_field :video, accept: 'video/mp4,video/quicktime,video/x-msvideo,video/webm', class: "custom-file-input" %>
+          <%= f.file_field :video, accept: 'video/mp4,video/quicktime,video/x-msvideo,video/webm', class: "custom-file-input rounded-md" %>
         </div>
       </div>
             

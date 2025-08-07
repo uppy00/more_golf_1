@@ -9,7 +9,7 @@
         <!-- タイトル -->
         <div class="flex flex-col">
           <%= f.label :title, "タイトル", class: "text-2xl block mb-6" %> 
-          <%= f.text_field :title, class: 'border w-[280px] lg:w-[440px] h-[40px]' %>
+          <%= f.text_field :title, class: 'border w-[280px] lg:w-[440px] h-[40px] rounded-md' %>
         </div>
 
         <!-- タグ -->
@@ -25,24 +25,24 @@
       <%= f.fields_for :postable do |pf| %>
         <div class="mb-4">
           <%= pf.label :course_name, "コース名", class: "text-2xl block mb-6" %> 
-          <%= pf.text_area :course_name, class: 'border w-full lg:w-[440px] h-[40px]' %>
+          <%= pf.text_area :course_name, class: 'border w-full lg:w-[440px] h-[40px] rounded-md' %>
         </div>
         <div class="mb-4">
           <%= pf.label :score, "スコア", class: "text-2xl block mb-6" %>
-          <%= pf.number_field :score, class: 'border w-full lg:w-[440px] h-[40px]'%>
+          <%= pf.number_field :score, class: 'border w-full lg:w-[440px] h-[40px] rounded-md'%>
         </div>
       <% end %>
       
       <!--　本文 -->
       <div class="mb-4">
         <%= f.label :body, "本文", class: "text-2xl block mb-6" %> 
-        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px]' %>
+        <%= f.text_area :body, class: 'border w-full lg:w-[780px] h-[140px] rounded-md' %>
       </div>
 
       <!-- 画像のアップロード -->
       <div class="mb-4">
         <%= f.label :image, "画像", class: "text-2xl block mb-6"%>
-        <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif,image/heic', class: 'custom-file-input'%>
+        <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif,image/heic', class: 'custom-file-input rounded-md'%>
       </div>
       
       <!-- 編集ボタン -->
