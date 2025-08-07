@@ -23,4 +23,3 @@ RSpec.describe PracticeRecord, type: :model do
     expect(record.errors[:ball_count]).to include("は0以上の値にしてください")
   end
 end
-

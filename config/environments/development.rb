@@ -2,7 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
-  I18n::Debug.logger = Logger.new(Rails.root.join('log', 'i18n-debug.log'))
+  # i18nでのデバックをするための記述
+  I18n::Debug.logger = Logger.new(Rails.root.join("log", "i18n-debug.log"))
 
   # Settings specified here will take precedence over those in config/application.rb.
 

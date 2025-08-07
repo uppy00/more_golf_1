@@ -12,7 +12,7 @@ RSpec.describe ScoreRecord, type: :model do
   end
 
   it 'scoreが正しい数値でなければ無効' do
-    record = build(:score_record, score: 'aaa' )
+    record = build(:score_record, score: "aaa")
     expect(record).to be_invalid
     expect(record.errors[:score]).to include("は数値で入力してください")
   end
