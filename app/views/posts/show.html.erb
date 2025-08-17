@@ -1,7 +1,8 @@
 <!-- posts/show.html.erb の OGPタグ設定 -->
 <% content_for :og_title, "【More golfに「#{@post.tag&.name || '未設定'}」を投稿しました】" %>
 <% content_for :og_description, truncate(@post.body, length: 100) %>
-<% content_for :og_image, @post.image.present? ? url_for(@post.image.ogp.url, only_path: false) : image_url('default_ogp.png', host: root_url) %>
+<% content_for :og_image, @post.image.present? ? url_for(@post.image.ogp.url, only_path: false) : "#{root_url}images/default_ogp.png" %>
+
 
 
 
