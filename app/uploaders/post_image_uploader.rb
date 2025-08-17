@@ -28,7 +28,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # OGPようにリサイズ
   version :ogp do
-    process resize_to_fill: [1200, 628] # Twitter推奨サイズ
+    process resize_to_fill: [1200, 628 ] # Twitter推奨サイズ
   end
   # デフォルトのファイルassets/images配下のもの
   def default_url
