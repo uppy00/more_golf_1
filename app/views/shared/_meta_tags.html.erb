@@ -1,9 +1,0 @@
-<!-- OGPタグ -->
-<meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'More golf' %>">
-<meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'ゴルフ投稿アプリ' %>">
-<meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : "#{root_url}images/default_ogp.jpg" %>">
-<meta property="og:url" content="<%= request.original_url %>">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="More golf">
-<!-- twitterカード -->
-<meta name="twitter:card" content="summary_large_image">
