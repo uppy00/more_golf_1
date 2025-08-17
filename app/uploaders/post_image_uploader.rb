@@ -26,6 +26,10 @@ class PostImageUploader < CarrierWave::Uploader::Base
   process resize_to_fit: [ 800, 800 ]
   # 軽量化処理
 
+  # OGPようにリサイズ
+  version :ogp do
+    process resize_to_fill: [1200, 628] # Twitter推奨サイズ
+  end
   # デフォルトのファイルassets/images配下のもの
   def default_url
     "default_image.png"
