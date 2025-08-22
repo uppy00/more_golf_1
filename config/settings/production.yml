@@ -4,3 +4,4 @@ default_url_options:
   protocol: https
 sorcery:
   google_callback_url: 'https://moregolf-life.com/oauth/callback?provider=google'
+

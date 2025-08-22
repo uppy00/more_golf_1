@@ -22,6 +22,10 @@ class VideoUploaderUploader < CarrierWave::Uploader::Base
     %w[mp4 mov avi webm]
   end
 
+  def size_range
+    1.byte..200.megabytes  # 上限200MBに調整
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
