@@ -1,5 +1,5 @@
 Rails.application.config.session_store :cookie_store,
-  key: '_moregolf_session',
+  key: "_moregolf_session",
   secure: true,     # HTTPS 前提
   same_site: :lax,  # OAuth のトップレベル遷移なら Lax でOK
   httponly: true
