@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :require_login, unless: :high_voltage_static_page?
   # 携帯でgoogleログインを実装するためのもの
   before_action :redirect_to_canonical_host
+  # 本番環境でのみ実装
+  before_action :redirect_to_canonical_host, if: -> { Rails.env.production? }
 
   private
   # ログインしていない婆はlogin_pathにリダイレクト
