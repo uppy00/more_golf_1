@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     collection do
       # いいねされている一覧
       get :likes
+      # オートコンプリート用のルーティング
+      get :autocomplete
     end
   end
   # いいねの登録と解除

@@ -100,6 +100,13 @@ class PostsController < ApplicationController
     @liked_posts = @q.result.includes(:user, :postable).order(created_at: :desc)
   end
 
+  # オートコンプリート用のアクション
+  def autocomplete
+    keyword = params[:q].to_s.strip
+
+    @titles = Post.ransack(title_cont: keyword).result(distinct: true).limit(10).pluck(:title)
+    render json: @titles
+  end
   private
 
   def post_params
