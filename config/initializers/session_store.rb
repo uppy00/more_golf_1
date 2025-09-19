@@ -1,7 +1,16 @@
-Rails.application.config.session_store :cookie_store,
-  key: "_moregolf_session",
-  secure: true,     # HTTPS 前提
-  same_site: :lax,  # OAuth のトップレベル遷移なら Lax でOK
-  httponly: true
-#  domain: :all,    # www も運用するなら有効化（apex統一なら不要）
-#  tld_length: 2
+# 開発環境と本番環境でcookie設定を変える
+if Rails.env.production?
+  Rails.application.config.session_store :cookie_store,
+    key: "_moregolf_session",
+    secure: true,       # 本番は HTTPS 前提
+    same_site: :lax,
+    httponly: true,
+    domain: "moregolf-life.com" # ※必要なら。本番だけに限定
+else
+  Rails.application.config.session_store :cookie_store,
+    key: "_moregolf_session",
+    secure: false,      # ← 開発は必ず false（http だから）
+    same_site: :lax,
+    httponly: true
+  # 開発では domain を絶対に付けない（localhostにマッチせず破棄されます）
+end
