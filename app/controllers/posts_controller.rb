@@ -101,7 +101,7 @@ class PostsController < ApplicationController
   end
 
   # オートコンプリート用のアクション
-  def autocomplete
+  def autocomplete_title
     keyword = params[:q].to_s.strip
 
     @titles = Post.ransack(title_cont: keyword).result(distinct: true).limit(10).pluck(:title)

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     timeout = setTimeout(() => {
-      fetch(`/posts/autocomplete?q=${encodeURIComponent(query)}`)
+      fetch(`/posts/autocomplete_title?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
           resultBox.innerHTML = "";
