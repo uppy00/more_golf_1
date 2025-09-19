@@ -21,9 +21,16 @@
       </ul>
     </div>
     <!-- ニックネーム -->
-    <%= f.search_field :user_nickname_cont,
-      class: "border border-gray-300 rounded-md px-4 py-2 w-full md:w-45 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-400",
-      placeholder: 'ニックネームで検索' %>
+    <div class="relative w-full md:w-45">
+      <%= f.search_field :user_nickname_cont,
+        id: "autocomplete-nickname",
+        class: "border border-gray-300 rounded-md px-4 py-2 w-full md:w-45 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-400",
+        placeholder: 'ニックネームで検索' %>
+
+      <ul id="autocomplete-nickname-results"
+        class="bg-white border border-gray-300 mt-1 max-h-60 overflow-y-auto rounded-md shadow-md absolute z-50 w-full hidden text-sm">
+      </ul>
+    </div>
 
     <!-- ボタン部分 -->
     <div class="flex flex-row gap-2 w-full justify-center md:w-auto md:justify-between">

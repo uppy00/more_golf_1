@@ -1,8 +1,13 @@
 // オートコンプリート用のJS
 
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("autocomplete-input");
-  const resultBox = document.getElementById("autocomplete-results");
+  setupAutocomplete("autocomplete-input", "autocomplete-results", "/posts/autocomplete_title");
+  setupAutocomplete("autocomplete-nickname", "autocomplete-nickname-results", "/posts/autocomplete_nickname");
+});
+
+function setupAutocomplete(inputId, resultBoxId, fetchUrl) {
+  const input = document.getElementById(inputId);
+  const resultBox = document.getElementById(resultBoxId);
 
   if (!input || !resultBox) return;
 
@@ -19,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     timeout = setTimeout(() => {
-      fetch(`/posts/autocomplete_title?q=${encodeURIComponent(query)}`)
+      fetch(`${fetchUrl}?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
           resultBox.innerHTML = "";
@@ -50,4 +55,4 @@ document.addEventListener("DOMContentLoaded", () => {
       resultBox.classList.add("hidden");
     }
   });
-});
+}

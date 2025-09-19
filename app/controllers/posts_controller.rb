@@ -104,8 +104,16 @@ class PostsController < ApplicationController
   def autocomplete_title
     keyword = params[:q].to_s.strip
 
-    @titles = Post.ransack(title_cont: keyword).result(distinct: true).limit(10).pluck(:title)
+    @titles = Post.ransack(title_or_body_cont: keyword).result(distinct: true).limit(10).pluck(:title)
     render json: @titles
+  end
+
+  def autocomplete_nickname
+    keyword = params[:q].to_s.strip
+
+    @nicknames = User.ransack(nickname_cont: keyword).result(distinct: true).limit(10).pluck(:nickname)
+
+    render json: @nicknames
   end
   private
 
