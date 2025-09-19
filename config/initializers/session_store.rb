@@ -5,7 +5,7 @@ if Rails.env.production?
     secure: true,       # 本番は HTTPS 前提
     same_site: :lax,
     httponly: true,
-    domain: 'moregolf-life.com' # ※必要なら。本番だけに限定
+    domain: "moregolf-life.com" # ※必要なら。本番だけに限定
 else
   Rails.application.config.session_store :cookie_store,
     key: "_moregolf_session",
