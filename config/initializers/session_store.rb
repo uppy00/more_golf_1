@@ -1,3 +1,4 @@
+# 開発環境と本番環境でcookie設定を変える
 if Rails.env.production?
   Rails.application.config.session_store :cookie_store,
     key: "_moregolf_session",
