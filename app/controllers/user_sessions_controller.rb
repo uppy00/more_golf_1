@@ -18,6 +18,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
+    reset_session
     flash[:notice] = "ログアウトしました。"
     redirect_to root_path, status: :see_other
   end
