@@ -2,7 +2,7 @@
   <div class="container mx-auto flex justify-between items-center">
     <div class="text-white text-2xl">More Golf</div>
     <!-- ゴルフ画像のイメージを追加　-->
-    <%= image_tag "", alt: "" %>
+    <%#= image_tag "", alt: "" %>
       <div class="flex space-x-4">
         <p class="hidden md:flex items-center text-white">ログイン中: <%= current_user.decorate.full_name %></p>
         <div class="flex space-x-6 text-white" >
@@ -32,7 +32,10 @@
             <span class="mt-1 text-xs sm:text-sm md:text-base">マイページ</span>
           <% end %>
           <!-- ログアウト -->
-          <%= link_to logout_path, data: { turbo_method: :delete }, class: "flex flex-col items-center hover:text-black" do %>
+          <%= button_to logout_path,
+              method: :delete,
+              form: { data: { turbo: false } },
+              class: "flex flex-col items-center hover:text-black" do %>
             <i class="fas fa-sign-out-alt text-lg sm:text-xl md:text-2xl"></i>
             <span class="mt-1 text-xs sm:text-sm md:text-base">ログアウト</span>
           <% end %>
