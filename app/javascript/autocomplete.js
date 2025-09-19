@@ -1,15 +1,24 @@
 // オートコンプリート用のJS
 
-document.addEventListener("DOMContentLoaded", () => {
+// app/javascript/autocomplete.js
+
+function initAutocomplete() {
   setupAutocomplete("autocomplete-input", "autocomplete-results", "/posts/autocomplete_title");
   setupAutocomplete("autocomplete-nickname", "autocomplete-nickname-results", "/posts/autocomplete_nickname");
-});
+}
+
+// フルリロードとTurbo遷移の両方で実行
+document.addEventListener("DOMContentLoaded", initAutocomplete);
+document.addEventListener("turbo:load", initAutocomplete);
 
 function setupAutocomplete(inputId, resultBoxId, fetchUrl) {
   const input = document.getElementById(inputId);
   const resultBox = document.getElementById(resultBoxId);
-
   if (!input || !resultBox) return;
+
+  // 二重バインド防止（Turboで複数回呼ばれるため）
+  if (input.dataset.acBound === "1") return;
+  input.dataset.acBound = "1";
 
   let timeout;
 
@@ -28,7 +37,7 @@ function setupAutocomplete(inputId, resultBoxId, fetchUrl) {
         .then(res => res.json())
         .then(data => {
           resultBox.innerHTML = "";
-          if (data.length === 0) {
+          if (!data.length) {
             resultBox.classList.add("hidden");
             return;
           }
