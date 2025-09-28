@@ -1,7 +1,20 @@
 <!-- posts/show.html.erb の OGPタグ設定 -->
+<!-- posts/show.html.erb の OGPタグ設定 -->
+<% cache_buster = @post.updated_at.to_i %>
+
 <% content_for :og_title, "【More golfに「#{@post.tag&.name || '未設定'}」を投稿しました】" %>
-<% content_for :og_description, truncate(@post.body, length: 100) %>
-<% content_for :og_image, @post.image.present? ? @post.image.ogp.url : "#{root_url}images/default_ogp.png" %>
+<% content_for :og_description, truncate(@post.body.to_s, length: 100) %>
+
+<% ogp_image_url =
+    if @post.image.present?
+      "#{@post.image.ogp.url}?v=#{cache_buster}"   # ← 🔥 これが超重要！
+    else
+      image_url("default_ogp.jpg")                # ← Railsヘルパーで絶対URLに
+    end
+%>
+
+<% content_for :og_image, ogp_image_url %>
+
 
 
 
