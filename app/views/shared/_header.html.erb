@@ -1,46 +1,121 @@
 <header class="bg-green-500 p-4">
   <div class="container mx-auto flex justify-between items-center">
-    <div class="text-white text-2xl">More Golf</div>
-    <!-- ゴルフ画像のイメージを追加　-->
-    <%#= image_tag "", alt: "" %>
-      <div class="flex space-x-4">
-        <p class="hidden md:flex items-center text-white">ログイン中: <%= current_user.decorate.full_name %></p>
-        <div class="flex space-x-6 text-white" >
-          <!-- ホーム -->
-          <%= link_to root_path, class: 'flex flex-col items-center hover:text-black' do %>
-            <i class="fa-solid fa-house text-lg sm:text-xl md:text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">ホーム</span>
-          <% end %>
-          <!-- 新規投稿 -->
-          <%= link_to new_post_path, class: 'flex flex-col items-center hover:text-black' do %>
-            <i class="fa-solid fa-pen-to-square text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">新規投稿</span>
-          <% end %>
-          <!-- 投稿一覧 -->
-          <%= link_to  posts_path, class: 'flex flex-col items-center hover:text-black' do %>
-            <i class="fa-solid fa-list text-lg sm:text-xl md:text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">投稿一覧</span>
-          <% end %>
-          <!-- いいねした記事 -->
-          <%= link_to  likes_posts_path, class: 'flex flex-col items-center hover:text-black' do %>
-            <i class="fa-solid fa-heart text-lg sm:text-xl md:text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">いいねした投稿</span>
-          <% end %>
-          <!-- マイページ -->
-          <%= link_to user_path(current_user), class: "flex flex-col items-center hover:text-black" do %>
-            <i class="fas fa-user text-lg sm:text-xl md:text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">マイページ</span>
-          <% end %>
-          <!-- ログアウト -->
-          <%= button_to logout_path,
-              method: :delete,
-              form: { data: { turbo: false } },
-              class: "flex flex-col items-center hover:text-black" do %>
-            <i class="fas fa-sign-out-alt text-lg sm:text-xl md:text-2xl"></i>
-            <span class="mt-1 text-xs sm:text-sm md:text-base">ログアウト</span>
-          <% end %>
-        </div>
-      </div>
+    <!-- ロゴ -->
+    <div class="text-white text-2xl font-bold">
+      <%= link_to root_path, class: "hover:text-gray-200" do %>
+        More Golf
+      <% end %>
+    </div>
+
+    <!-- ハンバーガーボタン（スマホ用） -->
+    <button id="menu-button" type="button" class="md:hidden text-white z-20">
+      <i id="bars" class="fa-solid fa-bars fa-2x"></i>
+      <i id="xmark" class="fa-solid fa-xmark fa-2x !hidden"></i>
+    </button>
+
+    <!-- PCナビゲーション（md以上） -->
+    <div class="hidden md:flex space-x-6 text-white items-center">
+      <p class="flex items-center text-white">
+        ログイン中: <%= current_user.decorate.full_name %>
+      </p>
+
+      <!-- ホーム -->
+      <%= link_to root_path, class: 'flex flex-col items-center hover:text-black' do %>
+        <i class="fa-solid fa-house text-lg sm:text-xl md:text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">ホーム</span>
+      <% end %>
+
+      <!-- 新規投稿 -->
+      <%= link_to new_post_path, class: 'flex flex-col items-center hover:text-black' do %>
+        <i class="fa-solid fa-pen-to-square text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">新規投稿</span>
+      <% end %>
+
+      <!-- 投稿一覧 -->
+      <%= link_to posts_path, class: 'flex flex-col items-center hover:text-black' do %>
+        <i class="fa-solid fa-list text-lg sm:text-xl md:text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">投稿一覧</span>
+      <% end %>
+
+      <!-- いいねした記事 -->
+      <%= link_to likes_posts_path, class: 'flex flex-col items-center hover:text-black' do %>
+        <i class="fa-solid fa-heart text-lg sm:text-xl md:text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">いいねした投稿</span>
+      <% end %>
+
+      <!-- マイページ -->
+      <%= link_to user_path(current_user), class: "flex flex-col items-center hover:text-black" do %>
+        <i class="fas fa-user text-lg sm:text-xl md:text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">マイページ</span>
+      <% end %>
+
+      <!-- ログアウト -->
+      <%= button_to logout_path,
+          method: :delete,
+          form: { data: { turbo: false } },
+          class: "flex flex-col items-center hover:text-black bg-transparent" do %>
+        <i class="fas fa-sign-out-alt text-lg sm:text-xl md:text-2xl"></i>
+        <span class="mt-1 text-xs sm:text-sm md:text-base">ログアウト</span>
+      <% end %>
     </div>
   </div>
+
+  <!-- モバイルメニュー -->
+  <ul id="mobile-menu"
+      class="fixed top-0 left-0 z-10 w-full  bg-green-600 text-center text-lg font-bold text-white translate-x-full transition-transform duration-300 ease-linear flex flex-col justify-center space-y-6">
+    <li>
+      <%= link_to root_path, class: "block pt hover:text-black" do %>
+      <i class="fa-solid fa-house text-2xl pt-2"></i>
+        ホーム
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_post_path, class: "block hover:text-black" do %>
+      <i class="fa-solid fa-pen-to-square text-2xl"></i>
+        新規投稿
+      <% end %>
+    </li>
+    <li>
+      <%= link_to posts_path, class: "block hover:text-black" do %>
+      <i class="fa-solid fa-list text-2xl"></i>
+        投稿一覧
+      <% end %>
+    </li>
+    <li>
+      <%= link_to likes_posts_path, class: "block hover:text-black" do %>
+      <i class="fa-solid fa-heart text-2xl"></i>
+        いいねした投稿
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(current_user), class: "block hover:text-black" do %>
+      <i class="fas fa-user text-2xl"></i>
+        マイページ
+      <% end %>
+    </li>
+    <li>
+      <%= button_to logout_path,
+          method: :delete,
+          form: { data: { turbo: false } },
+          class: "w-full text-center py-2 hover:text-black bg-transparent" do %>
+          <i class="fas fa-sign-out-alt text-lg sm:text-xl md:text-2xl"></i>
+        ログアウト
+      <% end %>
+    </li>
+  </ul>
 </header>
+
+<!-- ハンバーガーメニューの開閉スクリプト -->
+<script>
+  const menuButton = document.getElementById('menu-button');
+  const bars = document.getElementById('bars');
+  const xmark = document.getElementById('xmark');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton.addEventListener('click', () => {
+    bars.classList.toggle('!hidden');
+    xmark.classList.toggle('!hidden');
+    mobileMenu.classList.toggle('translate-x-full');
+    document.body.classList.toggle('overflow-hidden'); // 背景スクロール固定
+  });
+</script>
