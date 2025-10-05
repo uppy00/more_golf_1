@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  # コメントアウトすることで古いiOSでも表示できるように、しかし軽く問題が出る可能性もある。
   # allow_browser versions: :modern
   # ユーザーがログインしているかどうかを判断　してない場合not_authenticatedに指定したルートにリダイレクト
   before_action :require_login, unless: :high_voltage_static_page?
