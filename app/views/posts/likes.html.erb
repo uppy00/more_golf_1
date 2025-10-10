@@ -13,7 +13,7 @@
             <div class="flex items-center mb-2">
               <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
                 <%= image_tag post.user.
-                avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+                avatar.url.presence, class: 'w-full h-full object-cover' %>
               </div>
               <%= link_to post.user.decorate.full_name, user_path(post.user), class: "text-sm hover:text-blue-500 text-black ml-2" %>
               <div class="ml-2">
@@ -24,7 +24,7 @@
             <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
             <!-- 投稿画像 -->
             <div class="mt-4 mb-6">
-              <%= image_tag post.image.url.presence || asset_path('default_image.png'), class: 'w-full h-[190px] object-contain rounded-md' %>
+              <%= image_tag post.image.url.presence, class: 'w-full h-[190px] object-contain rounded-md' %>
             </div>
             <!-- 投稿日時と操作ボタン -->
             <div class="flex justify-between items-center mt-auto">

@@ -14,7 +14,7 @@
               <div class="flex items-center">
                 <!-- ユーザーのアバター画像 -->
                 <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
-                  <%= image_tag post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+                  <%= image_tag post.user.avatar.url.presence || asset_path(''), class: 'w-full h-full object-cover' %>
                 </div>
                 <!-- ユーザー名 -->
                 <%= link_to post.user.nickname, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
@@ -38,7 +38,7 @@
             <% elsif post.video? %>
               <%= video_tag post.video.url, controls: true, class: 'w-full h-[190px] object-contain rounded-md' %>
             <% else %>
-              <%= image_tag asset_path('default.jpg'), class: 'w-full h-[190px] object-contain rounded-md' %>
+              <%= image_tag asset_path('default.webp'), class: 'w-full h-[190px] object-contain rounded-md' %>
             <% end %>
           </div>
           <!-- 投稿日時を下に表示 -->

@@ -30,9 +30,9 @@ class PostImageUploader < CarrierWave::Uploader::Base
   version :ogp do
     process resize_to_fill: [ 1200, 628 ] # Twitter推奨サイズ
   end
-  # デフォルトのファイルassets/images配下のもの
+  # 画像がない場合これを表示
   def default_url
-    "default_image.png"
+    "default_image.webp"
   end
 
   # 保存を許すファイルの形式
