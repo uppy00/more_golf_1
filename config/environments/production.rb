@@ -90,7 +90,7 @@ Rails.application.configure do
     user_name:            ENV["GMAIL_USERNAME"],
     password:             ENV["GMAIL_PASSWORD"],
     authentication:       "plain",
-    ssl:                  true,         
+    ssl:                  true,
     open_timeout:         30,
     read_timeout:         30
   }
