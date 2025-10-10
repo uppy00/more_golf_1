@@ -91,8 +91,8 @@ Rails.application.configure do
     password:             ENV["GMAIL_PASSWORD"],
     authentication:       "plain",
     enable_starttls_auto: true,
-    open_timeout:         30, 
-    read_timeout:         30 
+    open_timeout:         30,
+    read_timeout:         30
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
