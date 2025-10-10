@@ -5,7 +5,7 @@
   <div class="flex items-center mb-3 sm:mb-6">
     <!-- アバター -->
     <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
-      <%= image_tag @post.user.avatar.url.presence || asset_path('default_image.png'), class: 'w-full h-full object-cover' %>
+      <%= image_tag @post.user.avatar.url.presence, class: 'w-full h-full object-cover' %>
     </div>
     <!-- ニックネーム -->
     <span class="text-xl mr-4"><%= @post.user.nickname %></span>
@@ -32,7 +32,7 @@
       <% if @post.video.present? %>
         <%= video_tag @post.video.url, controls: true, preload: "metadata", class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
       <% else %>
-        <%= image_tag @post.image.url.presence || asset_path('default_image.png'), 
+        <%= image_tag @post.image.url.presence, 
             class: "w-full h-[370px] object-contain rounded-lg bg-gray-50 shadow-sm" %>
       <% end %>
     </div>

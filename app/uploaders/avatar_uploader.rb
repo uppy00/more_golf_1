@@ -20,8 +20,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  # user.avatar.urlで呼ばれる
   def default_url
-    "avatar_sample.jpeg"
+    "avatar_sample.webp"
   end
 
   # 保存を許すファイルの形式

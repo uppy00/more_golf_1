@@ -9,7 +9,7 @@
     if @post.image.present?
       "#{@post.image.ogp.url}?v=#{cache_buster}"   # ← 🔥 これが超重要！
     else
-      image_url("default_ogp.jpg")                # ← Railsヘルパーで絶対URLに
+      image_url("default_ogp.webp")                # ← Railsヘルパーで絶対URLに
     end
 %>
 
