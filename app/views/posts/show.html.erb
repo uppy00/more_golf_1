@@ -7,9 +7,9 @@
 
 <% ogp_image_url =
     if @post.image.present?
-      "#{@post.image.ogp.url}?v=#{cache_buster}"   # ← 🔥 これが超重要！
+      "#{@post.image.ogp.url}?v=#{cache_buster}" 
     else
-      image_url("default_ogp.webp")                # ← Railsヘルパーで絶対URLに
+      image_url("default_ogp.webp")
     end
 %>
 
