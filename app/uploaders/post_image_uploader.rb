@@ -1,6 +1,6 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  
+
   if Rails.env.production?
     storage :fog
   else

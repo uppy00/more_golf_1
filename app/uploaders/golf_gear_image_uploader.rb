@@ -6,7 +6,7 @@ class GolfGearImageUploader < CarrierWave::Uploader::Base
   else
     storage :file
   end
-  process resize_to_limit: [512, 512]
+  process resize_to_limit: [ 512, 512 ]
   process convert: "webp"
 
   def store_dir
