@@ -24,7 +24,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # アップロードされた画像を全て　800x400に変換
   process resize_to_fit: [ 800, 800 ]
-  # 軽量化処理
 
   # OGPようにリサイズ
   version :ogp do
