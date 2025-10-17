@@ -107,15 +107,35 @@
 
 <!-- ハンバーガーメニューの開閉スクリプト -->
 <script>
-  const menuButton = document.getElementById('menu-button');
-  const bars = document.getElementById('bars');
-  const xmark = document.getElementById('xmark');
-  const mobileMenu = document.getElementById('mobile-menu');
+  function initMenu() {
+    const menuButton = document.getElementById('menu-button');
+    const bars = document.getElementById('bars');
+    const xmark = document.getElementById('xmark');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  menuButton.addEventListener('click', () => {
+    // 要素が存在しないページでは処理しない
+    if (!menuButton || !bars || !xmark || !mobileMenu) return;
+
+    // 二重登録を防止（重要！）
+    menuButton.removeEventListener('click', handleMenuToggle);
+    menuButton.addEventListener('click', handleMenuToggle);
+  }
+
+  function handleMenuToggle() {
+    const bars = document.getElementById('bars');
+    const xmark = document.getElementById('xmark');
+    const mobileMenu = document.getElementById('mobile-menu');
+
     bars.classList.toggle('!hidden');
     xmark.classList.toggle('!hidden');
     mobileMenu.classList.toggle('translate-x-full');
     document.body.classList.toggle('overflow-hidden'); // 背景スクロール固定
-  });
+  }
+
+  // Turbo対応: ページ遷移のたびに初期化
+  document.addEventListener('turbo:load', initMenu);
+
+  // Fallback: Turboが無効な環境用
+  document.addEventListener('DOMContentLoaded', initMenu);
 </script>
+
