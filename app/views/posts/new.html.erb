@@ -42,7 +42,7 @@
       </div>
       <!-- 投稿ボタン -->
       <div class="mb-4 flex justify-center">
-        <%= f.submit "投稿", class: 'hover:bg-green-500 transition-all duration-300 w-[110px] h-[80p] py-2 bg-green-600 text-white rounded-md ' %>
+        <%= f.submit "投稿", class: 'hover:bg-green-500 transition-all duration-300 w-[110px] h-[80p] py-2 bg-green-600 text-white rounded-md ', data: { action: "click->loading#show" }  %>
       </div>
       <% end %>
     </div>
