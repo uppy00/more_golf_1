@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
   <head>
     <title><%= content_for(:title) || "More golf" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,7 +24,13 @@
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
 <!-- footerを一番したに表示させるためのもの-->
-  <body class="flex flex-col min-h-screen">
+  <body  data-controller="loading" class="flex flex-col min-h-screen">
+    <!-- ローディングアニメーション -->
+    <div data-loading-target="spinner" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+      <div class="h-[150px] w-[150px] flex items-center justify-center">
+        <span class="loading loading-spinner text-default w-full h-full"></span>
+      </div>
+    </div>
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
