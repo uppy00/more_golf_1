@@ -15,7 +15,9 @@
 
     <!-- 右カラム -->
     <div class="flex space-x-4 justify-end">
-      <%= link_to '練習記録', '#', class: 'hover:text-black' %>
+      <div class="tooltip" data-tip="近々実装予定です！！！">
+        <%= link_to '練習記録', '#', class: 'text-white hover:text-black'%>
+      </div>
       <% if current_user.golf_gear.present? %>
         <%= link_to "私のゴルフギアを編集", edit_user_golf_gear_path(current_user), class: 'hover:text-black' %>
       <% else %>

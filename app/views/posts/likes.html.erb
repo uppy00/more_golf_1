@@ -7,43 +7,87 @@
   <% if @liked_posts.any? %>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <% @liked_posts.each do |post| %>
-        <div class="bg-gray-200 p-4 rounded-lg shadow w-full h-[340px]">
-          <div class="flex flex-col h-full">
-            <!-- 投稿の上部：ユーザー情報とタイトル -->
-            <div class="flex items-center mb-2">
-              <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
-                <%= image_tag post.user.
-                avatar.url.presence, class: 'w-full h-full object-cover' %>
-              </div>
-              <%= link_to post.user.decorate.full_name, user_path(post.user), class: "text-sm hover:text-blue-500 text-black ml-2" %>
-              <div class="ml-2">
-                <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500' %>
-              </div>
-            </div>
-            <!-- 投稿本文 -->
-            <p class="text-sm text-black flex-grow"><%= post.body.truncate(20) %></p>
-            <!-- 投稿画像 -->
-            <div class="mt-4 mb-6">
-              <%= image_tag post.image.url.presence, class: 'w-full h-[190px] object-contain rounded-md' %>
-            </div>
-            <!-- 投稿日時と操作ボタン -->
-            <div class="flex justify-between items-center mt-auto">
-              <p class="text-xs text-gray-500">投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
-              <% if current_user.own?(post) %>
-                <div class="flex space-x-3 ">
-                  <%= link_to edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' do %>
-                    <i class="fa-solid fa-pencil"></i>
-                  <% end %>
-                  <%= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700'  do %>
-                    <i class="fa-solid fa-trash"></i>
-                  <% end %>
+        <div class="bg-white p-4 rounded-3xl shadow-xl" style="width: 480x; height: 340px;">
+        <div class="flex flex-col h-full">
+          <!-- postタイトル -->
+          <h2 class="text-black text-xl  hover:text-white">
+            <!-- ユーザーの名前とアバター画像、タイトルを横並びに -->
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <!-- ユーザーのアバター画像 -->
+                <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+                  <%= image_tag post.user.avatar.url.presence || asset_path(''), class: 'w-full h-full object-cover' %>
                 </div>
+                <!-- ユーザー名 -->
+                <%= link_to post.user.nickname, user_path(post.user) , class: "text-sm hover:text-blue-500 text-black ml-2" %>
+              </div>
+              <!-- タグ タグの色post_helperに記載-->
+              <% if post.tag %>
+                <div class="text-xs text-white <%= tag_color_class(post.tag.name) %> ml-4 p-2 rounded-xl">
+                  <%= post.tag.name %>
+                </div>
+              <% end %>
+            </div>
+          </h2>
+          <!-- 投稿タイトル -->
+          <div class="text-center">
+            <%= link_to post.title, post_path(post), class: 'text-lg font-semibold text-black hover:text-blue-500', data: { turbo: false } %>
+          </div>          
+          <!-- 画像または動画の表示 -->
+          <div class="mt-4 mb-6">
+            <% if post.image? %>
+              <%= image_tag post.image.url, class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% elsif post.video? %>
+              <%= video_tag post.video.url, controls: true, class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% else %>
+              <%= image_tag asset_path('default.webp'), class: 'w-full h-[190px] object-contain rounded-md' %>
+            <% end %>
+          </div>
+          <!-- 投稿日時を下に表示 -->
+          <div class="flex justify-between items-center mt-auto">
+            <!-- 投稿日 -->
+            <p class="text-xs text-gray-500">
+              投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %>
+            </p>
+
+            <!-- 右側：編集・削除・Xボタン or いいねボタン -->
+            <div class="flex items-center space-x-3">
+
+              <% if current_user&.own?(post) %>
+                <!-- 編集ボタン -->
+                <%= link_to edit_post_path(post), class: 'text-blue-500 hover:text-blue-700' do %>
+                  <i class="fa-solid fa-pencil"></i>
+                <% end %>
+
+                <!-- 削除ボタン -->
+                <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-red-500 hover:text-red-700' do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+
+                <!-- ハート＋カウント -->
+                <div class="flex items-center space-x-1">
+                  <i class="fa-solid fa-heart text-red-500"></i>
+                  <span><%= post.likes.count %></span>
+                </div>
+
               <% else %>
-                <%= render 'like_buttons', { post: post } %>
+                <!-- いいねボタンとカウント -->
+                <div class="flex items-center space-x-1">
+                  <%= render 'like_buttons', { post: post } %>
+                  <%= render partial: 'posts/like_count', locals: { post: post } %>
+                </div>
+              <% end %>
+
+
+              <!-- Xシェアボタン（共通で表示） -->
+              <% tweet_text = "【More golfに「#{post.tag&.name || "未設定"}」を投稿しました】\n\n #{truncate(post.body, length: 80)}\n\n 投稿にコメントをしてみましょう \n\n" %>
+              <%= link_to "https://twitter.com/share?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(post_url(post))}", target: '_blank' do %>
+                <i class="fa-brands fa-x-twitter"></i>
               <% end %>
             </div>
           </div>
-        </div>
+        </div>  
+      </div>
       <% end %>
     </div>
   <% else %>
