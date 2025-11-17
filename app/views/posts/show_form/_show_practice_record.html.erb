@@ -47,9 +47,27 @@
         <%= @post.postable&.effort_focus || "未設定" %>
       </p>
       <p class="mt-2">参考にした動画</p>
-      <p class="w-full h-[50px] mt-2 bg-gray-50 shadow rounded-md p-4 ">
-        <%= @post.postable&.video_reference || "未設定"%>
-      </p>
+      <% video_id = youtube_embed_id(@post.postable&.video_reference) %>
+      <% if video_id.present? %>
+        <!-- YouTubeレスポンシブ埋め込み（Tailwindプラグイン無し版） -->
+        <div class="mt-2 w-full max-w-3xl">
+          <div class="relative w-full pt-[56.25%] rounded-lg overflow-hidden shadow bg-black">
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/<%= video_id %>"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      <% else %>
+        <!-- URLが無い or 正しくIDが取れない場合のフォールバック -->
+        <p class="w-full h-[50px] mt-2 bg-gray-50 shadow rounded-md p-4">
+          <%= @post.postable&.video_reference.presence || "未設定" %>
+        </p>
+      <% end %>
     </div>
   </div>
 

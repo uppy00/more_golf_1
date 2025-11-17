@@ -27,14 +27,13 @@ class PostsController < ApplicationController
       postable = ScoreRecord.new(postable_params)
     elsif tag&.name == "練習記録"
       postable = PracticeRecord.new(postable_params)
+      # youtubeの動画への対応はposthelperに
     end
 
     @post = current_user.posts.build(post_params.except(:postable_attributes))
     @post.tag = tag
 
-    if postable.present?
-      @post.postable = postable
-    end
+    @post.postable = postable if postable.present?
 
     if @post.save
       flash[:success] = "投稿に成功しました"
@@ -119,22 +118,21 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-
       :title, :body, :image, :tag_id, :video,
-
-      postable_attributes: [
-        :id, :course_name, :score,
-        :driving_range_name, :practice_hour, :ball_count,
-        :effort_focus, :video_reference
-      ]
+      postable_attributes: postable_attribute_keys
     )
   end
 
-
   def postable_params
-    params.require(:post).fetch(:postable_attributes, {}).permit(
-      :course_name, :score,
-      :driving_range_name, :practice_hour, :ball_count, :effort_focus, :video_reference
-    )
+    params.require(:post).fetch(:postable_attributes, {}).permit(*postable_attribute_keys)
+  end
+
+  def postable_attribute_keys
+    %i[
+      id
+      course_name score
+      driving_range_name practice_hour ball_count
+      effort_focus video_reference
+    ]
   end
 end
