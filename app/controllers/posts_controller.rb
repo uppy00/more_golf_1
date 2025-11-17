@@ -21,14 +21,13 @@ class PostsController < ApplicationController
   # 投稿の作成
   def create
     tag = Tag.find_by(id: params[:post][:tag_id])
-    
 
     postable = nil
     if tag&.name == "スコア記録"
       postable = ScoreRecord.new(postable_params)
     elsif tag&.name == "練習記録"
       postable = PracticeRecord.new(postable_params)
-    # youtubeの動画への対応はposthelperに！！
+      # youtubeの動画への対応はposthelperに
     end
 
     @post = current_user.posts.build(post_params.except(:postable_attributes))
