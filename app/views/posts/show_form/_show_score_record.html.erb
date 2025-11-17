@@ -35,7 +35,7 @@
     <!-- 本文＋スコア情報 -->
     <div class="w-full md:w-1/2 flex flex-col text-xl text-left space-y-4">
       <!-- スコアとコース名 -->
-      <div class="flex space-x-6 text-xl">
+      <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6 text-xl">
         <p class="bg-gray-50 shadow px-3 py-1 rounded">スコア: <%= @post.postable&.score || "未設定" %></p>
         <p class="bg-gray-50 shadow px-3 py-1 rounded">コース名: <%= @post.postable&.course_name || "未設定" %></p>
       </div>
