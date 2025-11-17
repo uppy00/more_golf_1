@@ -36,10 +36,27 @@
     <!-- 本文 -->
     <div class="w-auto md:w-1/2 text-lg sm:text-xl text-left flex flex-col">
       <!-- スコアとコース名 -->
-      <div class="mb-4 flex space-x-6 ">
-        <p class="bg-gray-100 shadow-xs">練習場名: <%= @post.postable&.driving_range_name || "未設定" %></p>
-        <p class="bg-gray-100 shadow-xs">練習時間: <%= @post.postable&.practice_hour || "未設定" %>分</p>
-        <p class="bg-gray-100 shadow-xs">球数: <%= @post.postable&.ball_count || "未設定" %>球</p>
+      <div class="mb-4">
+        <!-- smで表示（スマホのみ） -->
+        <div class="flex flex-col space-y-2 sm:hidden">
+          <p class="bg-gray-100 shadow-xs ">練習場名: <%= @post.postable&.driving_range_name || "未設定" %></p>
+            <div class="flex space-x-6 mt-2 w-full">
+              <p class="bg-gray-100 shadow-xs w-1/2">練習時間: <%= @post.postable&.practice_hour || "未設定" %>分</p>
+              <p class="bg-gray-100 shadow-xs w-1/2">球数: <%= @post.postable&.ball_count || "未設定" %>球</p>
+            </div>
+        </div>
+      </div>
+      <!-- smで非表示 -->
+      <div class="hidden sm:flex sm:space-x-6">
+        <p class="bg-gray-100 shadow-xs">
+          練習場名: <%= @post.postable&.driving_range_name || "未設定" %>
+        </p>
+        <p class="bg-gray-100 shadow-xs">
+          練習時間: <%= @post.postable&.practice_hour || "未設定" %>分
+        </p>
+        <p class="bg-gray-100 shadow-xs">
+          球数: <%= @post.postable&.ball_count || "未設定" %>球
+        </p>
       </div>
 
       <p>意識して取り組んだこと</p>
