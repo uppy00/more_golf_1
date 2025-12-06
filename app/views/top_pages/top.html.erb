@@ -107,9 +107,16 @@
         他のユーザーがどんなクラブを使っているかを見るのも楽しい。
       </p>
       <div class="card-actions justify-end mt-4">
-        <%= link_to user_golf_gear_path(current_user),
-              class: "btn btn-primary btn-sm sm:btn-md" do %>
-          マイクラブを見る
+        <% if current_user.golf_gear.present? %>
+          <%= link_to user_golf_gear_path(current_user),
+                class: "btn btn-primary btn-sm sm:btn-md" do %>
+            マイクラブを見る
+          <% end %>
+        <% else %>
+          <%= link_to new_user_golf_gear_path(current_user),
+                class: "btn btn-primary btn-sm sm:btn-md" do %>
+            マイクラブを登録する
+          <% end %>
         <% end %>
       </div>
     </div>
