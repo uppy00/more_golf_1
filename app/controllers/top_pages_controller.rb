@@ -3,8 +3,7 @@ class TopPagesController < ApplicationController
   skip_before_action :require_login, only: %i[top]
   # loginしていたらyeildにtop.htmlをしていなければbefore_login_topを
   def top
-    # ここでログ出力
-    Rails.logger.info("[TOP] current_user_id=#{current_user&.id} logged_in?=#{logged_in?}")
+    @recent_posts = Post.includes(:user, :tag).order(created_at: :desc).limit(5)
     if logged_in?
       render "top"
     else
