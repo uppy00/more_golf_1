@@ -39,9 +39,18 @@
         </div>
       </div>
       <div>
-        <%= link_to user_golf_gear_path(@user), class: 'flex items-center text-blue-500 hover:text-blue-700 space-x-2' do %>
-          <i class="fas fa-golf-ball"></i>
-          <span class="font-bold text-xl"><%= @user.nickname %>のゴルフギア</span>
+        <% if @user.golf_gear.present? %>
+          <%= link_to user_golf_gear_path(@user),
+                class: 'flex items-center text-blue-500 hover:text-blue-700 space-x-2' do %>
+            <i class="fas fa-golf-ball"></i>
+            <span class="font-bold text-xl"><%= @user.nickname %>のゴルフギア</span>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_golf_gear_path(@user),
+                class: 'flex items-center text-blue-500 hover:text-blue-700 space-x-2' do %>
+            <i class="fas fa-golf-ball"></i>
+            <span class="font-bold text-xl"><%= @user.nickname %>のゴルフギアを登録する</span>
+          <% end %>
         <% end %>
       </div>
       <!-- 自己紹介 -->
