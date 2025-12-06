@@ -7,6 +7,7 @@ module PostsHelper
     when "その他" then "bg-gray-500"
     end
   end
+  # youtube_IDのみを綺麗に分割するためのメソッド
   def youtube_embed_id(str)
     s = str.to_s.strip
     return "" if s.blank?
