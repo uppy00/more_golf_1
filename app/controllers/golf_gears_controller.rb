@@ -18,6 +18,7 @@ class GolfGearsController < ApplicationController
   end
 
   def show
+    Rails.logger.info("[GEAR SHOW] @user.id=#{@user.id}, current_user.id=#{current_user&.id}")
   end
 
   def edit
