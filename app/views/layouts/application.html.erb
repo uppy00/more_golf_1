@@ -48,5 +48,26 @@
     <% else %>
       <%= render 'shared/before_login_footer' %>
     <% end %>
+    <!-- lineで送ったURLで自動でgoogleまたはiosで開く設定にするもの -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const ua = navigator.userAgent.toLowerCase();
+
+        // LINE内ブラウザ判定
+        if (ua.indexOf("line") !== -1) {
+
+          // iOS → Safari で開く
+          if (/iphone|ipad|ipod/.test(ua)) {
+            window.location = "https://moregolf-life.com/?openExternalBrowser=1";
+          }
+
+          // Android → Chrome で開く
+          else if (/android/.test(ua)) {
+            window.location = "intent://moregolf-life.com/#Intent;scheme=https;package=com.android.chrome;end";
+          }
+        }
+      });
+    </script>
+
   </body>
 </html>
