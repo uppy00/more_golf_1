@@ -1,5 +1,4 @@
 <!-- posts/show.html.erb の OGPタグ設定 -->
-<!-- posts/show.html.erb の OGPタグ設定 -->
 <% cache_buster = @post.updated_at.to_i %>
 
 <% content_for :og_title, "【More golfに「#{@post.tag&.name || '未設定'}」を投稿しました】" %>
