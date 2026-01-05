@@ -3,4 +3,6 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :post
+  #　通知機能に関するもの
+  has_many :notifications, dependent: :destroy
 end

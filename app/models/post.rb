@@ -13,6 +13,32 @@ class Post < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     [ "comments", "user", "tag" ] #  ここに関連付けを追加
   end
+  # 通知機能に関するもの
+  # いいね通知
+  def create_notification_like!(current_user)
+    #　自分の投稿に自分のいいね通知が来ないようにする
+    return if user_id == current_user.id
+    Notification.find_or_create_by!(
+      visitor_id: current_user.id,
+      visited_id: user_id,
+      post_id: id,
+      action: "like"
+    )
+  end
+  # コメント通知
+  def create_notification_comment!(current_user, comment)
+    #　自分の投稿に自分のコメント通知が来ないようにする
+    return if user_id == current_user.id
+    Notification.create!(
+      visitor_id: current_user.id,
+      visited_id: user_id,
+      post_id: id,
+      comment_id: comment.id,
+      action: "comment",
+      checked: false
+    )
+    
+  end
   # carrierwaveアップローダーを使うためのもの
   mount_uploader :image, PostImageUploader
   mount_uploader :video, VideoUploaderUploader
@@ -23,6 +49,8 @@ class Post < ApplicationRecord
   # polymophicに伴うもの
   belongs_to :postable, polymorphic: true, optional: true
   accepts_nested_attributes_for :postable
+  # 通知機能に伴うもの
+  has_many :notifications, dependent: :destroy
 
   private
   # 動画または画像のみを表示させるもの

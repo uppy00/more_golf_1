@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_12_150518) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_02_042049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,25 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_12_150518) do
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "visitor_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_notifications_on_action"
+    t.index ["checked"], name: "index_notifications_on_checked"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id", "checked"], name: "index_notifications_on_visited_id_and_checked"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id", "visited_id", "post_id", "action"], name: "index_notifications_unique_like", unique: true, where: "((action)::text = 'like'::text)"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -135,6 +154,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_12_150518) do
   add_foreign_key "golf_gears", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "notifications", "users", column: "visited_id"
+  add_foreign_key "notifications", "users", column: "visitor_id"
   add_foreign_key "posts", "tags"
   add_foreign_key "posts", "users"
 end

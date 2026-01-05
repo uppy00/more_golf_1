@@ -8,11 +8,26 @@
       <% end %>
     </div>
 
-    <!-- ハンバーガーボタン（スマホ用） -->
-    <button id="menu-button" type="button" class="md:hidden text-white z-20">
-      <i id="bars" class="fa-solid fa-bars fa-2x"></i>
-      <i id="xmark" class="fa-solid fa-xmark fa-2x !hidden"></i>
-    </button>
+    <!-- 右側（モバイル用：通知 + ハンバーガー） -->
+    <div class="md:hidden flex items-center gap-4 text-white">
+      <!-- 通知（モバイル用） -->
+      <%= link_to notifications_path, class: "relative flex items-center hover:text-black" do %>
+        <span class="relative inline-block" style="line-height: 1;">
+          <i class="fa-solid fa-bell" style="font-size: 2em;"></i>
+
+          <% if unchecked_notifications? %>
+            <span class="absolute -top-1 -right-0.5 w-5 h-5 rounded-full bg-orange-500 animate-bounce"></span>
+          <% end %>
+        </span>
+      <% end %>
+
+      <!-- ハンバーガーボタン（スマホ用） -->
+      <button id="menu-button" type="button" class="z-20 hover:text-black">
+        <i id="bars" class="fa-solid fa-bars fa-2x"></i>
+        <i id="xmark" class="fa-solid fa-xmark fa-2x !hidden"></i>
+      </button>
+    </div>
+
 
     <!-- PCナビゲーション（md以上） -->
     <div class="hidden md:flex space-x-6 text-white items-center">
@@ -42,6 +57,19 @@
       <%= link_to likes_posts_path, class: 'flex flex-col items-center hover:text-black' do %>
         <i class="fa-solid fa-heart text-lg sm:text-xl md:text-2xl"></i>
         <span class="mt-1 text-xs sm:text-sm md:text-base">いいねした投稿</span>
+      <% end %>
+
+      <!-- 通知された記事 -->
+      <%= link_to notifications_path, class: "flex flex-col items-center hover:text-black" do %>
+        <span class="relative inline-block" style="line-height: 1;">
+          <i class="fa-solid fa-bell" style="font-size: 1.5em;"></i>
+
+          <% if unchecked_notifications? %>
+            <span class="absolute -top-1 -right-0.5 w-4 h-4 rounded-full bg-orange-500 animate-bounce"></span>
+          <% end %>
+        </span>
+
+        <span class="mt-1 text-xs sm:text-sm md:text-base">通知</span>
       <% end %>
 
       <!-- マイページ -->
@@ -98,7 +126,7 @@
       <%= button_to logout_path,
           method: :delete,
           form: { data: { turbo: false } },
-          class: "w-full text-center py-2 hover:text-black bg-transparent" do %>
+          class: "w-full text-center pb-1 hover:text-black bg-transparent" do %>
           <i class="fas fa-sign-out-alt text-lg sm:text-xl md:text-2xl"></i>
         ログアウト
       <% end %>
