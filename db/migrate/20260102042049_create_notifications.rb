@@ -15,10 +15,10 @@ class CreateNotifications < ActiveRecord::Migration[7.2]
 
     add_index :notifications, :checked
     add_index :notifications, :action
-    add_index :notifications, [:visited_id, :checked] # 未読取得が速い
+    add_index :notifications, [ :visited_id, :checked ] # 未読取得が速い
 
     # いいね通知だけ重複防止
-    add_index :notifications, [:visitor_id, :visited_id, :post_id, :action],
+    add_index :notifications, [ :visitor_id, :visited_id, :post_id, :action ],
               unique: true,
               where: "action = 'like'",
               name: "index_notifications_unique_like"
