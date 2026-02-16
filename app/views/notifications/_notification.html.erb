@@ -1,29 +1,47 @@
 <% visitor = notification.visitor %>
 
-<div class="flex items-center gap-4 border-b py-3">
+<div class="flex items-start gap-3 py-3 border-b <%= notification.checked ? '' : 'bg-base-200' %>">
   <!-- アバター -->
   <div class="avatar">
-    <div class="w-12 rounded-full">
-      <%= image_tag(visitor.avatar.present? ? visitor.avatar.url : "avatar_sample.webp",alt: visitor.nickname,class: "object-cover") %>
+    <div class="w-10 rounded-full">
+      <%= image_tag(visitor.avatar.present? ? visitor.avatar.url : "avatar_sample.webp",
+                    alt: visitor.nickname,
+                    class: "object-cover") %>
     </div>
   </div>
 
-  <!-- 通知内容 -->
-  <div class="flex-1 relative">
-    <div>
-      <%= link_to(visitor.nickname.presence || "#{visitor.last_name}#{visitor.first_name}",user_path(visitor),class: "font-bold text-blue-500") %>さんが
-      <% if notification.action == "like" %>
-        <%= link_to "あなたの投稿",post_path(notification.post),class: "font-bold text-emerald-500" %>にいいねしました
-      <% else %>
-        <%= link_to "あなたの投稿",post_path(notification.post),class: "font-bold text-emerald-500" %>にコメントしました
-        <div class="mt-1 text-sm text-gray-500">
-          <%= notification.comment&.body %>
+  <!-- 本文 + 時間 -->
+  <div class="min-w-0 flex-1">
+    <div class="flex items-start justify-between gap-3">
+      <!-- 本文 -->
+      <div class="min-w-0">
+        <div class="break-words text-base-content">
+          <%= link_to(visitor.nickname.presence || "#{visitor.last_name}#{visitor.first_name}",
+                      user_path(visitor),
+                      class: "link link-primary font-bold") %>
+          さんが
+          <%= link_to "あなたの投稿",
+                      post_path(notification.post),
+                      class: "link link-success font-bold" %>
+          <% if notification.action == "like" %>
+            にいいねしました
+          <% else %>
+            にコメントしました
+          <% end %>
         </div>
-      <% end %>
-    </div>
-    <!-- 時間の表記 -->
-    <div class="absolute bottom-0 right-0 text-xs ">
-      <%= time_ago_in_words(notification.created_at) %>
+
+        <% if notification.action == "comment" %>
+          <div class="mt-1 text-sm text-base-content/70 break-words">
+            <%= notification.comment&.body %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 時間 -->
+      <div class="shrink-0 text-xs text-base-content/60 whitespace-nowrap">
+        <%= time_ago_in_words(notification.created_at) %>前
+      </div>
     </div>
   </div>
 </div>
+
