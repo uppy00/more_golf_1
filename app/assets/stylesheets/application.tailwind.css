@@ -4,4 +4,20 @@
 @theme {
   --color-mygreen: #2979ff;
   --color-secondary: #fb8c00;
+  --color-third: #fb8c00;
+}
+
+@layer components {
+  .fa-stack {
+    position: relative;
+  }
+
+  /* 通知の円の独自カスタム */
+  .n-circle {
+    position: absolute;
+    top: -0.25rem;
+    transform: translateX(0.5rem);
+    color: var(--color-third);
+    font-size: 1rem;
+  }
 }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "notifications/index"
   post "oauth/callback", to: "oauths#callback"
   get "oauth/callback", to: "oauths#callback"
   get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
@@ -27,4 +28,6 @@ Rails.application.routes.draw do
   end
   # いいねの登録と解除
   resources :likes, only: %i[create destroy], param: :post_id
+  # 通知一覧
+  resources :notifications, only: %i[index]
 end
